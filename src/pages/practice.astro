@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import { SUBJECTS, SUBJECT_META } from '../data/vocab';
+import { PRACTICE_BY_SUBJECT } from '../data/practice';
+
+const sections = SUBJECTS.map((s) => ({
+  subject: s,
+  meta: SUBJECT_META[s],
+  questions: PRACTICE_BY_SUBJECT[s],
+}));
+
+const totalQuestions = sections.reduce((n, s) => n + s.questions.length, 0);
+---
+
+<Base title="PreACT 9 Practice">
+  <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8">
+    <header class="mb-6">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            PreACT 9 Secure
+          </p>
+          <h1 class="mt-1 text-2xl font-bold sm:text-3xl">Practice</h1>
+        </div>
+        <a
+          href="/"
+          class="shrink-0 rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+        >
+          ← Flashcards
+        </a>
+      </div>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+        Practice questions in the same four sections as the test: English,
+        Reading, Math, and Science.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {
+        sections.map(({ subject, meta, questions }) => {
+          const count = questions.length;
+          const ready = count > 0;
+          return (
+            <a
+              href={ready ? `/practice/${subject.toLowerCase()}` : '#'}
+              aria-disabled={ready ? 'false' : 'true'}
+              class={`block rounded-2xl border p-5 transition ${ready ? 'hover:border-[var(--muted)]' : 'cursor-not-allowed opacity-60'}`}
+              style={`border-color:${meta.accent}55`}
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider"
+                  style={`background:${meta.accent}22;color:${meta.accent}`}
+                >
+                  {meta.label}
+                </span>
+                <span class="text-sm text-[var(--muted)]">
+                  {ready ? `${count} ${count === 1 ? 'question' : 'questions'}` : 'Coming soon'}
+                </span>
+              </div>
+              <p class="mt-3 text-sm leading-relaxed text-[var(--muted)]">
+                {meta.blurb}
+              </p>
+            </a>
+          );
+        })
+      }
+    </div>
+
+    {
+      totalQuestions === 0 && (
+        <p class="mt-6 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 text-sm leading-relaxed text-[var(--muted)]">
+          No practice questions are loaded yet. Add items to{' '}
+          <code class="rounded bg-[var(--surface-2)] px-1.5 py-0.5 text-[var(--text)]">
+            src/data/practice.ts
+          </code>{' '}
+          under each section and they appear here automatically.
+        </p>
+      )
+    }
+  </main>
+</Base>

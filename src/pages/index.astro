@@ -1,0 +1,462 @@
+---
+import Base from '../layouts/Base.astro';
+import { CARDS, SUBJECTS, SUBJECT_META, KIND_META } from '../data/vocab';
+
+const totalCount = CARDS.length;
+
+// Serialize the deck to the client. The interactive viewer renders one big
+// card at a time and swipes between them, so the data drives the DOM rather
+// than pre-rendering 56 cards.
+const deck = CARDS.map((c) => ({
+  word: c.word,
+  definition: c.definition,
+  example: c.example,
+  subject: c.subject,
+  kind: c.kind,
+  accent: SUBJECT_META[c.subject].accent,
+  kindLabel: KIND_META[c.kind].label,
+  subjectLabel: SUBJECT_META[c.subject].label,
+}));
+---
+
+<Base>
+  <main class="mx-auto flex min-h-[100dvh] max-w-3xl flex-col px-4 py-6 sm:py-8">
+    <header class="mb-5">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            PreACT 9 Secure
+          </p>
+          <h1 class="mt-1 text-2xl font-bold sm:text-3xl">Vocabulary Flashcards</h1>
+        </div>
+        <a
+          href="/practice"
+          class="shrink-0 rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+        >
+          Practice →
+        </a>
+      </div>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+        Swipe left or right (or use ← →) to move through {totalCount} cards. The
+        word is read aloud as each card comes up; meaning and an example sit
+        below it.
+      </p>
+    </header>
+
+    <!-- Subject tabs -->
+    <nav
+      id="subject-tabs"
+      class="mb-3 flex flex-wrap gap-2"
+      aria-label="Choose a subject"
+    >
+      <button
+        type="button"
+        data-subject="all"
+        class="subject-tab rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium"
+        aria-pressed="true"
+      >
+        All
+      </button>
+      {
+        SUBJECTS.map((s) => (
+          <button
+            type="button"
+            data-subject={s}
+            class="subject-tab rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium"
+            aria-pressed="false"
+            style={`--accent:${SUBJECT_META[s].accent}`}
+          >
+            {SUBJECT_META[s].label}
+          </button>
+        ))
+      }
+    </nav>
+
+    <!-- Kind filter -->
+    <div class="mb-5 flex flex-wrap items-center gap-2 text-sm">
+      <span class="text-[var(--muted)]">Show:</span>
+      <button
+        type="button"
+        data-kind="all"
+        class="kind-tab rounded-md border border-[var(--line)] px-3 py-1 font-medium"
+        aria-pressed="true"
+      >
+        Both
+      </button>
+      <button
+        type="button"
+        data-kind="term"
+        class="kind-tab rounded-md border border-[var(--line)] px-3 py-1 font-medium"
+        aria-pressed="false"
+      >
+        {KIND_META.term.label}
+      </button>
+      <button
+        type="button"
+        data-kind="academic"
+        class="kind-tab rounded-md border border-[var(--line)] px-3 py-1 font-medium"
+        aria-pressed="false"
+      >
+        {KIND_META.academic.label}
+      </button>
+    </div>
+
+    <!-- Card viewer -->
+    <section class="flex flex-1 flex-col">
+      <!-- Progress -->
+      <div class="mb-3 flex items-center justify-between text-sm text-[var(--muted)]">
+        <span id="position">1 / {totalCount}</span>
+        <button
+          id="replay-btn"
+          type="button"
+          class="inline-flex items-center gap-1.5 rounded-full border border-[var(--line)] px-3 py-1 transition hover:text-[var(--text)]"
+          aria-label="Hear it again"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5 6 9H2v6h4l5 4z" />
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+          </svg>
+          Hear it
+        </button>
+      </div>
+
+      <!-- Swipe stage -->
+      <div class="relative flex flex-1 items-stretch">
+        <!-- Prev arrow -->
+        <button
+          id="prev-btn"
+          type="button"
+          class="nav-arrow absolute left-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1 rounded-full border border-[var(--line)] bg-[var(--surface)] p-2 text-[var(--muted)] transition hover:text-[var(--text)] disabled:opacity-30 sm:-translate-x-4"
+          aria-label="Previous card"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+
+        <div id="swipe-stage" class="flex w-full touch-pan-y select-none flex-col">
+          <!-- One card: word on top, meaning + example right below it -->
+          <article
+            id="card"
+            class="flex min-h-[18rem] flex-1 flex-col rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 sm:p-9"
+          >
+            <h2 id="card-word" class="text-3xl font-bold sm:text-4xl"></h2>
+
+            <p class="mt-6 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Meaning</p>
+            <p id="card-def" class="mt-1 text-base leading-relaxed"></p>
+
+            <p class="mt-5 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Example</p>
+            <p id="card-ex" class="mt-1 text-[15px] italic leading-relaxed text-[var(--muted)]"></p>
+          </article>
+        </div>
+
+        <!-- Next arrow -->
+        <button
+          id="next-btn"
+          type="button"
+          class="nav-arrow absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-1 rounded-full border border-[var(--line)] bg-[var(--surface)] p-2 text-[var(--muted)] transition hover:text-[var(--text)] disabled:opacity-30 sm:translate-x-4"
+          aria-label="Next card"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+      </div>
+
+      <p id="empty-msg" class="hidden py-12 text-center text-sm text-[var(--muted)]">
+        No cards match this filter.
+      </p>
+
+      <!-- One-time hint until the first tap unlocks audio -->
+      <p id="audio-hint" class="mt-4 text-center text-xs text-[var(--muted)]">
+        Tap anywhere once to enable read-aloud.
+      </p>
+    </section>
+
+    <footer class="mt-8 border-t border-[var(--line)] pt-5 text-xs leading-relaxed text-[var(--muted)]">
+      <p>
+        Test terms are drawn from the Illinois ACT Standards Crosswalk (PreACT 9
+        Secure reporting categories and skill areas). Academic words follow
+        widely used ACT word lists. Pronunciation uses your browser's built-in
+        speech voice and works offline; voice quality depends on your device.
+      </p>
+    </footer>
+  </main>
+
+  <script is:inline define:vars={{ deck }}>
+    // --- Data -----------------------------------------------------------
+    const DECK = deck;
+    let view = DECK.slice(); // filtered subset currently being shown
+    let index = 0;
+
+    let activeSubject = 'all';
+    let activeKind = 'all';
+
+    // --- Elements -------------------------------------------------------
+    const stage = document.getElementById('swipe-stage');
+    const cardEl = document.getElementById('card');
+    const wordEl = document.getElementById('card-word');
+    const defEl = document.getElementById('card-def');
+    const exEl = document.getElementById('card-ex');
+    const posEl = document.getElementById('position');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const replayBtn = document.getElementById('replay-btn');
+    const emptyMsg = document.getElementById('empty-msg');
+    const audioHint = document.getElementById('audio-hint');
+
+    // --- Speech ---------------------------------------------------------
+    const synth = window.speechSynthesis;
+    let audioUnlocked = false;
+
+    // Pick the most natural-sounding English female voice available. Browsers
+    // otherwise default to whatever comes first, which on many systems is a
+    // robotic or novelty voice ("Fred", "Zarvox"...). We score voices: known
+    // high-quality female names first, then any English female, and we hard-
+    // exclude the macOS novelty voices that sound jarring.
+    const PREFERRED_VOICES = [
+      'Samantha',         // macOS — natural US female
+      'Ava',              // macOS enhanced US female
+      'Allison',
+      'Susan',
+      'Karen',            // AU female (clear)
+      'Serena',           // UK female
+      'Google US English',
+      'Google UK English Female',
+      'Microsoft Aria',
+      'Microsoft Jenny',
+      'Microsoft Zira',
+    ];
+    const NOVELTY = /bad news|good news|bahh|bells|boing|bubbles|cellos|jester|organ|superstar|trinoids|wobble|zarvox|whisper|albert|fred|ralph|junior|kathy|grandma|grandpa|reed|rocko|sandy|shelley|flo|eddy|deranged|hysterical|pipe|princess/i;
+
+    let cachedVoice = null;
+    function pickVoice() {
+      if (!synth) return null;
+      if (cachedVoice) return cachedVoice;
+      const voices = synth.getVoices();
+      if (!voices.length) return null;
+      const isEnglish = (v) => /^en/i.test(v.lang);
+
+      // 1) exact preferred name match (English only)
+      for (const name of PREFERRED_VOICES) {
+        const v = voices.find(
+          (vo) => isEnglish(vo) && vo.name.toLowerCase().includes(name.toLowerCase())
+        );
+        if (v) return (cachedVoice = v);
+      }
+      // 2) any English voice that looks female and isn't a novelty voice
+      const female = voices.find(
+        (v) => isEnglish(v) && /female|woman|aria|jenny|zira|serena|samantha|ava|allison|susan|karen/i.test(v.name) && !NOVELTY.test(v.name)
+      );
+      if (female) return (cachedVoice = female);
+      // 3) any non-novelty US English voice
+      const usClean = voices.find(
+        (v) => /en[-_]US/i.test(v.lang) && !NOVELTY.test(v.name)
+      );
+      if (usClean) return (cachedVoice = usClean);
+      // 4) last resort: any non-novelty English voice
+      return (cachedVoice = voices.find((v) => isEnglish(v) && !NOVELTY.test(v.name)) || null);
+    }
+
+    function speak(word) {
+      if (!synth || !word) return;
+      synth.cancel();
+      const u = new SpeechSynthesisUtterance(word);
+      u.lang = 'en-US';
+      u.rate = 0.9;
+      u.pitch = 1.05; // a touch higher reads softer / less flat
+      const v = pickVoice();
+      if (v) {
+        u.voice = v;
+        u.lang = v.lang; // keep lang consistent with the chosen voice
+      }
+      synth.speak(u);
+    }
+
+    if (synth) {
+      synth.onvoiceschanged = () => synth.getVoices();
+      synth.getVoices();
+    }
+
+    // First user gesture unlocks autoplay-restricted speech, then we read the
+    // current card and hide the hint.
+    function unlockAudio() {
+      if (audioUnlocked) return;
+      audioUnlocked = true;
+      if (audioHint) audioHint.classList.add('hidden');
+      speakCurrent();
+    }
+
+    function speakCurrent() {
+      const card = view[index];
+      if (audioUnlocked && card) speak(card.word);
+    }
+
+    // --- Render ---------------------------------------------------------
+    function render(animateDir) {
+      if (view.length === 0) {
+        stage.classList.add('hidden');
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        emptyMsg.classList.remove('hidden');
+        posEl.textContent = '0 / 0';
+        return;
+      }
+      stage.classList.remove('hidden');
+      prevBtn.classList.remove('hidden');
+      nextBtn.classList.remove('hidden');
+      emptyMsg.classList.add('hidden');
+
+      const card = view[index];
+      // Keep a subtle subject-colored border as the only color cue (no chip).
+      cardEl.style.borderColor = `${card.accent}55`;
+      wordEl.textContent = card.word;
+      wordEl.style.color = card.accent;
+      defEl.textContent = card.definition;
+      exEl.textContent = `"${card.example}"`;
+      posEl.textContent = `${index + 1} / ${view.length}`;
+
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === view.length - 1;
+
+      // Slide-in animation
+      if (animateDir) {
+        stage.classList.remove('slide-from-left', 'slide-from-right');
+        // force reflow so the animation restarts
+        void stage.offsetWidth;
+        stage.classList.add(
+          animateDir === 'next' ? 'slide-from-right' : 'slide-from-left'
+        );
+      }
+
+      speakCurrent();
+    }
+
+    function go(delta) {
+      const next = index + delta;
+      if (next < 0 || next >= view.length) return;
+      index = next;
+      render(delta > 0 ? 'next' : 'prev');
+    }
+
+    // --- Filtering ------------------------------------------------------
+    function applyFilter() {
+      view = DECK.filter((c) => {
+        const subjectOk = activeSubject === 'all' || c.subject === activeSubject;
+        const kindOk = activeKind === 'all' || c.kind === activeKind;
+        return subjectOk && kindOk;
+      });
+      index = 0;
+      render();
+    }
+
+    document.querySelectorAll('.subject-tab').forEach((tab) =>
+      tab.addEventListener('click', () => {
+        activeSubject = tab.dataset.subject || 'all';
+        document
+          .querySelectorAll('.subject-tab')
+          .forEach((t) => t.setAttribute('aria-pressed', t === tab ? 'true' : 'false'));
+        applyFilter();
+      })
+    );
+
+    document.querySelectorAll('.kind-tab').forEach((tab) =>
+      tab.addEventListener('click', () => {
+        activeKind = tab.dataset.kind || 'all';
+        document
+          .querySelectorAll('.kind-tab')
+          .forEach((t) => t.setAttribute('aria-pressed', t === tab ? 'true' : 'false'));
+        applyFilter();
+      })
+    );
+
+    // --- Controls -------------------------------------------------------
+    prevBtn.addEventListener('click', () => go(-1));
+    nextBtn.addEventListener('click', () => go(1));
+    replayBtn.addEventListener('click', () => {
+      audioUnlocked = true;
+      if (audioHint) audioHint.classList.add('hidden');
+      speak(view[index]?.word);
+    });
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') go(1);
+      else if (e.key === 'ArrowLeft') go(-1);
+    });
+
+    // Touch swipe
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
+    stage.addEventListener(
+      'touchstart',
+      (e) => {
+        const t = e.changedTouches[0];
+        startX = t.clientX;
+        startY = t.clientY;
+        tracking = true;
+      },
+      { passive: true }
+    );
+    stage.addEventListener(
+      'touchend',
+      (e) => {
+        if (!tracking) return;
+        tracking = false;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+        // horizontal swipe only
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          go(dx < 0 ? 1 : -1);
+        }
+      },
+      { passive: true }
+    );
+
+    // First interaction anywhere unlocks audio.
+    window.addEventListener('pointerdown', unlockAudio, { once: true });
+    window.addEventListener('keydown', unlockAudio, { once: true });
+
+    // --- Boot -----------------------------------------------------------
+    render();
+    // Try to read the first card immediately. Browsers usually block speech
+    // before any user gesture; if blocked, the one-time hint covers it and the
+    // first tap will speak. We optimistically attempt it anyway.
+    audioUnlocked = true;
+    speakCurrent();
+    audioUnlocked = false; // revert: real unlock happens on first gesture
+  </script>
+
+  <style>
+    .subject-tab[aria-pressed='true'] {
+      background: var(--accent, var(--text));
+      border-color: var(--accent, var(--text));
+      color: #0f1419;
+    }
+    .subject-tab[data-subject='all'][aria-pressed='true'] {
+      background: var(--text);
+      color: #0f1419;
+    }
+    .kind-tab[aria-pressed='true'] {
+      background: var(--surface-2);
+      border-color: var(--muted);
+      color: var(--text);
+    }
+    .slide-from-right {
+      animation: slideFromRight 0.28s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    .slide-from-left {
+      animation: slideFromLeft 0.28s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    @keyframes slideFromRight {
+      from { transform: translateX(28px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideFromLeft {
+      from { transform: translateX(-28px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide-from-right, .slide-from-left { animation: none; }
+    }
+  </style>
+</Base>

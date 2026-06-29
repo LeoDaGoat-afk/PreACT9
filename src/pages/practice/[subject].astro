@@ -1,0 +1,180 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SUBJECTS, SUBJECT_META } from '../../data/vocab';
+import { PRACTICE_BY_SUBJECT } from '../../data/practice';
+
+// One page per subject. Only subjects that actually have questions are built.
+export function getStaticPaths() {
+  return SUBJECTS.filter((s) => PRACTICE_BY_SUBJECT[s].length > 0).map((s) => ({
+    params: { subject: s.toLowerCase() },
+    props: { subject: s },
+  }));
+}
+
+const { subject } = Astro.props;
+const meta = SUBJECT_META[subject];
+const questions = PRACTICE_BY_SUBJECT[subject];
+---
+
+<Base title={`PreACT 9 Practice — ${meta.label}`}>
+  <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8">
+    <header class="mb-6">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            PreACT 9 Practice
+          </p>
+          <h1 class="mt-1 flex items-center gap-3 text-2xl font-bold sm:text-3xl">
+            <span
+              class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider"
+              style={`background:${meta.accent}22;color:${meta.accent}`}
+            >
+              {meta.label}
+            </span>
+          </h1>
+        </div>
+        <a
+          href="/practice"
+          class="shrink-0 rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+        >
+          ← All sections
+        </a>
+      </div>
+      <p class="mt-2 text-sm text-[var(--muted)]">
+        <span id="progress">0</span> of {questions.length} answered ·
+        Score: <span id="score">0</span>
+      </p>
+    </header>
+
+    <ol class="space-y-6">
+      {
+        questions.map((q, i) => (
+          <li
+            class="question rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5"
+            data-answer={q.answer}
+          >
+            {q.passage && (
+              <p class="mb-4 whitespace-pre-line rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-4 text-sm leading-relaxed text-[var(--muted)]">
+                {q.passage}
+              </p>
+            )}
+            <p class="font-medium leading-relaxed">
+              <span class="mr-1 text-[var(--muted)]">{i + 1}.</span>
+              {q.prompt}
+            </p>
+            <div class="mt-4 space-y-2">
+              {q.choices.map((c) => (
+                <button
+                  type="button"
+                  class="choice flex w-full items-start gap-3 rounded-xl border border-[var(--line)] px-4 py-3 text-left text-sm transition hover:border-[var(--muted)]"
+                  data-choice={c.id}
+                  style={`--accent:${meta.accent}`}
+                >
+                  <span class="choice-key mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--line)] text-[11px] font-semibold">
+                    {c.id}
+                  </span>
+                  <span>{c.text}</span>
+                </button>
+              ))}
+            </div>
+            {q.explanation && (
+              <p class="explanation mt-3 hidden rounded-xl bg-[var(--surface-2)] p-3 text-sm leading-relaxed text-[var(--muted)]">
+                {q.explanation}
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-8 flex items-center justify-between border-t border-[var(--line)] pt-5">
+      <a href="/practice" class="text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
+        ← Back to all sections
+      </a>
+      <button
+        id="reset-btn"
+        type="button"
+        class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+      >
+        Reset
+      </button>
+    </div>
+  </main>
+
+  <style>
+    .choice.is-correct {
+      border-color: #2faf6a;
+      background: #2faf6a18;
+    }
+    .choice.is-correct .choice-key {
+      border-color: #2faf6a;
+      background: #2faf6a;
+      color: #0f1419;
+    }
+    .choice.is-wrong {
+      border-color: #e23a6e;
+      background: #e23a6e18;
+    }
+    .choice.is-wrong .choice-key {
+      border-color: #e23a6e;
+      background: #e23a6e;
+      color: #0f1419;
+    }
+    .question.answered .choice:not(.is-correct):not(.is-wrong) {
+      opacity: 0.55;
+    }
+  </style>
+
+  <script>
+    const questions = Array.from(document.querySelectorAll<HTMLElement>('.question'));
+    const progressEl = document.getElementById('progress')!;
+    const scoreEl = document.getElementById('score')!;
+    let answered = 0;
+    let score = 0;
+
+    function updateStatus() {
+      progressEl.textContent = String(answered);
+      scoreEl.textContent = String(score);
+    }
+
+    questions.forEach((q) => {
+      const correct = q.dataset.answer;
+      const choices = Array.from(q.querySelectorAll<HTMLElement>('.choice'));
+      const explanation = q.querySelector<HTMLElement>('.explanation');
+
+      choices.forEach((choice) => {
+        choice.addEventListener('click', () => {
+          if (q.classList.contains('answered')) return; // lock after first answer
+          q.classList.add('answered');
+          answered++;
+
+          const picked = choice.dataset.choice;
+          if (picked === correct) {
+            choice.classList.add('is-correct');
+            score++;
+          } else {
+            choice.classList.add('is-wrong');
+            // also reveal the correct one
+            const right = choices.find((c) => c.dataset.choice === correct);
+            right?.classList.add('is-correct');
+          }
+          explanation?.classList.remove('hidden');
+          updateStatus();
+        });
+      });
+    });
+
+    document.getElementById('reset-btn')?.addEventListener('click', () => {
+      answered = 0;
+      score = 0;
+      questions.forEach((q) => {
+        q.classList.remove('answered');
+        q.querySelectorAll('.choice').forEach((c) =>
+          c.classList.remove('is-correct', 'is-wrong')
+        );
+        q.querySelector('.explanation')?.classList.add('hidden');
+      });
+      updateStatus();
+    });
+  </script>
+</Base>
