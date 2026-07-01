@@ -991,37 +991,816 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
   // READING — read closely and reason about a text (uses a shared passage)
   // ---------------------------------------------------------------------------
   Reading: [
+    // -----------------------------------------------------------------------
+    // LITERARY NARRATIVE — Dual Passage (fiction + memoir)
+    // "Bà Nội's Kitchen" and "Sunday Bread"
+    // read-001 through read-008
+    // -----------------------------------------------------------------------
     {
       id: 'read-001',
       subject: 'Reading',
       passage:
-        'When Maya finally reached the summit, the wind tore at her jacket and her legs ached, but she barely noticed. For two years she had trained before dawn, skipping outings with friends to run one more mile. Now the valley spread out below her like a map, and every cold morning suddenly felt worth it.',
-      prompt: 'The passage suggests that Maya feels primarily:',
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'It can most reasonably be inferred from Passage A that Bà Nội primarily hopes to help Linh:',
       choices: [
-        { id: 'A', text: 'regret about the friendships she gave up' },
-        { id: 'B', text: 'a sense of reward that justifies her sacrifices' },
-        { id: 'C', text: 'fear of the dangerous descent ahead' },
-        { id: 'D', text: 'indifference toward reaching the summit' },
+        { id: 'A', text: 'become interested in pursuing cooking as a career' },
+        { id: 'B', text: 'understand the history and traditions of her family' },
+        { id: 'C', text: 'develop patience by practicing a difficult skill' },
+        { id: 'D', text: 'improve the quality of meals served at home' },
       ],
       answer: 'B',
       explanation:
-        '"Every cold morning suddenly felt worth it" shows the effort now feels rewarded.',
+        'Bà Nội connects the cooking to the village vendors and her own mother and grandmother, tying the lesson to family history and heritage.',
     },
     {
       id: 'read-002',
       subject: 'Reading',
       passage:
-        'When Maya finally reached the summit, the wind tore at her jacket and her legs ached, but she barely noticed. For two years she had trained before dawn, skipping outings with friends to run one more mile. Now the valley spread out below her like a map, and every cold morning suddenly felt worth it.',
-      prompt: 'As used in the passage, "she barely noticed" most nearly means that Maya:',
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'According to Passage A, the recipes Bà Nội taught Linh to make were dishes that:',
       choices: [
-        { id: 'A', text: 'could not see clearly in the wind' },
-        { id: 'B', text: 'was too tired to think' },
-        { id: 'C', text: 'paid little attention to her discomfort' },
-        { id: 'D', text: 'forgot why she had climbed' },
+        { id: 'A', text: 'Linh\'s parents had continued making after moving to New Jersey' },
+        { id: 'B', text: 'Linh had often eaten at Vietnamese restaurants nearby' },
+        { id: 'C', text: 'Linh\'s parents had stopped preparing after leaving Huế' },
+        { id: 'D', text: 'Bà Nội had only learned to make after arriving in the United States' },
       ],
       answer: 'C',
       explanation:
-        'The wind and aching legs are discomforts she pays little attention to in the moment.',
+        'The passage states directly that these were "dishes that Linh\'s parents had stopped preparing after moving from Huế."',
+    },
+    {
+      id: 'read-003',
+      subject: 'Reading',
+      passage:
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'In Passage B, the narrator characterizes her mother\'s refusal to use the bread machine as:',
+      choices: [
+        { id: 'A', text: 'stubbornly old-fashioned and impractical' },
+        { id: 'B', text: 'a belief that the process of making bread is itself meaningful' },
+        { id: 'C', text: 'a practical choice because the machine produced inferior bread' },
+        { id: 'D', text: 'a way of showing off a skill that few others possessed' },
+      ],
+      answer: 'B',
+      explanation:
+        '"It doesn\'t know what it\'s making" suggests the mother values the awareness and intention behind the act of baking, not just the result.',
+    },
+    {
+      id: 'read-004',
+      subject: 'Reading',
+      passage:
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'Based on Passage B, from the narrator\'s perspective, receiving the loaf of bread in her college dorm was:',
+      choices: [
+        { id: 'A', text: 'disappointing because the bread had gone stale during shipping' },
+        { id: 'B', text: 'surprising because she had not expected to feel homesick' },
+        { id: 'C', text: 'revealing because she finally understood what her mother had been teaching her' },
+        { id: 'D', text: 'uncomfortable because it reminded her of her earlier embarrassment' },
+      ],
+      answer: 'C',
+      explanation:
+        'The narrator says she "understood for the first time what she had been trying to give me"—a moment of realization about her mother\'s intention.',
+    },
+    {
+      id: 'read-005',
+      subject: 'Reading',
+      passage:
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'According to Passage B, the narrator eventually becomes embarrassed by:',
+      choices: [
+        { id: 'A', text: 'her mother\'s refusal to use the bread machine her father bought' },
+        { id: 'B', text: 'the unfamiliar smell of her family\'s kitchen when friends visited' },
+        { id: 'C', text: 'the fact that her mother had learned to bake in Poland' },
+        { id: 'D', text: 'the dense, dark loaves that looked different from store-bought bread' },
+      ],
+      answer: 'B',
+      explanation:
+        'The narrator says she "felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them."',
+    },
+    {
+      id: 'read-006',
+      subject: 'Reading',
+      passage:
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'Which choice best describes a difference in how the passages are structured?',
+      choices: [
+        { id: 'A', text: 'Passage A focuses on a single morning lesson, while Passage B spans many years and ends with a moment of realization.' },
+        { id: 'B', text: 'Passage A features a flashback to Bà Nội\'s childhood, while Passage B is told entirely in the present.' },
+        { id: 'C', text: 'Passage A describes the cooking process in detail, while Passage B focuses only on the finished bread.' },
+        { id: 'D', text: 'Passage A is told from an outside perspective, while Passage B features extended dialogue throughout.' },
+      ],
+      answer: 'A',
+      explanation:
+        'Passage A covers one morning\'s lesson; Passage B moves from childhood through high school to college, ending with an insight.',
+    },
+    {
+      id: 'read-007',
+      subject: 'Reading',
+      passage:
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'Compared to their older relatives, Linh in Passage A and the narrator in Passage B are both initially:',
+      choices: [
+        { id: 'A', text: 'eager to learn the traditional skills being taught' },
+        { id: 'B', text: 'more aware of how their family practices differ from mainstream culture' },
+        { id: 'C', text: 'critical of the methods their elders use' },
+        { id: 'D', text: 'determined to carry on traditions once they understand them' },
+      ],
+      answer: 'B',
+      explanation:
+        'Linh sees no one else recognizes Bà Nội\'s songs; the narrator notices her friends\' families don\'t spend Sundays baking—both are aware of the gap between their home traditions and the wider culture.',
+    },
+    {
+      id: 'read-008',
+      subject: 'Reading',
+      passage:
+        'LITERARY NARRATIVE: Passage A is an original work of fiction. Passage B is an original work of nonfiction.\n\n' +
+        'Passage A\n\n' +
+        '[Bà Nội and her granddaughter Linh live with Linh\'s parents in New Jersey.]\n\n' +
+        'Bà Nội taught Linh how to make bánh cuốn—thin rice-flour crepes filled with minced mushrooms and pork—dishes that Linh\'s parents had stopped preparing after moving from Huế. The rice flour had to be mixed to exactly the right consistency, and the pan heated to precisely the right temperature. When she cooked, Bà Nội liked to hum old songs from their hometown that no one else in the apartment recognized.\n\n' +
+        '"Spread it thinner," Bà Nội said one morning, watching Linh pour the batter.\n\n' +
+        'Linh tried, but her crepe bunched at the edges and tore.\n\n' +
+        '"You\'re thinking too hard," Bà Nội said, taking Linh\'s hand and guiding it in a slow circle over the pan. "Let your wrist do it."\n\n' +
+        'As they cooked, Bà Nội told Linh about the vendors in Huế who had sold bánh cuốn at sunrise, setting up their low wooden tables along the riverbanks before the city was fully awake.\n\n' +
+        '"My mother sold it there," Bà Nội said. "And her mother before her. Now I teach you."\n\n' +
+        'Linh\'s next crepe came out nearly perfect—pale and thin as paper, curling gently at the edges.\n\n' +
+        'Passage B\n\n' +
+        'When I was younger, my mother baked bread every Sunday in our house in Wisconsin. She had learned from her own mother in a small town in Poland, and the loaves she made were dense and dark, nothing like the soft white bread at the grocery store.\n\n' +
+        'The kitchen on those mornings was full of flour dust and the smell of yeast. She mixed everything by hand, refusing to use the bread machine my father had bought her. "It doesn\'t know what it\'s making," she told him.\n\n' +
+        'I didn\'t find it interesting until high school, when I started noticing that my friends\' families didn\'t spend Sundays this way. I felt embarrassed sometimes when friends came over and the kitchen smelled like something unfamiliar to them—warm and yeasty, nothing like the chemical sweetness of packaged bread.\n\n' +
+        'When I went away to college, she mailed me a loaf wrapped in cloth. I hadn\'t expected to miss it. But unwrapping it in my small dorm room, I understood for the first time what she had been trying to give me all those years—not just bread, but a way of paying attention.',
+      prompt: 'Based on both passages, one way that both Bà Nội in Passage A and the narrator\'s mother in Passage B pass knowledge to the younger generation is by:',
+      choices: [
+        { id: 'A', text: 'writing down recipes so the traditions can be preserved in the future' },
+        { id: 'B', text: 'insisting that modern appliances produce an inferior product' },
+        { id: 'C', text: 'sharing the origins and history behind what they are making' },
+        { id: 'D', text: 'requiring the younger person to practice alone before receiving help' },
+      ],
+      answer: 'C',
+      explanation:
+        'Bà Nội tells Linh about the village vendors and her own mother and grandmother; the narrator\'s mother traces her baking to her mother in Poland—both frame the skill within a chain of history.',
+    },
+
+    // -----------------------------------------------------------------------
+    // INFORMATIONAL — "The Hoover Dam"
+    // read-009 through read-016
+    // -----------------------------------------------------------------------
+    {
+      id: 'read-009',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The Black Canyon—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and the spring floods that had once been a distant hazard now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        'The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'What is the main purpose of the passage?',
+      choices: [
+        { id: 'A', text: 'To explain the political debate over whether to build Hoover Dam' },
+        { id: 'B', text: 'To describe the construction of Hoover Dam and its significance' },
+        { id: 'C', text: 'To discuss the pros and cons of building large dams in the American West' },
+        { id: 'D', text: 'To detail how concrete is mixed and cooled on large construction projects' },
+      ],
+      answer: 'B',
+      explanation:
+        'The passage covers why the dam was needed, how it was built, and what it accomplished—all centered on its construction and importance.',
+    },
+    {
+      id: 'read-010',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The Black Canyon—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and the spring floods that had once been a distant hazard now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        'The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'Based on the passage, in the early 1930s, compared to the Colorado River canyon, Las Vegas was more:',
+      choices: [
+        { id: 'A', text: 'settled and inhabited' },
+        { id: 'B', text: 'isolated and difficult to reach' },
+        { id: 'C', text: 'prone to flooding each spring' },
+        { id: 'D', text: 'likely to attract construction workers' },
+      ],
+      answer: 'A',
+      explanation:
+        'The passage describes Las Vegas as "a railroad stop with a few thousand residents," while the canyon to the east was "wild and largely inaccessible."',
+    },
+    {
+      id: 'read-011',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The Black Canyon—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and the spring floods that had once been a distant hazard now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        'The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'It can reasonably be inferred that, once construction of Hoover Dam was approved, the greatest obstacle to beginning work was:',
+      choices: [
+        { id: 'A', text: 'obtaining Congress\'s approval to fund the project' },
+        { id: 'B', text: 'finding enough skilled workers willing to endure the heat' },
+        { id: 'C', text: 'redirecting the Colorado River before the dam site could be used' },
+        { id: 'D', text: 'deciding which canyon location would be best suited for a dam' },
+      ],
+      answer: 'C',
+      explanation:
+        'The passage says "before construction could begin, workers had to divert the Colorado River"—making that the first and most critical obstacle to starting the project itself.',
+    },
+    {
+      id: 'read-012',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The Black Canyon—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and the spring floods that had once been a distant hazard now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        '[The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.]\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'What is the main idea of the highlighted paragraph?',
+      choices: [
+        { id: 'A', text: 'The dam was completed more quickly than engineers had originally predicted.' },
+        { id: 'B', text: 'The extreme heat made it impossible to build the dam during summer months.' },
+        { id: 'C', text: 'Building the dam required solving several major engineering and safety challenges.' },
+        { id: 'D', text: 'The concrete used for the dam was a different formula from that used in smaller buildings.' },
+      ],
+      answer: 'C',
+      explanation:
+        'The paragraph covers diverting the river, deadly heat, and the concrete cooling problem—all challenges that had to be overcome during construction.',
+    },
+    {
+      id: 'read-013',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The [Black Canyon]—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and the spring floods that had once been a distant hazard now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        'The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'As it is used at this point in the passage, what does the highlighted name "Black Canyon" refer to?',
+      choices: [
+        { id: 'A', text: 'A city in Nevada near Las Vegas' },
+        { id: 'B', text: 'A type of rock formation found in the American West' },
+        { id: 'C', text: 'A specific narrow gorge along the Colorado River' },
+        { id: 'D', text: 'A section of highway between Nevada and Arizona' },
+      ],
+      answer: 'C',
+      explanation:
+        'The passage immediately defines it: "The Black Canyon—a narrow gorge about thirty miles from Las Vegas."',
+    },
+    {
+      id: 'read-014',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The Black Canyon—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and [the spring floods that had once been a distant hazard] now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        'The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'The author states that "the spring floods had once been a distant hazard." This phrase most likely indicates that:',
+      choices: [
+        { id: 'A', text: 'the floods had previously occurred far from where most people lived' },
+        { id: 'B', text: 'the floods were too rare to be of serious concern' },
+        { id: 'C', text: 'engineers had already tried and failed to control the flooding' },
+        { id: 'D', text: 'the floods had never actually caused significant damage before' },
+      ],
+      answer: 'A',
+      explanation:
+        'The contrast with "now threatened entire communities" implies that previously, fewer people lived close enough to the river for the floods to affect them directly.',
+    },
+    {
+      id: 'read-015',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The Black Canyon—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and the spring floods that had once been a distant hazard now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        'The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'Based on the passage, before Hoover Dam was built, the Colorado River\'s seasonal flooding mainly:',
+      choices: [
+        { id: 'A', text: 'supplied water to farms in California\'s Imperial Valley' },
+        { id: 'B', text: 'damaged farmland and threatened communities built near the river' },
+        { id: 'C', text: 'carved new canyons through the surrounding desert' },
+        { id: 'D', text: 'created a natural reservoir used by cities like Las Vegas' },
+      ],
+      answer: 'B',
+      explanation:
+        'The passage says the flooding "regularly devastated farmland" and later that it "threatened entire communities."',
+    },
+    {
+      id: 'read-016',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Hoover Dam" is an original work of nonfiction.\n\n' +
+        'Standing at the Nevada-Arizona border, Hoover Dam is one of the most recognizable structures in the American West. When it was built in the 1930s, no engineer had attempted a concrete dam of this size, and many doubted a structure could hold back the full force of the Colorado River. But more than eighty years later, the dam continues to generate electricity for millions of people and supply water to cities and farms across the region.\n\n' +
+        'Las Vegas, Nevada, in the early 1930s was little more than a railroad stop with a few thousand residents. To the east, the Colorado River cut through miles of canyon, wild and largely inaccessible. The Black Canyon—a narrow gorge about thirty miles from Las Vegas—had been identified as the ideal site to control the river\'s seasonal flooding, which regularly devastated farmland in California\'s Imperial Valley.\n\n' +
+        'By the 1920s, the need for flood control had become urgent. More and more families had built homes near the river, and the spring floods that had once been a distant hazard now threatened entire communities. Local leaders began calling for a dam. The idea had been discussed for decades, but it was not until 1928 that Congress passed the Boulder Canyon Project Act, authorizing construction.\n\n' +
+        'The project faced enormous obstacles. Before construction could begin, workers had to divert the Colorado River through tunnels drilled into the canyon walls. Summer temperatures in the canyon reached 120 degrees Fahrenheit, and dozens of workers died during construction. The concrete used to build the dam also had to be cooled by an elaborate system of pipes—unhardened concrete generates its own heat as it sets, and at the dam\'s scale, the center would have taken 125 years to cool on its own.\n\n' +
+        'Construction was completed two years ahead of schedule in 1936. Lake Mead, the reservoir created behind the dam, became the largest man-made lake in the United States at the time. The dam transformed the Southwest—enabling the growth of cities like Las Vegas and Phoenix, providing irrigation water for millions of acres of farmland, and generating hydroelectric power that fueled factories during World War II.',
+      prompt: 'Based on the passage, which of the following arguments was likely used by people in favor of building Hoover Dam?',
+      choices: [
+        { id: 'A', text: 'Building a dam would create a lake large enough to attract tourists' },
+        { id: 'B', text: 'Building a dam would bring more workers and businesses to Nevada' },
+        { id: 'C', text: 'Building a dam would protect communities from the river\'s destructive floods' },
+        { id: 'D', text: 'Building a dam would make the Colorado River safer for large cargo ships' },
+      ],
+      answer: 'C',
+      explanation:
+        'The passage explains that flooding was destroying farmland and threatening communities—so stopping the floods was the central motivation for local leaders calling for a dam.',
+    },
+
+    // -----------------------------------------------------------------------
+    // INFORMATIONAL — "Chien-Shiung Wu, Experimental Physicist"
+    // read-017 through read-024
+    // -----------------------------------------------------------------------
+    {
+      id: 'read-017',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. Originally, experiments meant careful observation.\n\n' +
+        'The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. "I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'What is the main purpose of the passage?',
+      choices: [
+        { id: 'A', text: 'To encourage more women to pursue careers in physics' },
+        { id: 'B', text: 'To describe the history of nuclear research in the twentieth century' },
+        { id: 'C', text: 'To explain how particle accelerators transformed experimental science' },
+        { id: 'D', text: 'To provide a biography of a pioneering physicist who overcame significant barriers' },
+      ],
+      answer: 'D',
+      explanation:
+        'The passage traces Wu\'s life, her major scientific contribution, and the recognition she received, making it a biographical account of her career.',
+    },
+    {
+      id: 'read-018',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. Originally, experiments meant careful observation.\n\n' +
+        'The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. "I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'A main idea of the passage is that Wu:',
+      choices: [
+        { id: 'A', text: 'achieved lasting recognition in science despite being overlooked for the Nobel Prize' },
+        { id: 'B', text: 'seemed unable to focus on a single area of physics research for long' },
+        { id: 'C', text: 'eventually expressed regret about not returning to China to teach' },
+        { id: 'D', text: 'believed that laboratory experiments had been made unnecessary by modern computers' },
+      ],
+      answer: 'A',
+      explanation:
+        'Wu was passed over for the Nobel but later received the National Medal of Science, the Wolf Prize, and became APS president—showing she achieved lasting recognition despite the Nobel exclusion.',
+    },
+    {
+      id: 'read-019',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. Originally, experiments meant careful observation.\n\n' +
+        'The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. "I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'Which of the following events from Wu\'s life mentioned in the passage occurred first chronologically?',
+      choices: [
+        { id: 'A', text: 'She received the National Medal of Science.' },
+        { id: 'B', text: 'She joined the Manhattan Project at Columbia University.' },
+        { id: 'C', text: 'She was born in Liuhe, China.' },
+        { id: 'D', text: 'She designed the experiment that disproved the conservation of parity.' },
+      ],
+      answer: 'C',
+      explanation:
+        'Wu was born in 1912, which is the earliest event mentioned. All other events occurred after she moved to the United States.',
+    },
+    {
+      id: 'read-020',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. Originally, experiments meant careful observation.\n\n' +
+        '[The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.]\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. "I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'What is the purpose of the highlighted paragraph?',
+      choices: [
+        { id: 'A', text: 'To transition to a discussion about the history of the Manhattan Project' },
+        { id: 'B', text: 'To explain what Wu\'s experiments at Columbia University were designed to test' },
+        { id: 'C', text: 'To define the role of a physicist before introducing Wu as an example' },
+        { id: 'D', text: 'To suggest that theoretical physics is more valuable than experimental physics' },
+      ],
+      answer: 'C',
+      explanation:
+        'The paragraph defines what physicists do, setting up the introduction of Wu as "one important physicist" in the very next paragraph.',
+    },
+    {
+      id: 'read-021',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. Originally, experiments meant careful observation.\n\n' +
+        'The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. ["I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."]\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'Which of the following statements best summarizes the highlighted text?',
+      choices: [
+        { id: 'A', text: 'Wu refused to acknowledge that discrimination had affected her opportunities.' },
+        { id: 'B', text: 'Wu\'s primary focus was her scientific work, not her identity.' },
+        { id: 'C', text: 'Wu believed that race and sex should not be discussed in a professional setting.' },
+        { id: 'D', text: 'Wu felt that becoming a physicist was her only realistic option.' },
+      ],
+      answer: 'B',
+      explanation:
+        'Wu says she never consciously thought about her race or sex—only about physics—showing that her work, not her identity, was her central concern.',
+    },
+    {
+      id: 'read-022',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. Originally, experiments meant careful observation.\n\n' +
+        'The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. "I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'According to the passage, what is one reason Wu found it difficult to obtain a research position after completing her studies?',
+      choices: [
+        { id: 'A', text: 'She had not yet finished her degree at Berkeley.' },
+        { id: 'B', text: 'She was seen as too specialized in nuclear research.' },
+        { id: 'C', text: 'Research positions were rarely offered to women or Asian Americans at the time.' },
+        { id: 'D', text: 'She refused to apply to any university other than Columbia.' },
+      ],
+      answer: 'C',
+      explanation:
+        'The passage states directly that "research positions were rarely offered to women or Asian Americans at the time," which is the reason cited for her difficulty finding work.',
+    },
+    {
+      id: 'read-023',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. [Originally, experiments meant careful observation.]\n\n' +
+        'The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. "I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'What is the main purpose of the highlighted sentence?',
+      choices: [
+        { id: 'A', text: 'To transition to a discussion of Wu\'s work at the Manhattan Project' },
+        { id: 'B', text: 'To explain the origin of Wu\'s interest in conducting experiments' },
+        { id: 'C', text: 'To emphasize how much effort it took to develop modern equipment' },
+        { id: 'D', text: 'To introduce the idea that physics once relied on direct, hands-on observation' },
+      ],
+      answer: 'D',
+      explanation:
+        '"Originally, experiments meant careful observation" contrasts early experimental science with modern technology-driven approaches, setting up the discussion of early physicists.',
+    },
+    {
+      id: 'read-024',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "Chien-Shiung Wu, Experimental Physicist" is an original work of nonfiction.\n\n' +
+        'Anyone who studies the history of modern physics knows that experiments are its foundation. It can be difficult, though, to find two people who picture the same kind of physicist—a person bent over equations, or a person adjusting instruments in a lab. But before modern particle accelerators existed, physicists conducted experiments entirely by hand, sometimes over many years. Originally, experiments meant careful observation.\n\n' +
+        'The word physicist was first used to describe someone who studied the natural world through precise measurement and testing. These people worked alongside theorists to confirm or disprove ideas about how the universe operates. Sometimes the experiments required only simple tools, but often they demanded specialized equipment, careful timing, and the willingness to work for long periods without seeing clear results.\n\n' +
+        'One important physicist was a Chinese American woman named Chien-Shiung Wu. Born in Liuhe, China, in 1912, Wu had been encouraged to pursue science from a young age. Her father had founded a school for girls at a time when girls\' education was rare in her region. "I have never consciously thought about my race or sex," Wu once said. "What I do think about is physics."\n\n' +
+        'Wu eventually moved to the United States to study at the University of California, Berkeley. Research positions were rarely offered to women or Asian Americans at the time, making it difficult for her to find work. But in 1944 she joined the Manhattan Project at Columbia University, helping to develop the process for separating uranium isotopes. After the war, she joined Columbia\'s faculty.\n\n' +
+        'Wu\'s most famous contribution came in 1956, when two theoretical physicists—Tsung-Dao Lee and Chen-Ning Yang—proposed that a widely accepted law in physics, the conservation of parity, might not always hold true. Most physicists were skeptical. Wu designed a demanding experiment at extremely low temperatures to test the theory, and within weeks she had proven Lee and Yang correct. Lee and Yang received the Nobel Prize in Physics in 1957. Wu was not included, despite the fact that her experiment had made their prize possible.\n\n' +
+        'Wu continued her research for decades. She received the National Medal of Science in 1975—the first physicist ever to do so—and was elected president of the American Physical Society that same year. In 1978, she received the Wolf Prize. Her determination to work at the highest level of science, regardless of the barriers placed before her, made her a lasting model for future generations of researchers.',
+      prompt: 'According to the passage, Wu\'s 1956 experiment changed physics because it:',
+      choices: [
+        { id: 'A', text: 'showed that theoretical physicists could conduct experimental work on their own' },
+        { id: 'B', text: 'proved that uranium isotopes could be separated without modern equipment' },
+        { id: 'C', text: 'disproved a law of physics that most scientists had accepted as true' },
+        { id: 'D', text: 'earned Wu the Nobel Prize in Physics alongside Lee and Yang' },
+      ],
+      answer: 'C',
+      explanation:
+        'The passage says Wu proved Lee and Yang\'s prediction correct—that the conservation of parity did not always hold—a law "most physicists" had previously believed was reliable.',
+    },
+
+    // -----------------------------------------------------------------------
+    // INFORMATIONAL — "The Power of Cassava"
+    // read-025 through read-033
+    // -----------------------------------------------------------------------
+    {
+      id: 'read-025',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'What is the main purpose of the passage?',
+      choices: [
+        { id: 'A', text: 'To explain why the World Food Prize is awarded annually' },
+        { id: 'B', text: 'To inform readers how two scientists developed more nutritious varieties of cassava' },
+        { id: 'C', text: 'To describe the history of plant genetics with an emphasis on tropical crops' },
+        { id: 'D', text: 'To provide information about food production improvements since 2000' },
+      ],
+      answer: 'B',
+      explanation:
+        'The passage focuses on how Andrade and Low identified a nutritional problem, developed a solution through selective breeding, and spread the improved cassava globally.',
+    },
+    {
+      id: 'read-026',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'Which of the following events mentioned in the passage occurred first chronologically?',
+      choices: [
+        { id: 'A', text: 'High-iron cassava varieties were developed at CIAT.' },
+        { id: 'B', text: 'HarvestPlus began developing biofortified cassava varieties.' },
+        { id: 'C', text: 'Andrade and Low began collaborating in Colombia.' },
+        { id: 'D', text: 'Andrade and Low received the World Food Prize.' },
+      ],
+      answer: 'B',
+      explanation:
+        'HarvestPlus began in the 1990s. Andrade and Low began collaborating in the early 2000s, and the World Food Prize was awarded in 2016.',
+    },
+    {
+      id: 'read-027',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'Based on the passage, what is one difference between traditional cassava and high-iron cassava?',
+      choices: [
+        { id: 'A', text: 'Traditional cassava is more expensive for farmers to grow than high-iron cassava.' },
+        { id: 'B', text: 'Traditional cassava has a shorter growing season than high-iron cassava.' },
+        { id: 'C', text: 'High-iron cassava contains greater levels of essential nutrients than traditional cassava.' },
+        { id: 'D', text: 'High-iron cassava does not taste as good as traditional cassava.' },
+      ],
+      answer: 'C',
+      explanation:
+        'The passage states that high-iron cassava has "significantly higher levels of iron and zinc" than traditional varieties, which "contain low levels" of these nutrients.',
+    },
+    {
+      id: 'read-028',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        '[Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.]\n\n',
+      prompt: 'What is the main idea of the highlighted paragraph?',
+      choices: [
+        { id: 'A', text: 'Andrade and Low were honored for research that improved the lives of millions.' },
+        { id: 'B', text: 'Andrade was the first woman from Cape Verde to win the World Food Prize.' },
+        { id: 'C', text: 'Improved cassava is now grown in more than thirty countries.' },
+        { id: 'D', text: 'Teaching farmers about the new cassava was the most important part of Andrade and Low\'s work.' },
+      ],
+      answer: 'A',
+      explanation:
+        'The paragraph summarizes the global reach of the work, the award received, and the impact on millions—all pointing to recognition for work that helped people.',
+    },
+    {
+      id: 'read-029',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from [deficiencies] in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'As it is used in the passage, the highlighted word "deficiencies" most nearly means:',
+      choices: [
+        { id: 'A', text: 'allergies' },
+        { id: 'B', text: 'shortages' },
+        { id: 'C', text: 'infections' },
+        { id: 'D', text: 'preferences' },
+      ],
+      answer: 'B',
+      explanation:
+        'In this context, "deficiencies in these nutrients" means the body is not getting enough of them—a shortage of iron and zinc.',
+    },
+    {
+      id: 'read-030',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: [that is, varieties bred or engineered to contain higher levels of the nutrients people need.]\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'What is the main function of the highlighted phrase?',
+      choices: [
+        { id: 'A', text: 'To emphasize the importance of genetic modification in modern agriculture' },
+        { id: 'B', text: 'To describe which specific nutrients are most important for child development' },
+        { id: 'C', text: 'To explain why traditional cassava varieties are still preferred in some regions' },
+        { id: 'D', text: 'To define a potentially unfamiliar term used earlier in the sentence' },
+      ],
+      answer: 'D',
+      explanation:
+        '"That is, varieties bred or engineered to contain higher levels of the nutrients people need" defines the term "biofortified" that appears just before it.',
+    },
+    {
+      id: 'read-031',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'Based on the passage, what is one reason it was necessary to create multiple hybrid varieties of the improved cassava?',
+      choices: [
+        { id: 'A', text: 'The original high-iron cassava was not suited to every climate where an improved variety was needed.' },
+        { id: 'B', text: 'Farmers in different regions refused to grow a variety that had not been developed locally.' },
+        { id: 'C', text: 'Insects in different regions attacked the first hybrid, requiring replacements to be developed.' },
+        { id: 'D', text: 'The original high-iron variety lost its nutritional benefits after a few growing seasons.' },
+      ],
+      answer: 'A',
+      explanation:
+        'The passage says "cassava grows in many different climates" and "each hybrid had to be adapted to thrive in a specific region," indicating climate variation was why multiple hybrids were needed.',
+    },
+    {
+      id: 'read-032',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'The passage indicates that, compared to traditional cassava varieties grown in Rwanda, the high-iron cassava\'s yields were:',
+      choices: [
+        { id: 'A', text: 'about the same' },
+        { id: 'B', text: 'less consistent' },
+        { id: 'C', text: 'higher' },
+        { id: 'D', text: 'lower' },
+      ],
+      answer: 'C',
+      explanation:
+        'The passage states that in Rwanda, "the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region."',
+    },
+    {
+      id: 'read-033',
+      subject: 'Reading',
+      passage:
+        'INFORMATIONAL: "The Power of Cassava" is an original work of nonfiction.\n\n' +
+        'In many parts of the world, the primary food people depend on is cassava. For a long time, communities that relied heavily on cassava struggled to get adequate nutrition from it. Scientists began working on improving cassava so that it could deliver as much nutritional value as possible in a crop that remained high yielding and disease resistant.\n\n' +
+        'Traditional cassava varieties contain low levels of iron and zinc—two nutrients essential for healthy development. Children who depend on cassava as their main food source often suffer from deficiencies in these nutrients, which can affect growth and cognitive development. Starting in the 1990s, a program called HarvestPlus began developing biofortified varieties of cassava: that is, varieties bred or engineered to contain higher levels of the nutrients people need.\n\n' +
+        'At the International Center for Tropical Agriculture (CIAT) in Colombia, two scientists began working in the early 2000s to address the problem. Maria Andrade, a plant breeder from Cape Verde, collaborated with Jan Low, a food scientist from the United States, to develop improved cassava varieties with significantly higher levels of iron and zinc. Using selective breeding rather than genetic modification, they processed thousands of plant samples a year to find the ideal combination of nutritional and agricultural qualities.\n\n' +
+        'Within a few years, their work produced a new type of cassava called high-iron cassava, which dramatically improved the nutritional content of the crop while preserving the characteristics that farmers and consumers valued. The plants had good flavor, remained disease resistant, and continued to yield well under difficult growing conditions.\n\n' +
+        'Andrade and Low then traveled across sub-Saharan Africa, educating farming communities about the benefits of the new variety. They also developed additional hybrids of the improved cassava. Hybrids are produced by crossing two varieties of the same plant to combine their most desirable traits. Because cassava grows in many different climates, each hybrid had to be adapted to thrive in a specific region.\n\n' +
+        'As the new varieties were grown across Africa, researchers measured their impact. Children who ate the high-iron cassava showed better health outcomes than those eating traditional varieties. In Nigeria, families that grew the improved cassava earned higher incomes because the crop commanded better prices. In Rwanda, the high-iron cassava produced yields 15 percent higher than traditional varieties grown in the same region.\n\n' +
+        'Today, improved cassava varieties are grown in more than thirty countries worldwide. In 2016, Andrade and Low received the World Food Prize, the most prestigious award in food and agriculture. Their decades of research and community education have improved the nutritional outcomes and livelihoods of millions of people.',
+      prompt: 'Based on the passage, where did Andrade and Low begin working together?',
+      choices: [
+        { id: 'A', text: 'Cape Verde' },
+        { id: 'B', text: 'Colombia' },
+        { id: 'C', text: 'Nigeria' },
+        { id: 'D', text: 'Rwanda' },
+      ],
+      answer: 'B',
+      explanation:
+        'The passage states they began collaborating at the International Center for Tropical Agriculture (CIAT) in Colombia.',
     },
   ],
 
