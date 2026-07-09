@@ -32,6 +32,17 @@ const quizData = activeSubjects.map((s) => ({
   })),
   quiz: s.quiz,
 }));
+
+// Flatten today's words (across subjects) into one swipeable flashcard deck,
+// same one-word-at-a-time pattern as the homepage deck.
+const flashDeck = quizData.flatMap((s) =>
+  s.words.map((w) => ({
+    ...w,
+    subject: s.subject,
+    accent: s.accent,
+    subjectLabel: s.label,
+  }))
+);
 ---
 
 <Base title={`PreACT 9 — Day ${dayNum}`}>
@@ -60,44 +71,80 @@ const quizData = activeSubjects.map((s) => ({
       </p>
     </header>
 
-    <!-- STEP 1 — Study cards -->
+    <!-- STEP 1 — Study cards (one word at a time, swipe left/right) -->
     <section class="mb-8">
-      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-        Step 1 · Study today's words
-      </h2>
-      {
-        quizData.map((s) => (
-          <div class="mb-5">
-            <p
-              class="mb-2 text-[11px] font-semibold uppercase tracking-wider"
-              style={`color:${s.accent}`}
+      <div class="mb-3 flex items-center justify-between text-sm text-[var(--muted)]">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+          Step 1 · Study today's words
+        </h2>
+        <div class="flex items-center gap-3">
+          <span id="flash-position">1 / {flashDeck.length}</span>
+          <button
+            id="flash-replay-btn"
+            type="button"
+            class="inline-flex items-center gap-1.5 rounded-full border border-[var(--line)] px-3 py-1 transition hover:text-[var(--text)]"
+            aria-label="Hear it again"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5 6 9H2v6h4l5 4z" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            </svg>
+            Hear it
+          </button>
+        </div>
+      </div>
+
+      <div class="relative flex items-stretch">
+        <button
+          id="flash-prev"
+          type="button"
+          class="nav-arrow absolute left-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1 rounded-full border border-[var(--line)] bg-[var(--surface)] p-2 text-[var(--muted)] transition hover:text-[var(--text)] disabled:opacity-30 sm:-translate-x-4"
+          aria-label="Previous word"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+
+        <div id="flash-stage" class="flex w-full touch-pan-y select-none flex-col">
+          <article
+            id="flash-card"
+            class="flex min-h-[16rem] flex-1 flex-col rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 sm:p-9"
+          >
+            <p id="flash-subject" class="text-[11px] font-semibold uppercase tracking-wider"></p>
+            <h3 id="flash-word" class="mt-2 text-3xl font-bold sm:text-4xl"></h3>
+
+            <button
+              id="flash-reveal-btn"
+              type="button"
+              class="mt-4 w-fit rounded-full border border-[var(--line)] px-3 py-1 text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--text)]"
+              aria-pressed="false"
             >
-              {s.label} · {s.words.length} words
-            </p>
-            <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {s.words.map((w) => (
-                <div
-                  class="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3"
-                  style={`border-color:${s.accent}33`}
-                >
-                  <div class="flex items-center justify-between gap-2">
-                    <span class="font-bold" style={`color:${s.accent}`}>{w.word}</span>
-                    <button
-                      type="button"
-                      class="speak-btn shrink-0 rounded-full border border-[var(--line)] p-1.5 text-[var(--muted)] transition hover:text-[var(--text)]"
-                      data-word={w.word}
-                      aria-label={`Hear ${w.word}`}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /></svg>
-                    </button>
-                  </div>
-                  <p class="mt-1 text-sm leading-snug">{w.definition}</p>
-                </div>
-              ))}
+              Show definition
+            </button>
+
+            <div id="flash-answer" class="hidden">
+              <p class="mt-6 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Meaning</p>
+              <p id="flash-def" class="mt-1 text-base leading-relaxed"></p>
+
+              <p class="mt-5 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Example</p>
+              <p id="flash-ex" class="mt-1 text-[15px] italic leading-relaxed text-[var(--muted)]"></p>
             </div>
-          </div>
-        ))
-      }
+          </article>
+        </div>
+
+        <button
+          id="flash-next"
+          type="button"
+          class="nav-arrow absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-1 rounded-full border border-[var(--line)] bg-[var(--surface)] p-2 text-[var(--muted)] transition hover:text-[var(--text)] disabled:opacity-30 sm:translate-x-4"
+          aria-label="Next word"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+      </div>
+
+      <p id="flash-audio-hint" class="mt-3 text-center text-xs text-[var(--muted)]">
+        Tap anywhere once to enable read-aloud.
+      </p>
     </section>
 
     <!-- STEP 2 — Quiz -->
@@ -124,15 +171,35 @@ const quizData = activeSubjects.map((s) => ({
     </section>
   </main>
 
-  <style>
+  <style is:global>
+    /* Global: quiz choice buttons are created via document.createElement in the
+       script below, so Astro's scoped-style attribute never lands on them —
+       scoped rules here would silently never match. */
     .choice.is-correct { border-color:#2faf6a; background:#2faf6a18; }
     .choice.is-correct .choice-key { border-color:#2faf6a; background:#2faf6a; color:#ffffff; }
     .choice.is-wrong { border-color:#e23a6e; background:#e23a6e18; }
     .choice.is-wrong .choice-key { border-color:#e23a6e; background:#e23a6e; color:#ffffff; }
     .q.answered .choice:not(.is-correct):not(.is-wrong) { opacity:.5; }
+    .slide-from-right {
+      animation: slideFromRight 0.28s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    .slide-from-left {
+      animation: slideFromLeft 0.28s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    @keyframes slideFromRight {
+      from { transform: translateX(28px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideFromLeft {
+      from { transform: translateX(-28px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide-from-right, .slide-from-left { animation: none; }
+    }
   </style>
 
-  <script define:vars={{ quizData, dayNum, totalQuestions }}>
+  <script define:vars={{ quizData, dayNum, totalQuestions, flashDeck }}>
     // --- Speech (reuse the same natural-voice picker as the flashcards) ---
     const synth = window.speechSynthesis;
     let cachedVoice = null;
@@ -161,10 +228,142 @@ const quizData = activeSubjects.map((s) => ({
       const v = pickVoice(); if (v) { u.voice = v; u.lang = v.lang; }
       synth.speak(u);
     }
-    document.addEventListener('click', (e) => {
-      const b = e.target.closest('.speak-btn');
-      if (b) { e.preventDefault(); speak(b.dataset.word); }
-    });
+
+    // --- Flashcard viewer (Step 1): one word at a time, swipe/arrows ----
+    const flashCards = flashDeck;
+    let flashIndex = 0;
+    let flashAudioUnlocked = false;
+
+    const flashStage = document.getElementById('flash-stage');
+    const flashCardEl = document.getElementById('flash-card');
+    const flashSubjectEl = document.getElementById('flash-subject');
+    const flashWordEl = document.getElementById('flash-word');
+    const flashDefEl = document.getElementById('flash-def');
+    const flashExEl = document.getElementById('flash-ex');
+    const flashPosEl = document.getElementById('flash-position');
+    const flashPrevBtn = document.getElementById('flash-prev');
+    const flashNextBtn = document.getElementById('flash-next');
+    const flashReplayBtn = document.getElementById('flash-replay-btn');
+    const flashAudioHint = document.getElementById('flash-audio-hint');
+    const flashRevealBtn = document.getElementById('flash-reveal-btn');
+    const flashAnswerBox = document.getElementById('flash-answer');
+
+    // Hidden by default on every new card so the word alone can be tested
+    // before checking the meaning.
+    let flashRevealed = false;
+    function updateFlashReveal() {
+      flashAnswerBox.classList.toggle('hidden', !flashRevealed);
+      flashRevealBtn.textContent = flashRevealed ? 'Hide definition' : 'Show definition';
+      flashRevealBtn.setAttribute('aria-pressed', String(flashRevealed));
+    }
+    if (flashRevealBtn) {
+      flashRevealBtn.addEventListener('click', () => {
+        flashRevealed = !flashRevealed;
+        updateFlashReveal();
+      });
+    }
+
+    function speakFlashCurrent() {
+      const card = flashCards[flashIndex];
+      if (flashAudioUnlocked && card) speak(card.word);
+    }
+
+    function renderFlash(animateDir) {
+      const card = flashCards[flashIndex];
+      if (!card) return;
+      flashCardEl.style.borderColor = `${card.accent}55`;
+      flashSubjectEl.textContent = card.subjectLabel;
+      flashSubjectEl.style.color = card.accent;
+      flashWordEl.textContent = card.word;
+      flashWordEl.style.color = card.accent;
+      flashDefEl.textContent = card.definition;
+      flashExEl.textContent = `"${card.example}"`;
+      flashPosEl.textContent = `${flashIndex + 1} / ${flashCards.length}`;
+
+      flashPrevBtn.disabled = flashIndex === 0;
+      flashNextBtn.disabled = flashIndex === flashCards.length - 1;
+
+      flashRevealed = false;
+      updateFlashReveal();
+
+      if (animateDir) {
+        flashStage.classList.remove('slide-from-left', 'slide-from-right');
+        void flashStage.offsetWidth;
+        flashStage.classList.add(
+          animateDir === 'next' ? 'slide-from-right' : 'slide-from-left'
+        );
+      }
+      speakFlashCurrent();
+    }
+
+    function goFlash(delta) {
+      const next = flashIndex + delta;
+      if (next < 0 || next >= flashCards.length) return;
+      flashIndex = next;
+      renderFlash(delta > 0 ? 'next' : 'prev');
+    }
+
+    function unlockFlashAudio() {
+      if (flashAudioUnlocked) return;
+      flashAudioUnlocked = true;
+      // Use visibility (not display:none) so the hint's space stays reserved —
+      // collapsing it here would shift the whole quiz section up by its height
+      // at the exact moment between a real click's mousedown and mouseup,
+      // making that first click land on the wrong element.
+      if (flashAudioHint) flashAudioHint.style.visibility = 'hidden';
+      speakFlashCurrent();
+    }
+
+    if (flashCards.length) {
+      flashPrevBtn.addEventListener('click', () => goFlash(-1));
+      flashNextBtn.addEventListener('click', () => goFlash(1));
+      flashReplayBtn.addEventListener('click', () => {
+        flashAudioUnlocked = true;
+        if (flashAudioHint) flashAudioHint.style.visibility = 'hidden';
+        speak(flashCards[flashIndex]?.word);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') goFlash(1);
+        else if (e.key === 'ArrowLeft') goFlash(-1);
+      });
+
+      let flashStartX = 0;
+      let flashStartY = 0;
+      let flashTracking = false;
+      flashStage.addEventListener(
+        'touchstart',
+        (e) => {
+          const t = e.changedTouches[0];
+          flashStartX = t.clientX;
+          flashStartY = t.clientY;
+          flashTracking = true;
+        },
+        { passive: true }
+      );
+      flashStage.addEventListener(
+        'touchend',
+        (e) => {
+          if (!flashTracking) return;
+          flashTracking = false;
+          const t = e.changedTouches[0];
+          const dx = t.clientX - flashStartX;
+          const dy = t.clientY - flashStartY;
+          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+            goFlash(dx < 0 ? 1 : -1);
+          }
+        },
+        { passive: true }
+      );
+
+      window.addEventListener('pointerdown', unlockFlashAudio, { once: true });
+      window.addEventListener('keydown', unlockFlashAudio, { once: true });
+
+      renderFlash();
+      flashAudioUnlocked = true;
+      speakFlashCurrent();
+      flashAudioUnlocked = false;
+    }
 
     // --- Render quiz ---
     const root = document.getElementById('quiz-root');
