@@ -2349,6 +2349,927 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
       explanation:
         '25 cm falls between 20 cm (1.1 m) and 30 cm (1.6 m), so the distance should fall between those values.',
     },
+    {
+      id: 'sci-003',
+      subject: 'Science',
+      passage:
+        'Some fish and shellfish contain both omega-3 fatty acids and methylmercury. Table 1 shows the average mass of omega-3 fatty acids per serving, in milligrams (mg) per serving, and the average mass of methylmercury per serving, in micrograms (μg) per serving, for each of 6 types of fish. Table 2 shows the average mass of omega-3 fatty acids per serving and the average mass of methylmercury per serving for each of 6 types of shellfish.\n\n' +
+        'Table 1\n' +
+        'Type of fish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Golden bass  | 800   | 123\n' +
+        'Grouper      | 210   | 38\n' +
+        'Herring      | 1,600 | 8\n' +
+        'King mackerel| 340   | 62\n' +
+        'Pollock      | 460   | 4\n' +
+        'Salmon       | 1,564 | 2\n' +
+        '*One serving is an 85 g portion of fish.\n\n' +
+        'Table 2\n' +
+        'Type of shellfish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Blue crab  | 403 | 8\n' +
+        'Clam       | 267 | 2\n' +
+        'King crab  | 351 | 6\n' +
+        'Oyster     | 374 | 3\n' +
+        'Scallop    | 310 | 1\n' +
+        'Shrimp     | 241 | 2\n' +
+        '*One serving is an 85 g portion of shellfish.',
+      prompt: 'Based on Table 2, what is the average mass of omega-3 fatty acids per serving of oysters?',
+      choices: [
+        { id: 'A', text: '310 mg/serving' },
+        { id: 'B', text: '351 mg/serving' },
+        { id: 'C', text: '374 mg/serving' },
+        { id: 'D', text: '403 mg/serving' },
+      ],
+      answer: 'C',
+      explanation: 'Table 2 shows Oyster has 374 mg/serving of omega-3 fatty acids.',
+    },
+    {
+      id: 'sci-004',
+      subject: 'Science',
+      passage:
+        'Some fish and shellfish contain both omega-3 fatty acids and methylmercury. Table 1 shows the average mass of omega-3 fatty acids per serving, in milligrams (mg) per serving, and the average mass of methylmercury per serving, in micrograms (μg) per serving, for each of 6 types of fish. Table 2 shows the average mass of omega-3 fatty acids per serving and the average mass of methylmercury per serving for each of 6 types of shellfish.\n\n' +
+        'Table 1\n' +
+        'Type of fish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Golden bass  | 800   | 123\n' +
+        'Grouper      | 210   | 38\n' +
+        'Herring      | 1,600 | 8\n' +
+        'King mackerel| 340   | 62\n' +
+        'Pollock      | 460   | 4\n' +
+        'Salmon       | 1,564 | 2\n' +
+        '*One serving is an 85 g portion of fish.\n\n' +
+        'Table 2\n' +
+        'Type of shellfish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Blue crab  | 403 | 8\n' +
+        'Clam       | 267 | 2\n' +
+        'King crab  | 351 | 6\n' +
+        'Oyster     | 374 | 3\n' +
+        'Scallop    | 310 | 1\n' +
+        'Shrimp     | 241 | 2\n' +
+        '*One serving is an 85 g portion of shellfish.',
+      prompt: 'Based on Table 1, what is the average mass of methylmercury per serving for the type of fish that has the least average mass of omega-3 fatty acids per serving?',
+      choices: [
+        { id: 'A', text: '4 μg/serving' },
+        { id: 'B', text: '8 μg/serving' },
+        { id: 'C', text: '38 μg/serving' },
+        { id: 'D', text: '62 μg/serving' },
+      ],
+      answer: 'C',
+      explanation: 'Grouper has the least omega-3 (210 mg/serving). Its methylmercury is 38 μg/serving.',
+    },
+    {
+      id: 'sci-005',
+      subject: 'Science',
+      passage:
+        'Some fish and shellfish contain both omega-3 fatty acids and methylmercury. Table 1 shows the average mass of omega-3 fatty acids per serving, in milligrams (mg) per serving, and the average mass of methylmercury per serving, in micrograms (μg) per serving, for each of 6 types of fish. Table 2 shows the average mass of omega-3 fatty acids per serving and the average mass of methylmercury per serving for each of 6 types of shellfish.\n\n' +
+        'Table 1\n' +
+        'Type of fish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Golden bass  | 800   | 123\n' +
+        'Grouper      | 210   | 38\n' +
+        'Herring      | 1,600 | 8\n' +
+        'King mackerel| 340   | 62\n' +
+        'Pollock      | 460   | 4\n' +
+        'Salmon       | 1,564 | 2\n' +
+        '*One serving is an 85 g portion of fish.\n\n' +
+        'Table 2\n' +
+        'Type of shellfish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Blue crab  | 403 | 8\n' +
+        'Clam       | 267 | 2\n' +
+        'King crab  | 351 | 6\n' +
+        'Oyster     | 374 | 3\n' +
+        'Scallop    | 310 | 1\n' +
+        'Shrimp     | 241 | 2\n' +
+        '*One serving is an 85 g portion of shellfish.',
+      prompt: 'Based on Tables 1 and 2, the average mass of omega-3 fatty acids per serving is between 200 mg/serving and 390 mg/serving for how many of the types of fish and shellfish?',
+      choices: [
+        { id: 'A', text: '2' },
+        { id: 'B', text: '3' },
+        { id: 'C', text: '5' },
+        { id: 'D', text: '7' },
+      ],
+      answer: 'D',
+      explanation: 'Fish in range: Grouper (210), King mackerel (340) = 2. Shellfish in range: Clam (267), King crab (351), Oyster (374), Scallop (310), Shrimp (241) = 5. Total = 7.',
+    },
+    {
+      id: 'sci-006',
+      subject: 'Science',
+      passage:
+        'Some fish and shellfish contain both omega-3 fatty acids and methylmercury. Table 1 shows the average mass of omega-3 fatty acids per serving, in milligrams (mg) per serving, and the average mass of methylmercury per serving, in micrograms (μg) per serving, for each of 6 types of fish. Table 2 shows the average mass of omega-3 fatty acids per serving and the average mass of methylmercury per serving for each of 6 types of shellfish.\n\n' +
+        'Table 1\n' +
+        'Type of fish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Golden bass  | 800   | 123\n' +
+        'Grouper      | 210   | 38\n' +
+        'Herring      | 1,600 | 8\n' +
+        'King mackerel| 340   | 62\n' +
+        'Pollock      | 460   | 4\n' +
+        'Salmon       | 1,564 | 2\n' +
+        '*One serving is an 85 g portion of fish.\n\n' +
+        'Table 2\n' +
+        'Type of shellfish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Blue crab  | 403 | 8\n' +
+        'Clam       | 267 | 2\n' +
+        'King crab  | 351 | 6\n' +
+        'Oyster     | 374 | 3\n' +
+        'Scallop    | 310 | 1\n' +
+        'Shrimp     | 241 | 2\n' +
+        '*One serving is an 85 g portion of shellfish.',
+      prompt: 'Based on Table 1, what is the average mass of omega-3 fatty acids per serving of golden bass in grams per serving?',
+      choices: [
+        { id: 'A', text: '0.08 g/serving' },
+        { id: 'B', text: '0.80 g/serving' },
+        { id: 'C', text: '80,000 g/serving' },
+        { id: 'D', text: '800,000 g/serving' },
+      ],
+      answer: 'B',
+      explanation: 'Golden bass has 800 mg/serving. Converting: 800 mg ÷ 1,000 = 0.80 g/serving.',
+    },
+    {
+      id: 'sci-007',
+      subject: 'Science',
+      passage:
+        'Some fish and shellfish contain both omega-3 fatty acids and methylmercury. Table 1 shows the average mass of omega-3 fatty acids per serving, in milligrams (mg) per serving, and the average mass of methylmercury per serving, in micrograms (μg) per serving, for each of 6 types of fish. Table 2 shows the average mass of omega-3 fatty acids per serving and the average mass of methylmercury per serving for each of 6 types of shellfish.\n\n' +
+        'Table 1\n' +
+        'Type of fish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Golden bass  | 800   | 123\n' +
+        'Grouper      | 210   | 38\n' +
+        'Herring      | 1,600 | 8\n' +
+        'King mackerel| 340   | 62\n' +
+        'Pollock      | 460   | 4\n' +
+        'Salmon       | 1,564 | 2\n' +
+        '*One serving is an 85 g portion of fish.\n\n' +
+        'Table 2\n' +
+        'Type of shellfish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Blue crab  | 403 | 8\n' +
+        'Clam       | 267 | 2\n' +
+        'King crab  | 351 | 6\n' +
+        'Oyster     | 374 | 3\n' +
+        'Scallop    | 310 | 1\n' +
+        'Shrimp     | 241 | 2\n' +
+        '*One serving is an 85 g portion of shellfish.',
+      prompt: 'Consider the statement "The average mass of methylmercury per serving for each of the 6 types of shellfish is less than the average mass of methylmercury per serving for pollock." This statement is not consistent with the data in Tables 1 and 2 for which type(s) of shellfish?',
+      choices: [
+        { id: 'A', text: 'Blue crab only' },
+        { id: 'B', text: 'Oyster only' },
+        { id: 'C', text: 'Blue crab and king crab only' },
+        { id: 'D', text: 'Blue crab, king crab, and oyster only' },
+      ],
+      answer: 'C',
+      explanation: 'Pollock methylmercury = 4 μg/serving. Blue crab (8) and king crab (6) are both greater than 4, so the statement is NOT consistent for those two.',
+    },
+    {
+      id: 'sci-008',
+      subject: 'Science',
+      passage:
+        'Some fish and shellfish contain both omega-3 fatty acids and methylmercury. Table 1 shows the average mass of omega-3 fatty acids per serving, in milligrams (mg) per serving, and the average mass of methylmercury per serving, in micrograms (μg) per serving, for each of 6 types of fish. Table 2 shows the average mass of omega-3 fatty acids per serving and the average mass of methylmercury per serving for each of 6 types of shellfish.\n\n' +
+        'Table 1\n' +
+        'Type of fish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Golden bass  | 800   | 123\n' +
+        'Grouper      | 210   | 38\n' +
+        'Herring      | 1,600 | 8\n' +
+        'King mackerel| 340   | 62\n' +
+        'Pollock      | 460   | 4\n' +
+        'Salmon       | 1,564 | 2\n' +
+        '*One serving is an 85 g portion of fish.\n\n' +
+        'Table 2\n' +
+        'Type of shellfish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Blue crab  | 403 | 8\n' +
+        'Clam       | 267 | 2\n' +
+        'King crab  | 351 | 6\n' +
+        'Oyster     | 374 | 3\n' +
+        'Scallop    | 310 | 1\n' +
+        'Shrimp     | 241 | 2\n' +
+        '*One serving is an 85 g portion of shellfish.',
+      prompt: 'Is the statement "The type of fish that has the greatest average mass of omega-3 fatty acids per serving also has the greatest average mass of methylmercury per serving" supported by the data in Table 1?',
+      choices: [
+        { id: 'A', text: 'Yes; golden bass has the greatest average mass of omega-3 fatty acids per serving and also has the greatest average mass of methylmercury per serving.' },
+        { id: 'B', text: 'Yes; herring has the greatest average mass of omega-3 fatty acids per serving and also has the greatest average mass of methylmercury per serving.' },
+        { id: 'C', text: 'No; golden bass has the greatest average mass of omega-3 fatty acids per serving, but herring has the greatest average mass of methylmercury per serving.' },
+        { id: 'D', text: 'No; herring has the greatest average mass of omega-3 fatty acids per serving, but golden bass has the greatest average mass of methylmercury per serving.' },
+      ],
+      answer: 'D',
+      explanation: 'Herring has the greatest omega-3 (1,600 mg/serving), but golden bass has the greatest methylmercury (123 μg/serving). So the statement is not supported.',
+    },
+    {
+      id: 'sci-009',
+      subject: 'Science',
+      passage:
+        'Some fish and shellfish contain both omega-3 fatty acids and methylmercury. Table 1 shows the average mass of omega-3 fatty acids per serving, in milligrams (mg) per serving, and the average mass of methylmercury per serving, in micrograms (μg) per serving, for each of 6 types of fish. Table 2 shows the average mass of omega-3 fatty acids per serving and the average mass of methylmercury per serving for each of 6 types of shellfish.\n\n' +
+        'Table 1\n' +
+        'Type of fish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Golden bass  | 800   | 123\n' +
+        'Grouper      | 210   | 38\n' +
+        'Herring      | 1,600 | 8\n' +
+        'King mackerel| 340   | 62\n' +
+        'Pollock      | 460   | 4\n' +
+        'Salmon       | 1,564 | 2\n' +
+        '*One serving is an 85 g portion of fish.\n\n' +
+        'Table 2\n' +
+        'Type of shellfish | Avg mass of omega-3 fatty acids per serving* (mg/serving) | Avg mass of methylmercury per serving* (μg/serving)\n' +
+        'Blue crab  | 403 | 8\n' +
+        'Clam       | 267 | 2\n' +
+        'King crab  | 351 | 6\n' +
+        'Oyster     | 374 | 3\n' +
+        'Scallop    | 310 | 1\n' +
+        'Shrimp     | 241 | 2\n' +
+        '*One serving is an 85 g portion of shellfish.',
+      prompt: 'Which type of shellfish listed in Table 2 has the greatest average mass of methylmercury per serving, and is this type of shellfish a vertebrate or an invertebrate?',
+      choices: [
+        { id: 'A', text: 'Blue crab; vertebrate' },
+        { id: 'B', text: 'Blue crab; invertebrate' },
+        { id: 'C', text: 'Scallop; vertebrate' },
+        { id: 'D', text: 'Scallop; invertebrate' },
+      ],
+      answer: 'B',
+      explanation: 'Blue crab has the greatest methylmercury (8 μg/serving) in Table 2. Crabs are invertebrates — they have no backbone.',
+    },
+    {
+      id: 'sci-010',
+      subject: 'Science',
+      passage:
+        'The electrical resistivity of a material is a measure of its resistance to the flow of electric current. The lower the resistivity, the more easily an electric current can flow. For 7 elements, Table 1 shows the chemical symbol and the resistivity in microohm centimeters (μΩ·cm).\n\n' +
+        'Table 1\n' +
+        'Element   | Symbol | Resistivity* (μΩ·cm)\n' +
+        'Aluminum  | Al     | 2.7\n' +
+        'Zinc      | Zn     | 5.9\n' +
+        'Nickel    | Ni     | 7.0\n' +
+        'Iron      | Fe     | 9.7\n' +
+        'Chromium  | Cr     | 13.0\n' +
+        'Lead      | Pb     | 22.0\n' +
+        'Titanium  | Ti     | 42.0\n' +
+        '*at 20°C\n\n' +
+        'Pure copper metal has a very low resistivity. When other elements are added to pure copper to produce copper alloys (mixtures of copper with 1 or more other elements), the resistivity changes. Figure 1 shows how the resistivities, at 20°C, of 5 copper alloys change with the weight percent (wt %) of the added element.\n\n' +
+        'Figure 1 — Resistivity (μΩ·cm) of copper alloys vs. weight percent of added element (0.00–0.10 wt %)\n' +
+        'All alloys start near 1.7 μΩ·cm at 0 wt % (pure copper) and increase as more element is added.\n' +
+        'Steepest to flattest slope at 0.10 wt %: Ti (~2.4) > Cr (~2.35) > Fe (~2.2) > Zn (~2.05) > Al (~1.9)',
+      prompt: 'When the resistivity of the element lithium is measured under the same conditions as those used to collect the data shown in Table 1, lithium has a resistivity of 9.3 μΩ·cm. How many of the elements listed in Table 1, if any, allow an electric current to flow more easily than lithium?',
+      choices: [
+        { id: 'A', text: '0' },
+        { id: 'B', text: '3' },
+        { id: 'C', text: '4' },
+        { id: 'D', text: '6' },
+      ],
+      answer: 'B',
+      explanation: 'Lower resistivity = flows more easily. Elements with resistivity below 9.3 μΩ·cm: Aluminum (2.7), Zinc (5.9), Nickel (7.0) = 3 elements. Iron (9.7) is above 9.3, so it does not qualify.',
+    },
+    {
+      id: 'sci-011',
+      subject: 'Science',
+      passage:
+        'The electrical resistivity of a material is a measure of its resistance to the flow of electric current. The lower the resistivity, the more easily an electric current can flow. For 7 elements, Table 1 shows the chemical symbol and the resistivity in microohm centimeters (μΩ·cm).\n\n' +
+        'Table 1\n' +
+        'Element   | Symbol | Resistivity* (μΩ·cm)\n' +
+        'Aluminum  | Al     | 2.7\n' +
+        'Zinc      | Zn     | 5.9\n' +
+        'Nickel    | Ni     | 7.0\n' +
+        'Iron      | Fe     | 9.7\n' +
+        'Chromium  | Cr     | 13.0\n' +
+        'Lead      | Pb     | 22.0\n' +
+        'Titanium  | Ti     | 42.0\n' +
+        '*at 20°C\n\n' +
+        'Pure copper metal has a very low resistivity. When other elements are added to pure copper to produce copper alloys (mixtures of copper with 1 or more other elements), the resistivity changes. Figure 1 shows how the resistivities, at 20°C, of 5 copper alloys change with the weight percent (wt %) of the added element.\n\n' +
+        'Figure 1 — Resistivity (μΩ·cm) of copper alloys vs. weight percent of added element (0.00–0.10 wt %)\n' +
+        'All alloys start near 1.7 μΩ·cm at 0 wt % (pure copper) and increase as more element is added.\n' +
+        'Steepest to flattest slope at 0.10 wt %: Ti (~2.4) > Cr (~2.35) > Fe (~2.2) > Zn (~2.05) > Al (~1.9)',
+      prompt: 'Based on Table 1, the resistivity of nickel is how many times as great as the resistivity of titanium?',
+      choices: [
+        { id: 'A', text: '1/4' },
+        { id: 'B', text: '1/6' },
+        { id: 'C', text: '4' },
+        { id: 'D', text: '6' },
+      ],
+      answer: 'B',
+      explanation: 'Nickel (7.0) ÷ Titanium (42.0) = 7/42 = 1/6. Nickel\'s resistivity is one-sixth as great as titanium\'s.',
+    },
+    {
+      id: 'sci-012',
+      subject: 'Science',
+      passage:
+        'The electrical resistivity of a material is a measure of its resistance to the flow of electric current. The lower the resistivity, the more easily an electric current can flow. For 7 elements, Table 1 shows the chemical symbol and the resistivity in microohm centimeters (μΩ·cm).\n\n' +
+        'Table 1\n' +
+        'Element   | Symbol | Resistivity* (μΩ·cm)\n' +
+        'Aluminum  | Al     | 2.7\n' +
+        'Zinc      | Zn     | 5.9\n' +
+        'Nickel    | Ni     | 7.0\n' +
+        'Iron      | Fe     | 9.7\n' +
+        'Chromium  | Cr     | 13.0\n' +
+        'Lead      | Pb     | 22.0\n' +
+        'Titanium  | Ti     | 42.0\n' +
+        '*at 20°C\n\n' +
+        'Pure copper metal has a very low resistivity. When other elements are added to pure copper to produce copper alloys (mixtures of copper with 1 or more other elements), the resistivity changes. Figure 1 shows how the resistivities, at 20°C, of 5 copper alloys change with the weight percent (wt %) of the added element.\n\n' +
+        'Figure 1 — Resistivity (μΩ·cm) of copper alloys vs. weight percent of added element (0.00–0.10 wt %)\n' +
+        'All alloys start near 1.7 μΩ·cm at 0 wt % (pure copper) and increase as more element is added.\n' +
+        'Steepest to flattest slope at 0.10 wt %: Ti (~2.4) > Cr (~2.35) > Fe (~2.2) > Zn (~2.05) > Al (~1.9)',
+      prompt: 'A scientist claimed that, for the elements Zn and Fe, at any particular weight percent of added element, the element with the greater resistivity would also produce the copper alloy with the greater resistivity. Are the data shown in Table 1 and Figure 1 consistent with this claim?',
+      choices: [
+        { id: 'A', text: 'Yes; Fe has the greater resistivity and produces the copper alloy with the greater resistivity.' },
+        { id: 'B', text: 'Yes; Zn has the greater resistivity and produces the copper alloy with the greater resistivity.' },
+        { id: 'C', text: 'No; Fe has the greater resistivity, but Zn produces the copper alloy with the greater resistivity.' },
+        { id: 'D', text: 'No; Zn has the greater resistivity, but Fe produces the copper alloy with the greater resistivity.' },
+      ],
+      answer: 'A',
+      explanation: 'Table 1: Fe (9.7) > Zn (5.9). Figure 1: the Fe alloy line sits above the Zn alloy line at every wt %. Both facts agree, so the claim is consistent.',
+    },
+    {
+      id: 'sci-013',
+      subject: 'Science',
+      passage:
+        'The electrical resistivity of a material is a measure of its resistance to the flow of electric current. The lower the resistivity, the more easily an electric current can flow. For 7 elements, Table 1 shows the chemical symbol and the resistivity in microohm centimeters (μΩ·cm).\n\n' +
+        'Table 1\n' +
+        'Element   | Symbol | Resistivity* (μΩ·cm)\n' +
+        'Aluminum  | Al     | 2.7\n' +
+        'Zinc      | Zn     | 5.9\n' +
+        'Nickel    | Ni     | 7.0\n' +
+        'Iron      | Fe     | 9.7\n' +
+        'Chromium  | Cr     | 13.0\n' +
+        'Lead      | Pb     | 22.0\n' +
+        'Titanium  | Ti     | 42.0\n' +
+        '*at 20°C\n\n' +
+        'Pure copper metal has a very low resistivity. When other elements are added to pure copper to produce copper alloys (mixtures of copper with 1 or more other elements), the resistivity changes. Figure 1 shows how the resistivities, at 20°C, of 5 copper alloys change with the weight percent (wt %) of the added element.\n\n' +
+        'Figure 1 — Resistivity (μΩ·cm) of copper alloys vs. weight percent of added element (0.00–0.10 wt %)\n' +
+        'All alloys start near 1.7 μΩ·cm at 0 wt % (pure copper) and increase as more element is added.\n' +
+        'Steepest to flattest slope at 0.10 wt %: Ti (~2.4) > Cr (~2.35) > Fe (~2.2) > Zn (~2.05) > Al (~1.9)',
+      prompt: 'Based on Figure 1, at 0.08 wt %, the alloy containing which element has a resistivity closest to 2.06 μΩ·cm?',
+      choices: [
+        { id: 'A', text: 'Zn' },
+        { id: 'B', text: 'Al' },
+        { id: 'C', text: 'Cr' },
+        { id: 'D', text: 'Ti' },
+      ],
+      answer: 'A',
+      explanation: 'At 0.08 wt %, the Zn alloy line reads approximately 2.05–2.06 μΩ·cm, the closest of the five alloys to 2.06 μΩ·cm.',
+    },
+    {
+      id: 'sci-014',
+      subject: 'Science',
+      passage:
+        'The electrical resistivity of a material is a measure of its resistance to the flow of electric current. The lower the resistivity, the more easily an electric current can flow. For 7 elements, Table 1 shows the chemical symbol and the resistivity in microohm centimeters (μΩ·cm).\n\n' +
+        'Table 1\n' +
+        'Element   | Symbol | Resistivity* (μΩ·cm)\n' +
+        'Aluminum  | Al     | 2.7\n' +
+        'Zinc      | Zn     | 5.9\n' +
+        'Nickel    | Ni     | 7.0\n' +
+        'Iron      | Fe     | 9.7\n' +
+        'Chromium  | Cr     | 13.0\n' +
+        'Lead      | Pb     | 22.0\n' +
+        'Titanium  | Ti     | 42.0\n' +
+        '*at 20°C\n\n' +
+        'Pure copper metal has a very low resistivity. When other elements are added to pure copper to produce copper alloys (mixtures of copper with 1 or more other elements), the resistivity changes. Figure 1 shows how the resistivities, at 20°C, of 5 copper alloys change with the weight percent (wt %) of the added element.\n\n' +
+        'Figure 1 — Resistivity (μΩ·cm) of copper alloys vs. weight percent of added element (0.00–0.10 wt %)\n' +
+        'All alloys start near 1.7 μΩ·cm at 0 wt % (pure copper) and increase as more element is added.\n' +
+        'Steepest to flattest slope at 0.10 wt %: Ti (~2.4) > Cr (~2.35) > Fe (~2.2) > Zn (~2.05) > Al (~1.9)',
+      prompt: 'Based on Figure 1, the copper alloy containing 0.045 wt % Ti would most likely have a resistivity:',
+      choices: [
+        { id: 'A', text: 'less than 2.2 μΩ·cm.' },
+        { id: 'B', text: 'between 2.2 μΩ·cm and 2.3 μΩ·cm.' },
+        { id: 'C', text: 'between 2.3 μΩ·cm and 2.4 μΩ·cm.' },
+        { id: 'D', text: 'greater than 2.4 μΩ·cm.' },
+      ],
+      answer: 'B',
+      explanation: 'On the Ti line, at 0.04 wt % the resistivity is ~2.2 and at 0.05 wt % it is ~2.3. At 0.045 wt % (midway), the resistivity falls between 2.2 and 2.3 μΩ·cm.',
+    },
+    {
+      id: 'sci-015',
+      subject: 'Science',
+      passage:
+        'The electrical resistivity of a material is a measure of its resistance to the flow of electric current. The lower the resistivity, the more easily an electric current can flow. For 7 elements, Table 1 shows the chemical symbol and the resistivity in microohm centimeters (μΩ·cm).\n\n' +
+        'Table 1\n' +
+        'Element   | Symbol | Resistivity* (μΩ·cm)\n' +
+        'Aluminum  | Al     | 2.7\n' +
+        'Zinc      | Zn     | 5.9\n' +
+        'Nickel    | Ni     | 7.0\n' +
+        'Iron      | Fe     | 9.7\n' +
+        'Chromium  | Cr     | 13.0\n' +
+        'Lead      | Pb     | 22.0\n' +
+        'Titanium  | Ti     | 42.0\n' +
+        '*at 20°C\n\n' +
+        'Pure copper metal has a very low resistivity. When other elements are added to pure copper to produce copper alloys (mixtures of copper with 1 or more other elements), the resistivity changes. Figure 1 shows how the resistivities, at 20°C, of 5 copper alloys change with the weight percent (wt %) of the added element.\n\n' +
+        'Figure 1 — Resistivity (μΩ·cm) of copper alloys vs. weight percent of added element (0.00–0.10 wt %)\n' +
+        'All alloys start near 1.7 μΩ·cm at 0 wt % (pure copper) and increase as more element is added.\n' +
+        'Steepest to flattest slope at 0.10 wt %: Ti (~2.4) > Cr (~2.35) > Fe (~2.2) > Zn (~2.05) > Al (~1.9)',
+      prompt: 'The electrical conductivity of a material is a measure of its ability to conduct an electric current. Conductivity is related to resistivity according to the equation: conductivity = 1 ÷ resistivity. According to this equation, which of the following pairs of elements listed in Table 1 would have a conductivity of less than 0.1?',
+      choices: [
+        { id: 'A', text: 'Aluminum and chromium' },
+        { id: 'B', text: 'Aluminum and zinc' },
+        { id: 'C', text: 'Titanium and chromium' },
+        { id: 'D', text: 'Titanium and iron' },
+      ],
+      answer: 'C',
+      explanation: 'Conductivity < 0.1 means resistivity > 10. From Table 1, Titanium (42.0) and Chromium (13.0) both exceed 10 μΩ·cm. Aluminum (2.7), Zinc (5.9), and Iron (9.7) do not.',
+    },
+    {
+      id: 'sci-016',
+      subject: 'Science',
+      passage:
+        'Differences in the compositions of Earth and the Moon relate to how these bodies formed. Earth\'s rocks contain lots of water, but the Moon\'s rocks contain very little. Iron, which is denser than rock, constitutes 30% of Earth\'s total mass but only 3% of the Moon\'s total mass.\n\n' +
+        'The compositions of Earth and the Moon are also similar in some ways. For example, rocks from both bodies have the same value for the ratio of 2 oxygen isotopes (¹⁶O and ¹⁷O). Bodies that formed at the same distance from the Sun will have the same ¹⁶O/¹⁷O ratio. Four viewpoints about the Moon\'s formation are presented.\n\n' +
+        'Spin-Off\n' +
+        'About 4.4 billion years ago (bya), Earth was completely molten. Earth rotated fast enough that it completed a full rotation in only 2 hr. The rapid rotation caused the molten Earth to take on an elongated shape. The Sun\'s gravity pulled away a large portion of Earth\'s material from one end. The separated portion moved away from Earth and into an orbit around Earth, where it then cooled and solidified to become the Moon.\n\n' +
+        'Capture\n' +
+        'About 4.5 bya, a solid body passed very close to Earth. The body was either from outside our solar system or was a moon that had escaped from around another planet in our solar system. As the body traveled through the dense atmosphere that was present on Earth, it was slowed enough that Earth\'s gravity could pull it into orbit.\n\n' +
+        'Co-formation\n' +
+        'About 4.5 bya, Earth and the Moon were formed next to each other in the large dust-and-gas cloud that also formed all the other bodies in our solar system. Solid bodies formed by gradually pulling in more and more material from the cloud until they reached their present-day sizes. The Moon finished forming close enough to Earth that Earth\'s gravity pulled it into orbit.\n\n' +
+        'Giant Impact\n' +
+        'About 4.0 bya, a large solid body entered our solar system and collided with the newly formed Earth. The impact broke apart the body and fragmented Earth\'s crust and upper mantle. After the impact, Earth\'s axis was no longer at right angles to the plane of its orbit around the Sun. The solid pieces of the body and Earth were thrown into orbit. A few thousand years later, that material had been pulled back together to form the Moon.',
+      prompt: 'Which of the viewpoints provides the reason why most areas on Earth experience seasons?',
+      choices: [
+        { id: 'A', text: 'Spin-Off' },
+        { id: 'B', text: 'Capture' },
+        { id: 'C', text: 'Co-formation' },
+        { id: 'D', text: 'Giant Impact' },
+      ],
+      answer: 'D',
+      explanation: 'The Giant Impact viewpoint states that after the collision, Earth\'s axis was no longer at right angles to the plane of its orbit. This tilt is the reason most areas on Earth experience seasons.',
+    },
+    {
+      id: 'sci-017',
+      subject: 'Science',
+      passage:
+        'Differences in the compositions of Earth and the Moon relate to how these bodies formed. Earth\'s rocks contain lots of water, but the Moon\'s rocks contain very little. Iron, which is denser than rock, constitutes 30% of Earth\'s total mass but only 3% of the Moon\'s total mass.\n\n' +
+        'The compositions of Earth and the Moon are also similar in some ways. For example, rocks from both bodies have the same value for the ratio of 2 oxygen isotopes (¹⁶O and ¹⁷O). Bodies that formed at the same distance from the Sun will have the same ¹⁶O/¹⁷O ratio. Four viewpoints about the Moon\'s formation are presented.\n\n' +
+        'Spin-Off\n' +
+        'About 4.4 billion years ago (bya), Earth was completely molten. Earth rotated fast enough that it completed a full rotation in only 2 hr. The rapid rotation caused the molten Earth to take on an elongated shape. The Sun\'s gravity pulled away a large portion of Earth\'s material from one end. The separated portion moved away from Earth and into an orbit around Earth, where it then cooled and solidified to become the Moon.\n\n' +
+        'Capture\n' +
+        'About 4.5 bya, a solid body passed very close to Earth. The body was either from outside our solar system or was a moon that had escaped from around another planet in our solar system. As the body traveled through the dense atmosphere that was present on Earth, it was slowed enough that Earth\'s gravity could pull it into orbit.\n\n' +
+        'Co-formation\n' +
+        'About 4.5 bya, Earth and the Moon were formed next to each other in the large dust-and-gas cloud that also formed all the other bodies in our solar system. Solid bodies formed by gradually pulling in more and more material from the cloud until they reached their present-day sizes. The Moon finished forming close enough to Earth that Earth\'s gravity pulled it into orbit.\n\n' +
+        'Giant Impact\n' +
+        'About 4.0 bya, a large solid body entered our solar system and collided with the newly formed Earth. The impact broke apart the body and fragmented Earth\'s crust and upper mantle. After the impact, Earth\'s axis was no longer at right angles to the plane of its orbit around the Sun. The solid pieces of the body and Earth were thrown into orbit. A few thousand years later, that material had been pulled back together to form the Moon.',
+      prompt: 'Coalescence is a process in which smaller particles are pulled together to form a larger solid body (planet or moon). In which 2 viewpoints did the formation of the Moon depend on this process occurring near Earth?',
+      choices: [
+        { id: 'A', text: 'Spin-Off and Capture' },
+        { id: 'B', text: 'Spin-Off and Giant Impact' },
+        { id: 'C', text: 'Capture and Co-formation' },
+        { id: 'D', text: 'Co-formation and Giant Impact' },
+      ],
+      answer: 'D',
+      explanation: 'Co-formation describes particles in a dust-and-gas cloud gradually pulling together to form both Earth and the Moon. Giant Impact describes the debris from the collision being pulled together (coalescing) into the Moon. Both depend on coalescence occurring near Earth.',
+    },
+    {
+      id: 'sci-018',
+      subject: 'Science',
+      passage:
+        'Differences in the compositions of Earth and the Moon relate to how these bodies formed. Earth\'s rocks contain lots of water, but the Moon\'s rocks contain very little. Iron, which is denser than rock, constitutes 30% of Earth\'s total mass but only 3% of the Moon\'s total mass.\n\n' +
+        'The compositions of Earth and the Moon are also similar in some ways. For example, rocks from both bodies have the same value for the ratio of 2 oxygen isotopes (¹⁶O and ¹⁷O). Bodies that formed at the same distance from the Sun will have the same ¹⁶O/¹⁷O ratio. Four viewpoints about the Moon\'s formation are presented.\n\n' +
+        'Spin-Off\n' +
+        'About 4.4 billion years ago (bya), Earth was completely molten. Earth rotated fast enough that it completed a full rotation in only 2 hr. The rapid rotation caused the molten Earth to take on an elongated shape. The Sun\'s gravity pulled away a large portion of Earth\'s material from one end. The separated portion moved away from Earth and into an orbit around Earth, where it then cooled and solidified to become the Moon.\n\n' +
+        'Capture\n' +
+        'About 4.5 bya, a solid body passed very close to Earth. The body was either from outside our solar system or was a moon that had escaped from around another planet in our solar system. As the body traveled through the dense atmosphere that was present on Earth, it was slowed enough that Earth\'s gravity could pull it into orbit.\n\n' +
+        'Co-formation\n' +
+        'About 4.5 bya, Earth and the Moon were formed next to each other in the large dust-and-gas cloud that also formed all the other bodies in our solar system. Solid bodies formed by gradually pulling in more and more material from the cloud until they reached their present-day sizes. The Moon finished forming close enough to Earth that Earth\'s gravity pulled it into orbit.\n\n' +
+        'Giant Impact\n' +
+        'About 4.0 bya, a large solid body entered our solar system and collided with the newly formed Earth. The impact broke apart the body and fragmented Earth\'s crust and upper mantle. After the impact, Earth\'s axis was no longer at right angles to the plane of its orbit around the Sun. The solid pieces of the body and Earth were thrown into orbit. A few thousand years later, that material had been pulled back together to form the Moon.',
+      prompt: 'Consider the Spin-Off viewpoint\'s information about how Earth\'s rotation rate caused Earth to become elongated. At that rate, how many full rotations would the molten Earth have completed in the time it takes present-day Earth to complete one full rotation?',
+      choices: [
+        { id: 'A', text: '2' },
+        { id: 'B', text: '4' },
+        { id: 'C', text: '12' },
+        { id: 'D', text: '24' },
+      ],
+      answer: 'C',
+      explanation: 'The Spin-Off viewpoint states Earth completed a full rotation in only 2 hr. Present-day Earth completes one rotation in 24 hr. 24 ÷ 2 = 12, so the molten Earth would have completed 12 full rotations.',
+    },
+    {
+      id: 'sci-019',
+      subject: 'Science',
+      passage:
+        'Differences in the compositions of Earth and the Moon relate to how these bodies formed. Earth\'s rocks contain lots of water, but the Moon\'s rocks contain very little. Iron, which is denser than rock, constitutes 30% of Earth\'s total mass but only 3% of the Moon\'s total mass.\n\n' +
+        'The compositions of Earth and the Moon are also similar in some ways. For example, rocks from both bodies have the same value for the ratio of 2 oxygen isotopes (¹⁶O and ¹⁷O). Bodies that formed at the same distance from the Sun will have the same ¹⁶O/¹⁷O ratio. Four viewpoints about the Moon\'s formation are presented.\n\n' +
+        'Spin-Off\n' +
+        'About 4.4 billion years ago (bya), Earth was completely molten. Earth rotated fast enough that it completed a full rotation in only 2 hr. The rapid rotation caused the molten Earth to take on an elongated shape. The Sun\'s gravity pulled away a large portion of Earth\'s material from one end. The separated portion moved away from Earth and into an orbit around Earth, where it then cooled and solidified to become the Moon.\n\n' +
+        'Capture\n' +
+        'About 4.5 bya, a solid body passed very close to Earth. The body was either from outside our solar system or was a moon that had escaped from around another planet in our solar system. As the body traveled through the dense atmosphere that was present on Earth, it was slowed enough that Earth\'s gravity could pull it into orbit.\n\n' +
+        'Co-formation\n' +
+        'About 4.5 bya, Earth and the Moon were formed next to each other in the large dust-and-gas cloud that also formed all the other bodies in our solar system. Solid bodies formed by gradually pulling in more and more material from the cloud until they reached their present-day sizes. The Moon finished forming close enough to Earth that Earth\'s gravity pulled it into orbit.\n\n' +
+        'Giant Impact\n' +
+        'About 4.0 bya, a large solid body entered our solar system and collided with the newly formed Earth. The impact broke apart the body and fragmented Earth\'s crust and upper mantle. After the impact, Earth\'s axis was no longer at right angles to the plane of its orbit around the Sun. The solid pieces of the body and Earth were thrown into orbit. A few thousand years later, that material had been pulled back together to form the Moon.',
+      prompt: 'Consider the information in the introduction regarding what the ¹⁶O/¹⁷O ratio tells us about a solar system body. If the planets are at approximately the same distance from the Sun as when they first formed, does Mercury have the same ratio as the Moon?',
+      choices: [
+        { id: 'A', text: 'Yes; both the Moon and Mercury are at the same distance from the Sun.' },
+        { id: 'B', text: 'Yes; the Moon formed long after Mercury finished forming.' },
+        { id: 'C', text: 'No; the Moon is much farther from the Sun than Mercury.' },
+        { id: 'D', text: 'No; the Moon formed long before Mercury finished forming.' },
+      ],
+      answer: 'C',
+      explanation: 'The introduction states that bodies that formed at the same distance from the Sun will have the same ¹⁶O/¹⁷O ratio. Mercury is much closer to the Sun than the Moon (which orbits Earth), so they formed at different distances and would not have the same ratio.',
+    },
+    {
+      id: 'sci-020',
+      subject: 'Science',
+      passage:
+        'Differences in the compositions of Earth and the Moon relate to how these bodies formed. Earth\'s rocks contain lots of water, but the Moon\'s rocks contain very little. Iron, which is denser than rock, constitutes 30% of Earth\'s total mass but only 3% of the Moon\'s total mass.\n\n' +
+        'The compositions of Earth and the Moon are also similar in some ways. For example, rocks from both bodies have the same value for the ratio of 2 oxygen isotopes (¹⁶O and ¹⁷O). Bodies that formed at the same distance from the Sun will have the same ¹⁶O/¹⁷O ratio. Four viewpoints about the Moon\'s formation are presented.\n\n' +
+        'Spin-Off\n' +
+        'About 4.4 billion years ago (bya), Earth was completely molten. Earth rotated fast enough that it completed a full rotation in only 2 hr. The rapid rotation caused the molten Earth to take on an elongated shape. The Sun\'s gravity pulled away a large portion of Earth\'s material from one end. The separated portion moved away from Earth and into an orbit around Earth, where it then cooled and solidified to become the Moon.\n\n' +
+        'Capture\n' +
+        'About 4.5 bya, a solid body passed very close to Earth. The body was either from outside our solar system or was a moon that had escaped from around another planet in our solar system. As the body traveled through the dense atmosphere that was present on Earth, it was slowed enough that Earth\'s gravity could pull it into orbit.\n\n' +
+        'Co-formation\n' +
+        'About 4.5 bya, Earth and the Moon were formed next to each other in the large dust-and-gas cloud that also formed all the other bodies in our solar system. Solid bodies formed by gradually pulling in more and more material from the cloud until they reached their present-day sizes. The Moon finished forming close enough to Earth that Earth\'s gravity pulled it into orbit.\n\n' +
+        'Giant Impact\n' +
+        'About 4.0 bya, a large solid body entered our solar system and collided with the newly formed Earth. The impact broke apart the body and fragmented Earth\'s crust and upper mantle. After the impact, Earth\'s axis was no longer at right angles to the plane of its orbit around the Sun. The solid pieces of the body and Earth were thrown into orbit. A few thousand years later, that material had been pulled back together to form the Moon.',
+      prompt: 'A scientist claimed that if 2 solid bodies formed near each other, those bodies should have the same composition. Does the information provided about the iron in Earth and in the Moon support or weaken this claim?',
+      choices: [
+        { id: 'A', text: 'Support; the information states that Earth and the Moon have identical iron contents of 30%.' },
+        { id: 'B', text: 'Support; the information states that Earth and the Moon have identical iron contents of 3%.' },
+        { id: 'C', text: 'Weaken; the information states that Earth has an iron content 10 times that of the Moon.' },
+        { id: 'D', text: 'Weaken; the information states that the Moon has an iron content 10 times that of Earth.' },
+      ],
+      answer: 'C',
+      explanation: 'Iron constitutes 30% of Earth\'s total mass but only 3% of the Moon\'s total mass — a 10-fold difference. If 2 bodies that formed near each other should have the same composition, these very different iron contents weaken that claim.',
+    },
+    {
+      id: 'sci-021',
+      subject: 'Science',
+      passage:
+        'Differences in the compositions of Earth and the Moon relate to how these bodies formed. Earth\'s rocks contain lots of water, but the Moon\'s rocks contain very little. Iron, which is denser than rock, constitutes 30% of Earth\'s total mass but only 3% of the Moon\'s total mass.\n\n' +
+        'The compositions of Earth and the Moon are also similar in some ways. For example, rocks from both bodies have the same value for the ratio of 2 oxygen isotopes (¹⁶O and ¹⁷O). Bodies that formed at the same distance from the Sun will have the same ¹⁶O/¹⁷O ratio. Four viewpoints about the Moon\'s formation are presented.\n\n' +
+        'Spin-Off\n' +
+        'About 4.4 billion years ago (bya), Earth was completely molten. Earth rotated fast enough that it completed a full rotation in only 2 hr. The rapid rotation caused the molten Earth to take on an elongated shape. The Sun\'s gravity pulled away a large portion of Earth\'s material from one end. The separated portion moved away from Earth and into an orbit around Earth, where it then cooled and solidified to become the Moon.\n\n' +
+        'Capture\n' +
+        'About 4.5 bya, a solid body passed very close to Earth. The body was either from outside our solar system or was a moon that had escaped from around another planet in our solar system. As the body traveled through the dense atmosphere that was present on Earth, it was slowed enough that Earth\'s gravity could pull it into orbit.\n\n' +
+        'Co-formation\n' +
+        'About 4.5 bya, Earth and the Moon were formed next to each other in the large dust-and-gas cloud that also formed all the other bodies in our solar system. Solid bodies formed by gradually pulling in more and more material from the cloud until they reached their present-day sizes. The Moon finished forming close enough to Earth that Earth\'s gravity pulled it into orbit.\n\n' +
+        'Giant Impact\n' +
+        'About 4.0 bya, a large solid body entered our solar system and collided with the newly formed Earth. The impact broke apart the body and fragmented Earth\'s crust and upper mantle. After the impact, Earth\'s axis was no longer at right angles to the plane of its orbit around the Sun. The solid pieces of the body and Earth were thrown into orbit. A few thousand years later, that material had been pulled back together to form the Moon.',
+      prompt: 'Suppose it is discovered that a solid body could not have escaped its orbit around another planet in our solar system. This discovery would be inconsistent with a statement made in which of the viewpoints?',
+      choices: [
+        { id: 'A', text: 'Spin-Off only' },
+        { id: 'B', text: 'Capture only' },
+        { id: 'C', text: 'Capture and Giant Impact only' },
+        { id: 'D', text: 'Spin-Off and Co-formation only' },
+      ],
+      answer: 'B',
+      explanation: 'The Capture viewpoint states the body "was a moon that had escaped from around another planet in our solar system." If a solid body could not escape its orbit around another planet, this directly contradicts the Capture viewpoint only.',
+    },
+    {
+      id: 'sci-022',
+      subject: 'Science',
+      passage:
+        'Students studied the maximum mass, in grams, of carbon dioxide gas and of oxygen gas that can be dissolved in 1 kilogram of pure water at different temperatures at sea level. For each temperature, they conducted three trials, using the same amount of water for each trial. The data for carbon dioxide are shown in Table 1, and the data for oxygen are shown in Table 2.\n\n' +
+        'Table 1: Maximum mass of carbon dioxide (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 2.5 | 2.5 | 2.4 | 2.5\n' +
+        '20 | 1.6 | 1.8 | 1.7 | 1.7\n' +
+        '30 | 1.3 | 1.3 | 1.2 | 1.3\n' +
+        '40 | 1.0 | 0.8 | 1.2 | 1.0\n' +
+        '50 | 0.8 | 0.8 | 0.8 | 0.8\n' +
+        '60 | 0.5 | 0.6 | 0.6 | 0.6\n\n' +
+        'Table 2: Maximum mass of oxygen (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 0.056 | 0.057 | 0.057 | 0.057\n' +
+        '20 | 0.044 | 0.044 | 0.044 | 0.044\n' +
+        '30 | 0.037 | 0.037 | 0.036 | 0.037\n' +
+        '40 | 0.031 | 0.031 | 0.058 | 0.040\n' +
+        '50 | 0.028 | 0.028 | 0.029 | 0.028\n' +
+        '60 | 0.022 | 0.023 | 0.023 | 0.023',
+      prompt: 'Based on Table 2, at sea level, at which of the following temperatures would a 1 kg sample of water most likely dissolve a maximum of 0.050 g of oxygen?',
+      choices: [
+        { id: 'A', text: '15°C' },
+        { id: 'B', text: '20°C' },
+        { id: 'C', text: '25°C' },
+        { id: 'D', text: '50°C' },
+      ],
+      answer: 'A',
+      explanation: 'Table 2 shows that at 10°C the average is 0.057 g and at 20°C it is 0.044 g. The value 0.050 g falls between these two averages, so approximately 15°C (midway between 10°C and 20°C) is the most likely temperature.',
+    },
+    {
+      id: 'sci-023',
+      subject: 'Science',
+      passage:
+        'Students studied the maximum mass, in grams, of carbon dioxide gas and of oxygen gas that can be dissolved in 1 kilogram of pure water at different temperatures at sea level. For each temperature, they conducted three trials, using the same amount of water for each trial. The data for carbon dioxide are shown in Table 1, and the data for oxygen are shown in Table 2.\n\n' +
+        'Table 1: Maximum mass of carbon dioxide (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 2.5 | 2.5 | 2.4 | 2.5\n' +
+        '20 | 1.6 | 1.8 | 1.7 | 1.7\n' +
+        '30 | 1.3 | 1.3 | 1.2 | 1.3\n' +
+        '40 | 1.0 | 0.8 | 1.2 | 1.0\n' +
+        '50 | 0.8 | 0.8 | 0.8 | 0.8\n' +
+        '60 | 0.5 | 0.6 | 0.6 | 0.6\n\n' +
+        'Table 2: Maximum mass of oxygen (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 0.056 | 0.057 | 0.057 | 0.057\n' +
+        '20 | 0.044 | 0.044 | 0.044 | 0.044\n' +
+        '30 | 0.037 | 0.037 | 0.036 | 0.037\n' +
+        '40 | 0.031 | 0.031 | 0.058 | 0.040\n' +
+        '50 | 0.028 | 0.028 | 0.029 | 0.028\n' +
+        '60 | 0.022 | 0.023 | 0.023 | 0.023',
+      prompt: 'Based on Table 2, at sea level, the maximum mass of oxygen dissolved in 1 kg of water was smallest for which trial and at which temperature?',
+      choices: [
+        { id: 'A', text: 'Trial 1 at 10°C' },
+        { id: 'B', text: 'Trial 1 at 60°C' },
+        { id: 'C', text: 'Trial 3 at 10°C' },
+        { id: 'D', text: 'Trial 3 at 60°C' },
+      ],
+      answer: 'B',
+      explanation: 'The smallest individual trial value in Table 2 is 0.022 g, which occurs at 60°C, Trial 1. At 60°C, Trial 2 and Trial 3 are both 0.023 g, making Trial 1 at 60°C the smallest.',
+    },
+    {
+      id: 'sci-024',
+      subject: 'Science',
+      passage:
+        'Students studied the maximum mass, in grams, of carbon dioxide gas and of oxygen gas that can be dissolved in 1 kilogram of pure water at different temperatures at sea level. For each temperature, they conducted three trials, using the same amount of water for each trial. The data for carbon dioxide are shown in Table 1, and the data for oxygen are shown in Table 2.\n\n' +
+        'Table 1: Maximum mass of carbon dioxide (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 2.5 | 2.5 | 2.4 | 2.5\n' +
+        '20 | 1.6 | 1.8 | 1.7 | 1.7\n' +
+        '30 | 1.3 | 1.3 | 1.2 | 1.3\n' +
+        '40 | 1.0 | 0.8 | 1.2 | 1.0\n' +
+        '50 | 0.8 | 0.8 | 0.8 | 0.8\n' +
+        '60 | 0.5 | 0.6 | 0.6 | 0.6\n\n' +
+        'Table 2: Maximum mass of oxygen (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 0.056 | 0.057 | 0.057 | 0.057\n' +
+        '20 | 0.044 | 0.044 | 0.044 | 0.044\n' +
+        '30 | 0.037 | 0.037 | 0.036 | 0.037\n' +
+        '40 | 0.031 | 0.031 | 0.058 | 0.040\n' +
+        '50 | 0.028 | 0.028 | 0.029 | 0.028\n' +
+        '60 | 0.022 | 0.023 | 0.023 | 0.023',
+      prompt: 'Based on Table 1, at sea level, as the water temperature increased, how did the maximum amount of carbon dioxide that could be dissolved in 1 kg of water change?',
+      choices: [
+        { id: 'A', text: 'Decreased only' },
+        { id: 'B', text: 'Increased only' },
+        { id: 'C', text: 'Decreased and then increased' },
+        { id: 'D', text: 'Increased and then decreased' },
+      ],
+      answer: 'A',
+      explanation: 'From Table 1, the averages decrease steadily from 2.5 g at 10°C down to 0.6 g at 60°C as temperature increases. The maximum mass of carbon dioxide dissolved only decreased.',
+    },
+    {
+      id: 'sci-025',
+      subject: 'Science',
+      passage:
+        'Students studied the maximum mass, in grams, of carbon dioxide gas and of oxygen gas that can be dissolved in 1 kilogram of pure water at different temperatures at sea level. For each temperature, they conducted three trials, using the same amount of water for each trial. The data for carbon dioxide are shown in Table 1, and the data for oxygen are shown in Table 2.\n\n' +
+        'Table 1: Maximum mass of carbon dioxide (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 2.5 | 2.5 | 2.4 | 2.5\n' +
+        '20 | 1.6 | 1.8 | 1.7 | 1.7\n' +
+        '30 | 1.3 | 1.3 | 1.2 | 1.3\n' +
+        '40 | 1.0 | 0.8 | 1.2 | 1.0\n' +
+        '50 | 0.8 | 0.8 | 0.8 | 0.8\n' +
+        '60 | 0.5 | 0.6 | 0.6 | 0.6\n\n' +
+        'Table 2: Maximum mass of oxygen (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 0.056 | 0.057 | 0.057 | 0.057\n' +
+        '20 | 0.044 | 0.044 | 0.044 | 0.044\n' +
+        '30 | 0.037 | 0.037 | 0.036 | 0.037\n' +
+        '40 | 0.031 | 0.031 | 0.058 | 0.040\n' +
+        '50 | 0.028 | 0.028 | 0.029 | 0.028\n' +
+        '60 | 0.022 | 0.023 | 0.023 | 0.023',
+      prompt: 'Students realized that a mistake was made during one of the trials for the dissolved oxygen. Based on Table 2, at which temperature and during which trial did that mistake most likely happen?',
+      choices: [
+        { id: 'A', text: '10°C and Trial 1' },
+        { id: 'B', text: '20°C and Trial 2' },
+        { id: 'C', text: '30°C and Trial 3' },
+        { id: 'D', text: '40°C and Trial 3' },
+      ],
+      answer: 'D',
+      explanation: 'In Table 2 at 40°C, Trial 1 = 0.031 and Trial 2 = 0.031, but Trial 3 = 0.058 — dramatically higher and inconsistent with the other trials at that temperature. This outlier indicates a measurement error at 40°C, Trial 3.',
+    },
+    {
+      id: 'sci-026',
+      subject: 'Science',
+      passage:
+        'Students studied the maximum mass, in grams, of carbon dioxide gas and of oxygen gas that can be dissolved in 1 kilogram of pure water at different temperatures at sea level. For each temperature, they conducted three trials, using the same amount of water for each trial. The data for carbon dioxide are shown in Table 1, and the data for oxygen are shown in Table 2.\n\n' +
+        'Table 1: Maximum mass of carbon dioxide (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 2.5 | 2.5 | 2.4 | 2.5\n' +
+        '20 | 1.6 | 1.8 | 1.7 | 1.7\n' +
+        '30 | 1.3 | 1.3 | 1.2 | 1.3\n' +
+        '40 | 1.0 | 0.8 | 1.2 | 1.0\n' +
+        '50 | 0.8 | 0.8 | 0.8 | 0.8\n' +
+        '60 | 0.5 | 0.6 | 0.6 | 0.6\n\n' +
+        'Table 2: Maximum mass of oxygen (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 0.056 | 0.057 | 0.057 | 0.057\n' +
+        '20 | 0.044 | 0.044 | 0.044 | 0.044\n' +
+        '30 | 0.037 | 0.037 | 0.036 | 0.037\n' +
+        '40 | 0.031 | 0.031 | 0.058 | 0.040\n' +
+        '50 | 0.028 | 0.028 | 0.029 | 0.028\n' +
+        '60 | 0.022 | 0.023 | 0.023 | 0.023',
+      prompt: 'Based on Table 2, at sea level, what was the maximum mass of oxygen, on average, that dissolved in 1 kg of water at 30°C?',
+      choices: [
+        { id: 'A', text: '0.023 g' },
+        { id: 'B', text: '0.028 g' },
+        { id: 'C', text: '0.031 g' },
+        { id: 'D', text: '0.037 g' },
+      ],
+      answer: 'D',
+      explanation: 'Table 2 shows that at 30°C, Trial 1 = 0.037, Trial 2 = 0.037, Trial 3 = 0.036, and the Average = 0.037 g.',
+    },
+    {
+      id: 'sci-027',
+      subject: 'Science',
+      passage:
+        'Students studied the maximum mass, in grams, of carbon dioxide gas and of oxygen gas that can be dissolved in 1 kilogram of pure water at different temperatures at sea level. For each temperature, they conducted three trials, using the same amount of water for each trial. The data for carbon dioxide are shown in Table 1, and the data for oxygen are shown in Table 2.\n\n' +
+        'Table 1: Maximum mass of carbon dioxide (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 2.5 | 2.5 | 2.4 | 2.5\n' +
+        '20 | 1.6 | 1.8 | 1.7 | 1.7\n' +
+        '30 | 1.3 | 1.3 | 1.2 | 1.3\n' +
+        '40 | 1.0 | 0.8 | 1.2 | 1.0\n' +
+        '50 | 0.8 | 0.8 | 0.8 | 0.8\n' +
+        '60 | 0.5 | 0.6 | 0.6 | 0.6\n\n' +
+        'Table 2: Maximum mass of oxygen (g) dissolved in 1 kg of water\n' +
+        'Water temperature (°C) | Trial 1 | Trial 2 | Trial 3 | Average\n' +
+        '10 | 0.056 | 0.057 | 0.057 | 0.057\n' +
+        '20 | 0.044 | 0.044 | 0.044 | 0.044\n' +
+        '30 | 0.037 | 0.037 | 0.036 | 0.037\n' +
+        '40 | 0.031 | 0.031 | 0.058 | 0.040\n' +
+        '50 | 0.028 | 0.028 | 0.029 | 0.028\n' +
+        '60 | 0.022 | 0.023 | 0.023 | 0.023',
+      prompt: 'The acidity of a given volume of water increases as the mass of carbon dioxide dissolved in the water increases. Based on Table 1, at sea level, 1 kg of water exposed to a large amount of carbon dioxide would likely be most acidic at which of the following temperatures?',
+      choices: [
+        { id: 'A', text: '10°C' },
+        { id: 'B', text: '20°C' },
+        { id: 'C', text: '30°C' },
+        { id: 'D', text: '40°C' },
+      ],
+      answer: 'A',
+      explanation: 'Table 1 shows that the maximum mass of carbon dioxide that can dissolve is greatest at 10°C (average 2.5 g). Since more dissolved CO₂ means higher acidity, 1 kg of water would be most acidic at 10°C.',
+    },
+    {
+      id: 'sci-028',
+      subject: 'Science',
+      passage:
+        'Experiment 1\n' +
+        'Four Petri dishes were prepared. First, a piece of filter paper was placed in the bottom of each dish, and 15 sugar beet seeds were placed on top of each piece of filter paper. Then, the filter paper in each dish was moistened with 10 mL of a different one of the solutions, and the dishes were incubated at 25°C for 8 days. (Over that time, the dishes received equal amounts of light, and the NaCl concentration in each dish remained constant.) At the end of the incubation period, the number of seeds that had germinated in each dish was counted, and the percent germination in each dish was determined.\n\n' +
+        'These procedures were repeated 2 more times: once with amaranth seeds instead of sugar beet seeds, and once with pak-choi seeds instead of sugar beet seeds. Figure 1 shows the percent germination for each type of seed in each solution.\n\n' +
+        'Figure 1 — Percent germination (%) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~90%, amaranth ~87%, pak-choi ~83%\n' +
+        'S: sugar beet ~90%, amaranth ~65%, pak-choi ~62%\n' +
+        'T: sugar beet ~72%, amaranth ~62%, pak-choi ~47%\n' +
+        'U: sugar beet ~70%, amaranth ~50%, pak-choi ~30%\n\n' +
+        'Experiment 2\n' +
+        'The procedures of Experiment 1 were repeated except that the dishes were incubated at 25°C for 15 days instead of 8 days, and at the end of the incubation period, the average length of the seedlings, in millimeters (mm), in each dish was determined instead of the percent germination of the seeds (see Figure 2).\n\n' +
+        'Figure 2 — Average seedling length (mm) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~130 mm, amaranth ~70 mm, pak-choi ~112 mm\n' +
+        'S: sugar beet ~95 mm, amaranth ~60 mm, pak-choi ~97 mm\n' +
+        'T: sugar beet ~68 mm, amaranth ~68 mm, pak-choi ~68 mm\n' +
+        'U: sugar beet ~60 mm, amaranth ~25 mm, pak-choi ~68 mm',
+      prompt: 'The values that were averaged to obtain the data in Figure 2 were most likely read from which of the following instruments?',
+      choices: [
+        { id: 'A', text: 'Electronic balance' },
+        { id: 'B', text: 'Graduated cylinder' },
+        { id: 'C', text: 'Ruler' },
+        { id: 'D', text: 'Thermometer' },
+      ],
+      answer: 'C',
+      explanation: 'Figure 2 shows the average length of seedlings measured in millimeters (mm). Length is measured with a ruler, not a balance (measures mass), graduated cylinder (measures liquid volume), or thermometer (measures temperature).',
+    },
+    {
+      id: 'sci-029',
+      subject: 'Science',
+      passage:
+        'Experiment 1\n' +
+        'Four Petri dishes were prepared. First, a piece of filter paper was placed in the bottom of each dish, and 15 sugar beet seeds were placed on top of each piece of filter paper. Then, the filter paper in each dish was moistened with 10 mL of a different one of the solutions, and the dishes were incubated at 25°C for 8 days. (Over that time, the dishes received equal amounts of light, and the NaCl concentration in each dish remained constant.) At the end of the incubation period, the number of seeds that had germinated in each dish was counted, and the percent germination in each dish was determined.\n\n' +
+        'These procedures were repeated 2 more times: once with amaranth seeds instead of sugar beet seeds, and once with pak-choi seeds instead of sugar beet seeds. Figure 1 shows the percent germination for each type of seed in each solution.\n\n' +
+        'Figure 1 — Percent germination (%) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~90%, amaranth ~87%, pak-choi ~83%\n' +
+        'S: sugar beet ~90%, amaranth ~65%, pak-choi ~62%\n' +
+        'T: sugar beet ~72%, amaranth ~62%, pak-choi ~47%\n' +
+        'U: sugar beet ~70%, amaranth ~50%, pak-choi ~30%\n\n' +
+        'Experiment 2\n' +
+        'The procedures of Experiment 1 were repeated except that the dishes were incubated at 25°C for 15 days instead of 8 days, and at the end of the incubation period, the average length of the seedlings, in millimeters (mm), in each dish was determined instead of the percent germination of the seeds (see Figure 2).\n\n' +
+        'Figure 2 — Average seedling length (mm) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~130 mm, amaranth ~70 mm, pak-choi ~112 mm\n' +
+        'S: sugar beet ~95 mm, amaranth ~60 mm, pak-choi ~97 mm\n' +
+        'T: sugar beet ~68 mm, amaranth ~68 mm, pak-choi ~68 mm\n' +
+        'U: sugar beet ~60 mm, amaranth ~25 mm, pak-choi ~68 mm',
+      prompt: 'Was the incubation temperature the same for both experiments, and was the total number of dishes prepared the same for both experiments?',
+      choices: [
+        { id: 'A', text: 'Incubation temperature: yes\nTotal number of dishes: yes' },
+        { id: 'B', text: 'Incubation temperature: yes\nTotal number of dishes: no' },
+        { id: 'C', text: 'Incubation temperature: no\nTotal number of dishes: yes' },
+        { id: 'D', text: 'Incubation temperature: no\nTotal number of dishes: no' },
+      ],
+      answer: 'A',
+      explanation: 'Both experiments were incubated at 25°C, so the incubation temperature was the same (yes). Each experiment used 4 dishes per plant type × 3 plant types = 12 dishes total, and Experiment 2 repeated the same procedures, so the total number of dishes was also the same (yes).',
+    },
+    {
+      id: 'sci-030',
+      subject: 'Science',
+      passage:
+        'Experiment 1\n' +
+        'Four Petri dishes were prepared. First, a piece of filter paper was placed in the bottom of each dish, and 15 sugar beet seeds were placed on top of each piece of filter paper. Then, the filter paper in each dish was moistened with 10 mL of a different one of the solutions, and the dishes were incubated at 25°C for 8 days. (Over that time, the dishes received equal amounts of light, and the NaCl concentration in each dish remained constant.) At the end of the incubation period, the number of seeds that had germinated in each dish was counted, and the percent germination in each dish was determined.\n\n' +
+        'These procedures were repeated 2 more times: once with amaranth seeds instead of sugar beet seeds, and once with pak-choi seeds instead of sugar beet seeds. Figure 1 shows the percent germination for each type of seed in each solution.\n\n' +
+        'Figure 1 — Percent germination (%) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~90%, amaranth ~87%, pak-choi ~83%\n' +
+        'S: sugar beet ~90%, amaranth ~65%, pak-choi ~62%\n' +
+        'T: sugar beet ~72%, amaranth ~62%, pak-choi ~47%\n' +
+        'U: sugar beet ~70%, amaranth ~50%, pak-choi ~30%\n\n' +
+        'Experiment 2\n' +
+        'The procedures of Experiment 1 were repeated except that the dishes were incubated at 25°C for 15 days instead of 8 days, and at the end of the incubation period, the average length of the seedlings, in millimeters (mm), in each dish was determined instead of the percent germination of the seeds (see Figure 2).\n\n' +
+        'Figure 2 — Average seedling length (mm) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~130 mm, amaranth ~70 mm, pak-choi ~112 mm\n' +
+        'S: sugar beet ~95 mm, amaranth ~60 mm, pak-choi ~97 mm\n' +
+        'T: sugar beet ~68 mm, amaranth ~68 mm, pak-choi ~68 mm\n' +
+        'U: sugar beet ~60 mm, amaranth ~25 mm, pak-choi ~68 mm',
+      prompt: 'In Experiment 2, if the average length of sugar beet seedlings had been determined at an NaCl concentration of 7.5 g/L, the length would most likely have been closest to which of the following?',
+      choices: [
+        { id: 'A', text: '27 mm' },
+        { id: 'B', text: '65 mm' },
+        { id: 'C', text: '83 mm' },
+        { id: 'D', text: '99 mm' },
+      ],
+      answer: 'B',
+      explanation: 'From Figure 2, sugar beet seedling length at Solution T (6 g/L) is ~68 mm and at Solution U (9 g/L) is ~60 mm. At 7.5 g/L (halfway between 6 and 9 g/L), the length would be approximately 64 mm, which is closest to 65 mm.',
+    },
+    {
+      id: 'sci-031',
+      subject: 'Science',
+      passage:
+        'Experiment 1\n' +
+        'Four Petri dishes were prepared. First, a piece of filter paper was placed in the bottom of each dish, and 15 sugar beet seeds were placed on top of each piece of filter paper. Then, the filter paper in each dish was moistened with 10 mL of a different one of the solutions, and the dishes were incubated at 25°C for 8 days. (Over that time, the dishes received equal amounts of light, and the NaCl concentration in each dish remained constant.) At the end of the incubation period, the number of seeds that had germinated in each dish was counted, and the percent germination in each dish was determined.\n\n' +
+        'These procedures were repeated 2 more times: once with amaranth seeds instead of sugar beet seeds, and once with pak-choi seeds instead of sugar beet seeds. Figure 1 shows the percent germination for each type of seed in each solution.\n\n' +
+        'Figure 1 — Percent germination (%) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~90%, amaranth ~87%, pak-choi ~83%\n' +
+        'S: sugar beet ~90%, amaranth ~65%, pak-choi ~62%\n' +
+        'T: sugar beet ~72%, amaranth ~62%, pak-choi ~47%\n' +
+        'U: sugar beet ~70%, amaranth ~50%, pak-choi ~30%\n\n' +
+        'Experiment 2\n' +
+        'The procedures of Experiment 1 were repeated except that the dishes were incubated at 25°C for 15 days instead of 8 days, and at the end of the incubation period, the average length of the seedlings, in millimeters (mm), in each dish was determined instead of the percent germination of the seeds (see Figure 2).\n\n' +
+        'Figure 2 — Average seedling length (mm) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~130 mm, amaranth ~70 mm, pak-choi ~112 mm\n' +
+        'S: sugar beet ~95 mm, amaranth ~60 mm, pak-choi ~97 mm\n' +
+        'T: sugar beet ~68 mm, amaranth ~68 mm, pak-choi ~68 mm\n' +
+        'U: sugar beet ~60 mm, amaranth ~25 mm, pak-choi ~68 mm',
+      prompt: 'In Experiment 2, which of the solutions was most likely intended to serve as a control for the average seedling length in the absence of salt?',
+      choices: [
+        { id: 'A', text: 'Solution R' },
+        { id: 'B', text: 'Solution S' },
+        { id: 'C', text: 'Solution T' },
+        { id: 'D', text: 'Solution U' },
+      ],
+      answer: 'A',
+      explanation: 'Solution R has an NaCl concentration of 0 g/L (from Table 1), meaning it contains no salt. It serves as the control condition representing the absence of salt, against which the effects of higher NaCl concentrations (S, T, U) can be compared.',
+    },
+    {
+      id: 'sci-032',
+      subject: 'Science',
+      passage:
+        'Experiment 1\n' +
+        'Four Petri dishes were prepared. First, a piece of filter paper was placed in the bottom of each dish, and 15 sugar beet seeds were placed on top of each piece of filter paper. Then, the filter paper in each dish was moistened with 10 mL of a different one of the solutions, and the dishes were incubated at 25°C for 8 days. (Over that time, the dishes received equal amounts of light, and the NaCl concentration in each dish remained constant.) At the end of the incubation period, the number of seeds that had germinated in each dish was counted, and the percent germination in each dish was determined.\n\n' +
+        'These procedures were repeated 2 more times: once with amaranth seeds instead of sugar beet seeds, and once with pak-choi seeds instead of sugar beet seeds. Figure 1 shows the percent germination for each type of seed in each solution.\n\n' +
+        'Figure 1 — Percent germination (%) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~90%, amaranth ~87%, pak-choi ~83%\n' +
+        'S: sugar beet ~90%, amaranth ~65%, pak-choi ~62%\n' +
+        'T: sugar beet ~72%, amaranth ~62%, pak-choi ~47%\n' +
+        'U: sugar beet ~70%, amaranth ~50%, pak-choi ~30%\n\n' +
+        'Experiment 2\n' +
+        'The procedures of Experiment 1 were repeated except that the dishes were incubated at 25°C for 15 days instead of 8 days, and at the end of the incubation period, the average length of the seedlings, in millimeters (mm), in each dish was determined instead of the percent germination of the seeds (see Figure 2).\n\n' +
+        'Figure 2 — Average seedling length (mm) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~130 mm, amaranth ~70 mm, pak-choi ~112 mm\n' +
+        'S: sugar beet ~95 mm, amaranth ~60 mm, pak-choi ~97 mm\n' +
+        'T: sugar beet ~68 mm, amaranth ~68 mm, pak-choi ~68 mm\n' +
+        'U: sugar beet ~60 mm, amaranth ~25 mm, pak-choi ~68 mm',
+      prompt: 'Which of the following expressions could have been used to calculate the percent germination for each dish in Experiment 1?',
+      choices: [
+        { id: 'A', text: '(total number of seeds / number of seeds germinated) × 100' },
+        { id: 'B', text: '(number of seeds germinated / total number of seeds) × 100' },
+        { id: 'C', text: '(total number of seeds – number of seeds germinated) × 100' },
+        { id: 'D', text: '(number of seeds germinated – total number of seeds) × 100' },
+      ],
+      answer: 'B',
+      explanation: 'Percent germination is defined as the proportion of seeds that germinated out of the total, multiplied by 100. The correct formula is (number of seeds germinated ÷ total number of seeds) × 100.',
+    },
+    {
+      id: 'sci-033',
+      subject: 'Science',
+      passage:
+        'Experiment 1\n' +
+        'Four Petri dishes were prepared. First, a piece of filter paper was placed in the bottom of each dish, and 15 sugar beet seeds were placed on top of each piece of filter paper. Then, the filter paper in each dish was moistened with 10 mL of a different one of the solutions, and the dishes were incubated at 25°C for 8 days. (Over that time, the dishes received equal amounts of light, and the NaCl concentration in each dish remained constant.) At the end of the incubation period, the number of seeds that had germinated in each dish was counted, and the percent germination in each dish was determined.\n\n' +
+        'These procedures were repeated 2 more times: once with amaranth seeds instead of sugar beet seeds, and once with pak-choi seeds instead of sugar beet seeds. Figure 1 shows the percent germination for each type of seed in each solution.\n\n' +
+        'Figure 1 — Percent germination (%) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~90%, amaranth ~87%, pak-choi ~83%\n' +
+        'S: sugar beet ~90%, amaranth ~65%, pak-choi ~62%\n' +
+        'T: sugar beet ~72%, amaranth ~62%, pak-choi ~47%\n' +
+        'U: sugar beet ~70%, amaranth ~50%, pak-choi ~30%\n\n' +
+        'Experiment 2\n' +
+        'The procedures of Experiment 1 were repeated except that the dishes were incubated at 25°C for 15 days instead of 8 days, and at the end of the incubation period, the average length of the seedlings, in millimeters (mm), in each dish was determined instead of the percent germination of the seeds (see Figure 2).\n\n' +
+        'Figure 2 — Average seedling length (mm) vs. Solution (R, S, T, U); Key: sugar beet (solid black), amaranth (light gray), pak-choi (hatched)\n' +
+        'Approximate values:\n' +
+        'R: sugar beet ~130 mm, amaranth ~70 mm, pak-choi ~112 mm\n' +
+        'S: sugar beet ~95 mm, amaranth ~60 mm, pak-choi ~97 mm\n' +
+        'T: sugar beet ~68 mm, amaranth ~68 mm, pak-choi ~68 mm\n' +
+        'U: sugar beet ~60 mm, amaranth ~25 mm, pak-choi ~68 mm',
+      prompt: 'Suppose that an additional dish of pak-choi seeds had been tested in each of Experiments 1 and 2 and that the results shown had been obtained. (Percent germination: 48%; Average seedling length: 94 mm.) Based on the results of the experiments, the NaCl concentration that these seeds would have been exposed to in Experiment 1 and the NaCl concentration that these seedlings would have been exposed to in Experiment 2 would most likely have been closest to which of the following?',
+      choices: [
+        { id: 'A', text: 'Experiment 1: 6 g/L\nExperiment 2: 3 g/L' },
+        { id: 'B', text: 'Experiment 1: 6 g/L\nExperiment 2: 6 g/L' },
+        { id: 'C', text: 'Experiment 1: 9 g/L\nExperiment 2: 3 g/L' },
+        { id: 'D', text: 'Experiment 1: 9 g/L\nExperiment 2: 6 g/L' },
+      ],
+      answer: 'A',
+      explanation: 'From Figure 1, pak-choi percent germination values are: R ~83%, S ~62%, T ~47%, U ~30%. A value of 48% is closest to T (~47%), which corresponds to 6 g/L. From Figure 2, pak-choi seedling lengths are: R ~112 mm, S ~97 mm, T ~68 mm, U ~68 mm. A value of 94 mm is closest to S (~97 mm), which corresponds to 3 g/L.',
+    },
   ],
 };
 

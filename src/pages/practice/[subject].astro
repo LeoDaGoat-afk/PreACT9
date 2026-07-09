@@ -2,6 +2,45 @@
 import Base from '../../layouts/Base.astro';
 import { SUBJECTS, SUBJECT_META } from '../../data/vocab';
 import { PRACTICE_BY_SUBJECT } from '../../data/practice';
+import type { Choice } from '../../data/practice';
+
+function processPassage(passage: string | undefined, prompt: string, choices: Choice[]): string {
+  if (!passage) return '';
+
+  let underlineText: string | null = null;
+
+  // Pattern 1: underlined phrase/sentence/text/word/verb phrase/portion "quoted text"
+  const m1 = prompt.match(/underlined (?:phrase|sentence|text|word|verb phrase|portion)[^"]*"([^"]+)"/);
+  if (m1) underlineText = m1[1];
+
+  // Pattern 2: [BLANK] + choice A is "NO CHANGE (actual word)"
+  if (!underlineText && prompt.includes('[BLANK]')) {
+    const choiceA = choices.find((c) => c.id === 'A');
+    if (choiceA) {
+      const m = choiceA.text.match(/NO CHANGE\s*\(([^)]+)\)/i);
+      if (m) underlineText = m[1];
+    }
+  }
+
+  // Pattern 3: last quoted phrase in prompt that appears verbatim in the passage
+  if (!underlineText) {
+    const allQuoted = [...prompt.matchAll(/"([^"[\]]+)"/g)];
+    for (let i = allQuoted.length - 1; i >= 0; i--) {
+      const candidate = allQuoted[i][1];
+      if (passage.includes(candidate) && candidate.length > 4) {
+        underlineText = candidate;
+        break;
+      }
+    }
+  }
+
+  let html = passage;
+  if (underlineText) {
+    const esc = underlineText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    html = html.replace(new RegExp(esc), (m) => `<u class="passage-u">${m}</u>`);
+  }
+  return html.replace(/\n/g, '<br>');
+}
 
 // One page per subject. Only subjects that actually have questions are built.
 export function getStaticPaths() {
@@ -54,9 +93,10 @@ const questions = PRACTICE_BY_SUBJECT[subject];
             data-answer={q.answer}
           >
             {q.passage && (
-              <p class="mb-4 whitespace-pre-line rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-4 text-sm leading-relaxed text-[var(--muted)]">
-                {q.passage}
-              </p>
+              <p
+                class="passage mb-4 rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-4 text-sm leading-relaxed text-[var(--muted)]"
+                set:html={processPassage(q.passage, q.prompt, q.choices)}
+              />
             )}
             <p class="font-medium leading-relaxed">
               <span class="mr-1 text-[var(--muted)]">{i + 1}.</span>
@@ -102,6 +142,13 @@ const questions = PRACTICE_BY_SUBJECT[subject];
   </main>
 
   <style>
+    .passage .passage-u {
+      text-decoration: underline;
+      text-decoration-color: var(--text);
+      text-underline-offset: 3px;
+      color: var(--text);
+      font-style: normal;
+    }
     .choice.is-correct {
       border-color: #2faf6a;
       background: #2faf6a18;
