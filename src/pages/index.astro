@@ -29,12 +29,20 @@ const deck = CARDS.map((c) => ({
           </p>
           <h1 class="mt-1 text-2xl font-bold sm:text-3xl">Vocabulary Flashcards</h1>
         </div>
-        <a
-          href="/practice"
-          class="shrink-0 rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
-        >
-          Practice →
-        </a>
+        <div class="flex shrink-0 gap-2">
+          <a
+            href="/plan"
+            class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+          >
+            20-Day Plan
+          </a>
+          <a
+            href="/practice"
+            class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+          >
+            Practice →
+          </a>
+        </div>
       </div>
       <p class="mt-2 text-sm leading-relaxed text-[var(--muted)]">
         Swipe left or right (or use ← →) to move through {totalCount} cards. The
@@ -430,11 +438,11 @@ const deck = CARDS.map((c) => ({
     .subject-tab[aria-pressed='true'] {
       background: var(--accent, var(--text));
       border-color: var(--accent, var(--text));
-      color: #0f1419;
+      color: #ffffff;
     }
     .subject-tab[data-subject='all'][aria-pressed='true'] {
       background: var(--text);
-      color: #0f1419;
+      color: #ffffff;
     }
     .kind-tab[aria-pressed='true'] {
       background: var(--surface-2);

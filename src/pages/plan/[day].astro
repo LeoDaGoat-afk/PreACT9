@@ -1,0 +1,247 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SUBJECT_META } from '../../data/vocab';
+import { buildPlan, TOTAL_DAYS } from '../../data/plan';
+
+export function getStaticPaths() {
+  const plan = buildPlan();
+  return plan.map((d) => ({
+    params: { day: String(d.day) },
+    props: { day: d },
+  }));
+}
+
+const { day } = Astro.props;
+const dayNum = day.day;
+const prevDay = dayNum > 1 ? dayNum - 1 : null;
+const nextDay = dayNum < TOTAL_DAYS ? dayNum + 1 : null;
+
+// Subjects that actually have words today.
+const activeSubjects = day.subjects.filter((s) => s.words.length > 0);
+const totalQuestions = activeSubjects.reduce((n, s) => n + s.quiz.length, 0);
+
+// Serialize quiz for the client.
+const quizData = activeSubjects.map((s) => ({
+  subject: s.subject,
+  accent: SUBJECT_META[s.subject].accent,
+  label: SUBJECT_META[s.subject].label,
+  words: s.words.map((w) => ({
+    word: w.word,
+    definition: w.definition,
+    example: w.example,
+  })),
+  quiz: s.quiz,
+}));
+---
+
+<Base title={`PreACT 9 — Day ${dayNum}`}>
+  <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8">
+    <header class="mb-6">
+      <div class="flex items-center justify-between gap-3">
+        <a href="/plan" class="text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
+          ← All days
+        </a>
+        <div class="flex gap-2">
+          {prevDay && (
+            <a href={`/plan/${prevDay}`} class="rounded-full border border-[var(--line)] px-3 py-1 text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
+              ← Day {prevDay}
+            </a>
+          )}
+          {nextDay && (
+            <a href={`/plan/${nextDay}`} class="rounded-full border border-[var(--line)] px-3 py-1 text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
+              Day {nextDay} →
+            </a>
+          )}
+        </div>
+      </div>
+      <h1 class="mt-3 text-2xl font-bold sm:text-3xl">Day {dayNum}</h1>
+      <p class="mt-1 text-sm text-[var(--muted)]">
+        Step 1: study the words. Step 2: take the quiz ({totalQuestions} questions).
+      </p>
+    </header>
+
+    <!-- STEP 1 — Study cards -->
+    <section class="mb-8">
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+        Step 1 · Study today's words
+      </h2>
+      {
+        quizData.map((s) => (
+          <div class="mb-5">
+            <p
+              class="mb-2 text-[11px] font-semibold uppercase tracking-wider"
+              style={`color:${s.accent}`}
+            >
+              {s.label} · {s.words.length} words
+            </p>
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {s.words.map((w) => (
+                <div
+                  class="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3"
+                  style={`border-color:${s.accent}33`}
+                >
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="font-bold" style={`color:${s.accent}`}>{w.word}</span>
+                    <button
+                      type="button"
+                      class="speak-btn shrink-0 rounded-full border border-[var(--line)] p-1.5 text-[var(--muted)] transition hover:text-[var(--text)]"
+                      data-word={w.word}
+                      aria-label={`Hear ${w.word}`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /></svg>
+                    </button>
+                  </div>
+                  <p class="mt-1 text-sm leading-snug">{w.definition}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </section>
+
+    <!-- STEP 2 — Quiz -->
+    <section>
+      <div class="mb-3 flex items-center justify-between">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+          Step 2 · Quiz
+        </h2>
+        <span id="score-live" class="text-sm text-[var(--muted)]">
+          Score: <span id="score">0</span> / {totalQuestions}
+        </span>
+      </div>
+      <div id="quiz-root"></div>
+
+      <div id="day-result" class="mt-6 hidden rounded-2xl border border-[var(--line)] bg-[var(--surface-2)] p-5 text-center">
+        <p class="text-lg font-bold">Day {dayNum} complete</p>
+        <p id="result-line" class="mt-1 text-sm text-[var(--muted)]"></p>
+        {nextDay && (
+          <a href={`/plan/${nextDay}`} class="mt-4 inline-block rounded-full bg-[var(--text)] px-5 py-2 text-sm font-semibold text-[var(--bg)]">
+            Continue to Day {nextDay} →
+          </a>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .choice.is-correct { border-color:#2faf6a; background:#2faf6a18; }
+    .choice.is-correct .choice-key { border-color:#2faf6a; background:#2faf6a; color:#ffffff; }
+    .choice.is-wrong { border-color:#e23a6e; background:#e23a6e18; }
+    .choice.is-wrong .choice-key { border-color:#e23a6e; background:#e23a6e; color:#ffffff; }
+    .q.answered .choice:not(.is-correct):not(.is-wrong) { opacity:.5; }
+  </style>
+
+  <script define:vars={{ quizData, dayNum, totalQuestions }}>
+    // --- Speech (reuse the same natural-voice picker as the flashcards) ---
+    const synth = window.speechSynthesis;
+    let cachedVoice = null;
+    const PREFERRED = ['Samantha','Ava','Allison','Susan','Karen','Serena','Google US English','Google UK English Female','Microsoft Aria','Microsoft Jenny','Microsoft Zira'];
+    const NOVELTY = /bad news|good news|bahh|bells|boing|bubbles|cellos|jester|organ|superstar|trinoids|wobble|zarvox|whisper|albert|fred|ralph|junior|kathy|grandma|grandpa|reed|rocko|sandy|shelley|flo|eddy|deranged|hysterical|pipe|princess/i;
+    function pickVoice() {
+      if (!synth) return null;
+      if (cachedVoice) return cachedVoice;
+      const voices = synth.getVoices();
+      if (!voices.length) return null;
+      const en = (v) => /^en/i.test(v.lang);
+      for (const name of PREFERRED) {
+        const v = voices.find((vo) => en(vo) && vo.name.toLowerCase().includes(name.toLowerCase()));
+        if (v) return (cachedVoice = v);
+      }
+      const f = voices.find((v) => en(v) && /female|woman|aria|jenny|zira|serena|samantha|ava|allison/i.test(v.name) && !NOVELTY.test(v.name));
+      if (f) return (cachedVoice = f);
+      return (cachedVoice = voices.find((v) => /en[-_]US/i.test(v.lang) && !NOVELTY.test(v.name)) || voices.find((v) => en(v) && !NOVELTY.test(v.name)) || null);
+    }
+    if (synth) { synth.onvoiceschanged = () => synth.getVoices(); synth.getVoices(); }
+    function speak(word) {
+      if (!synth || !word) return;
+      synth.cancel();
+      const u = new SpeechSynthesisUtterance(word);
+      u.lang = 'en-US'; u.rate = 0.9; u.pitch = 1.05;
+      const v = pickVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      synth.speak(u);
+    }
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('.speak-btn');
+      if (b) { e.preventDefault(); speak(b.dataset.word); }
+    });
+
+    // --- Render quiz ---
+    const root = document.getElementById('quiz-root');
+    const scoreEl = document.getElementById('score');
+    let score = 0;
+    let answered = 0;
+
+    for (const s of quizData) {
+      const section = document.createElement('div');
+      section.className = 'mb-6';
+      const head = document.createElement('p');
+      head.className = 'mb-2 text-[11px] font-semibold uppercase tracking-wider';
+      head.style.color = s.accent;
+      head.textContent = `${s.label} · ${s.quiz.length} questions`;
+      section.appendChild(head);
+
+      s.quiz.forEach((item, qi) => {
+        const q = document.createElement('div');
+        q.className = 'q mb-3 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4';
+        q.dataset.answer = item.answer;
+
+        const prompt = document.createElement('p');
+        prompt.className = 'font-medium leading-relaxed whitespace-pre-line';
+        prompt.textContent = item.prompt;
+        q.appendChild(prompt);
+
+        const choicesWrap = document.createElement('div');
+        choicesWrap.className = 'mt-3 space-y-2';
+        item.choices.forEach((c) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'choice flex w-full items-start gap-3 rounded-xl border border-[var(--line)] px-4 py-2.5 text-left text-sm transition hover:border-[var(--muted)]';
+          btn.dataset.choice = c.id;
+          btn.innerHTML = `<span class="choice-key mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--line)] text-[11px] font-semibold">${c.id}</span><span></span>`;
+          btn.querySelector('span:last-child').textContent = c.text;
+          btn.addEventListener('click', () => {
+            if (q.classList.contains('answered')) return;
+            q.classList.add('answered');
+            answered++;
+            if (c.id === item.answer) { btn.classList.add('is-correct'); score++; }
+            else {
+              btn.classList.add('is-wrong');
+              const right = [...q.querySelectorAll('.choice')].find((x) => x.dataset.choice === item.answer);
+              right?.classList.add('is-correct');
+            }
+            scoreEl.textContent = String(score);
+            saveProgress(false);
+            if (answered === totalQuestions) finish();
+          });
+          choicesWrap.appendChild(btn);
+        });
+        q.appendChild(choicesWrap);
+        section.appendChild(q);
+      });
+      root.appendChild(section);
+    }
+
+    function saveProgress(done) {
+      try {
+        localStorage.setItem(`preact9:day:${dayNum}`, JSON.stringify({ done, score, total: totalQuestions }));
+      } catch {}
+    }
+    function finish() {
+      saveProgress(true);
+      const pct = Math.round((score / totalQuestions) * 100);
+      document.getElementById('result-line').textContent = `You scored ${score} of ${totalQuestions} (${pct}%).`;
+      document.getElementById('day-result').classList.remove('hidden');
+      document.getElementById('day-result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Restore prior score display (does not re-lock answers; a fresh attempt starts clean).
+    try {
+      const prev = JSON.parse(localStorage.getItem(`preact9:day:${dayNum}`) || 'null');
+      if (prev && prev.done) {
+        document.getElementById('result-line').textContent = `Last time: ${prev.score} of ${prev.total}. Retake below to improve.`;
+        document.getElementById('day-result').classList.remove('hidden');
+      }
+    } catch {}
+  </script>
+</Base>

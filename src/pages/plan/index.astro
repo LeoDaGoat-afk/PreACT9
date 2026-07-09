@@ -1,0 +1,158 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SUBJECTS, SUBJECT_META } from '../../data/vocab';
+import { buildPlan, subjectDayCounts, TOTAL_DAYS, WORDS_PER_DAY } from '../../data/plan';
+
+const plan = buildPlan();
+const dayCounts = subjectDayCounts();
+
+// For each day, how many words total across subjects (to show "light" days).
+const dayTotals = plan.map((d) =>
+  d.subjects.reduce((n, s) => n + s.words.length, 0)
+);
+---
+
+<Base title="PreACT 9 — 20-Day Word Plan">
+  <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8">
+    <header class="mb-6">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            PreACT 9 Secure
+          </p>
+          <h1 class="mt-1 text-2xl font-bold sm:text-3xl">20-Day Word Plan</h1>
+        </div>
+        <a
+          href="/"
+          class="shrink-0 rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+        >
+          Flashcards
+        </a>
+      </div>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+        Each day: study up to {WORDS_PER_DAY} words in each of the four sections,
+        then take a short quiz on them — meaning first, then a real-test-style
+        application question. Your progress is saved in this browser.
+      </p>
+    </header>
+
+    <!-- Per-subject coverage -->
+    <div class="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {
+        SUBJECTS.map((s) => (
+          <div
+            class="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3"
+            style={`border-color:${SUBJECT_META[s].accent}44`}
+          >
+            <p
+              class="text-[11px] font-semibold uppercase tracking-wider"
+              style={`color:${SUBJECT_META[s].accent}`}
+            >
+              {SUBJECT_META[s].label}
+            </p>
+            <p class="mt-1 text-sm text-[var(--muted)]">
+              {dayCounts[s]} days of words
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Overall progress bar -->
+    <div class="mb-6">
+      <div class="mb-1 flex items-center justify-between text-xs text-[var(--muted)]">
+        <span>Overall progress</span>
+        <span id="overall-pct">0%</span>
+      </div>
+      <div class="h-2 overflow-hidden rounded-full bg-[var(--surface-2)]">
+        <div id="overall-bar" class="h-full w-0 rounded-full bg-[var(--text)] transition-all"></div>
+      </div>
+    </div>
+
+    <!-- Day grid -->
+    <ol class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {
+        plan.map((d, i) => (
+          <li>
+            <a
+              href={`/plan/${d.day}`}
+              class="day-link block rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 transition hover:border-[var(--muted)]"
+              data-day={d.day}
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-lg font-bold">Day {d.day}</span>
+                <span
+                  class="day-status inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-[var(--line)] px-2 text-[11px] font-semibold text-[var(--muted)]"
+                  data-day-status={d.day}
+                >
+                  —
+                </span>
+              </div>
+              <div class="mt-2 flex flex-wrap gap-1.5">
+                {d.subjects.map((s) =>
+                  s.words.length > 0 ? (
+                    <span
+                      class="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                      style={`background:${SUBJECT_META[s.subject].accent}22;color:${SUBJECT_META[s.subject].accent}`}
+                    >
+                      {SUBJECT_META[s.subject].label} {s.words.length}
+                    </span>
+                  ) : null
+                )}
+              </div>
+              <p class="mt-2 text-xs text-[var(--muted)]">
+                {dayTotals[i]} words · {dayTotals[i] * 2} questions
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+
+    <button
+      id="reset-all"
+      type="button"
+      class="mt-8 rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+    >
+      Reset all progress
+    </button>
+  </main>
+
+  <script define:vars={{ totalDays: TOTAL_DAYS }}>
+    // Progress is stored per day under localStorage key "preact9:day:<n>".
+    // Each value is JSON: { done: bool, score: number, total: number }.
+    function readDay(n) {
+      try {
+        return JSON.parse(localStorage.getItem(`preact9:day:${n}`) || 'null');
+      } catch {
+        return null;
+      }
+    }
+
+    let doneDays = 0;
+    for (let n = 1; n <= totalDays; n++) {
+      const rec = readDay(n);
+      const statusEl = document.querySelector(`[data-day-status="${n}"]`);
+      if (rec && rec.total > 0) {
+        if (rec.done) doneDays++;
+        const pct = Math.round((rec.score / rec.total) * 100);
+        if (statusEl) {
+          statusEl.textContent = rec.done ? `${pct}%` : 'started';
+          if (rec.done) {
+            statusEl.style.borderColor = '#2faf6a';
+            statusEl.style.color = '#2faf6a';
+          }
+        }
+      }
+    }
+    const pct = Math.round((doneDays / totalDays) * 100);
+    document.getElementById('overall-pct').textContent = `${pct}%`;
+    document.getElementById('overall-bar').style.width = `${pct}%`;
+
+    document.getElementById('reset-all')?.addEventListener('click', () => {
+      if (!confirm('Reset all day progress in this browser?')) return;
+      for (let n = 1; n <= totalDays; n++) localStorage.removeItem(`preact9:day:${n}`);
+      location.reload();
+    });
+  </script>
+</Base>

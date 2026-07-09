@@ -1,12 +1,13 @@
 @import 'tailwindcss';
 
 :root {
-  --bg: #0f1419;
-  --surface: #1a212b;
-  --surface-2: #232c38;
-  --text: #e8edf2;
-  --muted: #9aa7b4;
-  --line: #2e3947;
+  /* Light theme — white background, dark text. */
+  --bg: #ffffff;
+  --surface: #f6f8fa;
+  --surface-2: #eceff3;
+  --text: #1a2230;
+  --muted: #5b6874;
+  --line: #d9dee5;
 }
 
 html {
