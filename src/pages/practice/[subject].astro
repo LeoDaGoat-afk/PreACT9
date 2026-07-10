@@ -151,11 +151,11 @@ const questions = PRACTICE_BY_SUBJECT[subject];
           Finish Test
         </button>
         <button
-          id="reset-btn"
+          id="retake-btn"
           type="button"
-          class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+          class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)] disabled:cursor-not-allowed disabled:opacity-40"
         >
-          Reset
+          Take Again
         </button>
       </div>
     </div>
@@ -203,7 +203,7 @@ const questions = PRACTICE_BY_SUBJECT[subject];
     const progressEl = document.getElementById('progress')!;
     const scoreEl = document.getElementById('score')!;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-    const resetBtn = document.getElementById('reset-btn') as HTMLButtonElement;
+    const retakeBtn = document.getElementById('retake-btn') as HTMLButtonElement;
     const cooldownBanner = document.getElementById('cooldown-banner')!;
     const cooldownTimeEl = document.getElementById('cooldown-time')!;
 
@@ -242,20 +242,36 @@ const questions = PRACTICE_BY_SUBJECT[subject];
       });
     }
 
+    function resetTest() {
+      answered = 0;
+      score = 0;
+      submitBtn.classList.add('hidden');
+      questions.forEach((q) => {
+        q.classList.remove('answered');
+        q.querySelectorAll('.choice').forEach((c) =>
+          c.classList.remove('is-correct', 'is-wrong')
+        );
+        q.querySelector('.explanation')?.classList.add('hidden');
+      });
+      updateStatus();
+    }
+
     function startCooldownBanner() {
       cooldownBanner.classList.remove('hidden');
       submitBtn.classList.add('hidden');
-      resetBtn.classList.add('hidden');
+      retakeBtn.disabled = true;
 
       function tick() {
         const rem = getRemainingMs();
         if (rem <= 0) {
           cooldownBanner.classList.add('hidden');
-          resetBtn.classList.remove('hidden');
+          retakeBtn.disabled = false;
+          retakeBtn.textContent = 'Take Again';
           unlockChoices();
           localStorage.removeItem(STORAGE_KEY);
           return;
         }
+        retakeBtn.textContent = `Locked (${formatTime(rem)})`;
         cooldownTimeEl.textContent = formatTime(rem);
         setTimeout(tick, rem < 60_000 ? 1000 : 30_000);
       }
@@ -310,19 +326,10 @@ const questions = PRACTICE_BY_SUBJECT[subject];
       });
     });
 
-    // Reset (only reachable when not in cooldown)
-    resetBtn.addEventListener('click', () => {
-      answered = 0;
-      score = 0;
-      submitBtn.classList.add('hidden');
-      questions.forEach((q) => {
-        q.classList.remove('answered');
-        q.querySelectorAll('.choice').forEach((c) =>
-          c.classList.remove('is-correct', 'is-wrong')
-        );
-        q.querySelector('.explanation')?.classList.add('hidden');
-      });
-      updateStatus();
+    // Take Again button
+    retakeBtn.addEventListener('click', () => {
+      if (retakeBtn.disabled) return;
+      resetTest();
     });
   </script>
 </Base>
