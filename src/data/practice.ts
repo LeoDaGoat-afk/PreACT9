@@ -985,6 +985,176 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
       explanation:
         'The essay describes an organization and the people involved in it. It does not offer step-by-step instructions for starting a farm, so it would not accomplish the stated instructional purpose.',
     },
+    {
+      id: 'eng-045',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'Which of the following alternatives to the underlined word "dormant" best fits the context of the sentence?',
+      choices: [
+        { id: 'A', text: 'NO CHANGE (dormant)' },
+        { id: 'B', text: 'active' },
+        { id: 'C', text: 'energetic' },
+        { id: 'D', text: 'conscious' },
+      ],
+      answer: 'A',
+      explanation: '"Dormant" means inactive or temporarily suspended, which best contrasts with the active brain state revealed by research. The other choices contradict the sentence\'s meaning.',
+    },
+    {
+      id: 'eng-046',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'The writer wants to add a sentence at Point [A] that contrasts with the old view of sleep. Which addition best accomplishes this goal?',
+      choices: [
+        { id: 'A', text: 'Sleep disorders affect millions of people worldwide.' },
+        { id: 'B', text: 'That long-held assumption has since been overturned by decades of neurological research.' },
+        { id: 'C', text: 'Some scientists study sleep using electroencephalogram machines.' },
+        { id: 'D', text: 'Ancient cultures developed elaborate rituals around sleep and dreaming.' },
+      ],
+      answer: 'B',
+      explanation: 'Choice B explicitly signals a reversal ("overturned") and connects to the scientific evidence that follows, creating a logical bridge from the old view to the new.',
+    },
+    {
+      id: 'eng-047',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'Which version best maintains parallel structure: "it consolidates memories, flushes metabolic waste products, and regulates hormones"?',
+      choices: [
+        { id: 'A', text: 'NO CHANGE' },
+        { id: 'B', text: 'it consolidates memories, flushing metabolic waste products, and the regulation of hormones' },
+        { id: 'C', text: 'memory consolidation, metabolic waste flushing, and hormone regulation' },
+        { id: 'D', text: 'it consolidates memories, flushes metabolic waste products, and the hormones are regulated' },
+      ],
+      answer: 'A',
+      explanation: 'Parallel structure requires matching forms. Choice A uses three parallel verb phrases (consolidates, flushes, regulates) all sharing the subject "it," keeping the list consistent.',
+    },
+    {
+      id: 'eng-048',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'The writer is considering deleting "particularly the blue wavelengths emitted by smartphones and tablets." Should it be kept or deleted?',
+      choices: [
+        { id: 'A', text: 'Kept, because it specifies which type of artificial light most disrupts melatonin production.' },
+        { id: 'B', text: 'Kept, because it introduces smartphone screen technology as a new topic.' },
+        { id: 'C', text: 'Deleted, because it interrupts the sentence\'s flow.' },
+        { id: 'D', text: 'Deleted, because smartphones are not relevant to sleep research.' },
+      ],
+      answer: 'A',
+      explanation: 'The phrase names the specific source of disruptive light, strengthening the explanation. Removing it makes the claim vague without adding a new topic.',
+    },
+    {
+      id: 'eng-049',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'Which transition best connects "Non-REM stages promote physical repair" with the clause about REM sleep that follows?',
+      choices: [
+        { id: 'A', text: 'therefore' },
+        { id: 'B', text: 'similarly' },
+        { id: 'C', text: 'while' },
+        { id: 'D', text: 'as a result' },
+      ],
+      answer: 'C',
+      explanation: '"While" signals a simultaneous contrast, accurately reflecting that Non-REM and REM serve distinct roles within the same sleep cycle.',
+    },
+    {
+      id: 'eng-050',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'Which revision improves conciseness without losing meaning? "Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group."',
+      choices: [
+        { id: 'A', text: 'NO CHANGE' },
+        { id: 'B', text: 'Teenagers are especially affected, sleeping far less than the recommended eight to ten hours.' },
+        { id: 'C', text: 'Teenagers are especially affected by this problem that causes young people to not sleep enough.' },
+        { id: 'D', text: 'Teenagers are especially affected; the recommended hours are eight to ten and teens get less.' },
+      ],
+      answer: 'B',
+      explanation: 'Choice B conveys the same key information in a single, clear clause, eliminating the redundant "studies consistently show that adolescents" without losing meaning.',
+    },
+    {
+      id: 'eng-051',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'Which sentence added at Point [B] most strengthens the argument about the importance of REM sleep?',
+      choices: [
+        { id: 'A', text: 'People frequently awakened during REM sleep report difficulty concentrating the following day.' },
+        { id: 'B', text: 'Dreaming has fascinated poets and philosophers throughout history.' },
+        { id: 'C', text: 'Many sleep disorders can be treated with behavioral therapy.' },
+        { id: 'D', text: 'Some animals, including certain fish, do not appear to enter REM sleep.' },
+      ],
+      answer: 'A',
+      explanation: 'Evidence that disrupted REM causes next-day cognitive difficulty directly supports the claim that REM is critical for brain function. Choices B-D introduce off-topic details.',
+    },
+    {
+      id: 'eng-052',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'Which sentence added at Point [D] best concludes the passage?',
+      choices: [
+        { id: 'A', text: 'Mattress companies have begun marketing products designed to improve sleep quality.' },
+        { id: 'B', text: 'In short, what happens while we sleep shapes what we can do while we are awake.' },
+        { id: 'C', text: 'Researchers continue to study exactly how many hours of sleep each person needs.' },
+        { id: 'D', text: 'Light therapy is sometimes used to treat seasonal mood disorders.' },
+      ],
+      answer: 'B',
+      explanation: 'Choice B summarizes the passage with a memorable statement linking sleep to waking performance, giving the essay a strong on-theme conclusion.',
+    },
+    {
+      id: 'eng-053',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'Which is the most precise replacement for the vague phrase "some good changes in how students do in school"?',
+      choices: [
+        { id: 'A', text: 'some good changes in how students do in school' },
+        { id: 'B', text: 'improvements in many areas of students\' lives' },
+        { id: 'C', text: 'measurable improvements in student attention, grades, and mental health' },
+        { id: 'D', text: 'better outcomes that were observed by researchers' },
+      ],
+      answer: 'C',
+      explanation: 'Choice C names three specific, measurable outcomes (attention, grades, mental health), making the claim verifiable and concrete. The other options are vague.',
+    },
+    {
+      id: 'eng-054',
+      subject: 'English',
+      passage: 'The Quiet Revolution in Sleep Science\n\n' +
+        '   For most of human history, sleep was considered a passive state--a nightly shutdown during which the body rested and the mind went dormant. [A] Recent neuroscience research has fundamentally overturned that view. Scientists now know that the sleeping brain is extraordinarily active: it consolidates memories, flushes metabolic waste products, and regulates hormones that govern growth, appetite, and stress.\n\n' +
+        '   The shift in understanding began in the 1950s, when researchers discovered rapid eye movement (REM) sleep, a phase marked by intense brain activity and vivid dreaming. [B] This discovery revealed that sleep is organized into distinct stages, each serving different biological functions. Non-REM stages promote physical repair, while REM sleep appears critical for emotional processing and learning consolidation.\n\n' +
+        '   Despite this knowledge, modern life continues to erode sleep quality. [C] Artificial light, particularly the blue wavelengths emitted by smartphones and tablets, suppresses the production of melatonin--the hormone that signals the brain to prepare for sleep. Teenagers are especially affected; studies consistently show that adolescents obtain significantly less sleep than the eight to ten hours recommended for their age group. Schools that have experimented with later start times have documented measurable improvements in student attention, grades, and mental health. [D] The evidence suggests that protecting sleep is not a matter of personal preference but of public health.',
+      prompt: 'In context, the word "erode" in the third paragraph most nearly means:',
+      choices: [
+        { id: 'A', text: 'improve gradually' },
+        { id: 'B', text: 'eliminate completely' },
+        { id: 'C', text: 'gradually wear away' },
+        { id: 'D', text: 'suddenly destroy' },
+      ],
+      answer: 'C',
+      explanation: '"Erode" means to wear something down gradually over time. Modern life progressively reduces sleep quality rather than instantly eliminating it.',
+    },
   ],
 
   // ---------------------------------------------------------------------------
@@ -1802,6 +1972,150 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
       explanation:
         'The passage states they began collaborating at the International Center for Tropical Agriculture (CIAT) in Colombia.',
     },
+    {
+      id: 'read-034',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'According to the passage, why did participants in the Underground Railroad use railroad terminology?',
+      choices: [
+        { id: 'A', text: 'Because the routes often ran alongside actual railroad tracks.' },
+        { id: 'B', text: 'Because it served as code to conceal the network\'s true purpose.' },
+        { id: 'C', text: 'Because the movement was funded by railroad companies.' },
+        { id: 'D', text: 'Because conductors were trained as actual railroad workers.' },
+      ],
+      answer: 'B',
+      explanation: 'The passage states participants used railroad terminology "as code." No mention is made of actual railroad tracks, funding, or worker training.',
+    },
+    {
+      id: 'read-035',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'Based on the passage, why did Tubman carry a pistol during her escape missions?',
+      choices: [
+        { id: 'A', text: 'To protect against wildlife during winter travel.' },
+        { id: 'B', text: 'For self-defense and to prevent frightened passengers from turning back.' },
+        { id: 'C', text: 'To signal other conductors at safe houses.' },
+        { id: 'D', text: 'Because Union Army officers required it during wartime.' },
+      ],
+      answer: 'B',
+      explanation: 'The passage explicitly states Tubman carried a pistol for self-defense and to discourage passengers who might turn back and endanger the group.',
+    },
+    {
+      id: 'read-036',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'The passage states Tubman preferred to depart on Saturdays. Which best explains why?',
+      choices: [
+        { id: 'A', text: 'Fewer slave catchers were active on weekends.' },
+        { id: 'B', text: 'Newspapers could not publish runaway notices until Monday, giving her a two-day lead.' },
+        { id: 'C', text: 'Conductors at safe houses were only available on weekends.' },
+        { id: 'D', text: 'Longer winter nights fell on weekends.' },
+      ],
+      answer: 'B',
+      explanation: 'The passage directly states she departed on Saturdays because slaveholders could not post notices until Monday, giving her group a two-day head start.',
+    },
+    {
+      id: 'read-037',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'As used in the second paragraph, the word "inflicted" most nearly means:',
+      choices: [
+        { id: 'A', text: 'described' },
+        { id: 'B', text: 'prevented' },
+        { id: 'C', text: 'caused by force' },
+        { id: 'D', text: 'healed' },
+      ],
+      answer: 'C',
+      explanation: '"Inflicted" means to impose or cause something harmful on someone. The overseer caused the head injury by force--he did not describe, prevent, or heal it.',
+    },
+    {
+      id: 'read-038',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'According to the passage, what was historically significant about the Combahee River raid?',
+      choices: [
+        { id: 'A', text: 'It was the first military operation led by a woman in U.S. history.' },
+        { id: 'B', text: 'It liberated more than 700 people--the most freed by a single military raid in American history.' },
+        { id: 'C', text: 'It ended the Civil War six months early.' },
+        { id: 'D', text: 'It destroyed a major Confederate supply line.' },
+      ],
+      answer: 'B',
+      explanation: 'The passage states the raid "liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history."',
+    },
+    {
+      id: 'read-039',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'Which statement about Harriet Tubman is best supported by the passage?',
+      choices: [
+        { id: 'A', text: 'She worked exclusively in the South during the Civil War.' },
+        { id: 'B', text: 'She was born in Philadelphia and escaped to Maryland.' },
+        { id: 'C', text: 'Despite personal risk and a lasting injury, she guided others to freedom without losing a single passenger.' },
+        { id: 'D', text: 'Her activism ended after the Civil War concluded.' },
+      ],
+      answer: 'C',
+      explanation: 'The passage confirms she suffered a lasting head injury, returned south at least thirteen times, and never lost a single passenger. It also states she continued activism after the war.',
+    },
+    {
+      id: 'read-040',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'The author\'s main purpose in writing this passage is most likely to:',
+      choices: [
+        { id: 'A', text: 'argue that the Civil War was caused by the Underground Railroad.' },
+        { id: 'B', text: 'describe the methods and legacy of Harriet Tubman as an Underground Railroad conductor.' },
+        { id: 'C', text: 'compare the Underground Railroad to modern transportation systems.' },
+        { id: 'D', text: 'explain why slavery existed in the United States.' },
+      ],
+      answer: 'B',
+      explanation: 'The passage traces Tubman\'s escape, her methods, her wartime service, and her later activism. The primary focus is on her life and contributions.',
+    },
+    {
+      id: 'read-041',
+      subject: 'Reading',
+      passage: 'The Long Road North\n\n' +
+        '   In the decade before the Civil War, an elaborate network of safe houses, secret routes, and courageous individuals helped thousands of enslaved people escape to freedom. This network, known as the Underground Railroad, was not a railroad at all--it was a system of cooperation built on whispered instructions, coded signals, and extraordinary personal risk. Participants used railroad terminology as code: those who guided freedom seekers were called "conductors," the safe houses were "stations," and the people escaping enslavement were called "passengers" or "freight."\n\n' +
+        '   Harriet Tubman was the most celebrated conductor in the network. Born into slavery in Maryland around 1822, Tubman escaped to Philadelphia in 1849 after suffering years of brutal treatment, including a severe head injury inflicted by an overseer--a wound that caused her to experience sudden, uncontrollable sleeping episodes for the rest of her life. Rather than remain safely in the North, she returned south at least thirteen times to guide others to freedom. She never lost a single passenger.\n\n' +
+        '   Tubman\'s success relied on careful planning. She departed on Saturdays because slaveholders could not post runaway notices in newspapers until Monday, giving her group a two-day head start. She preferred winter travel, when long nights provided more cover of darkness. She carried a pistol--not only for self-defense but also to discourage any passenger who grew frightened and considered turning back, which could endanger the entire group.\n\n' +
+        '   During the Civil War, Tubman served the Union Army as a spy and scout. She led a raid along the Combahee River in 1863 that liberated more than 700 enslaved people in a single night--the largest emancipation event achieved by a single military raid in American history. After the war, she continued her activism, advocating for women\'s suffrage until her death in 1913.',
+      prompt: 'Which evidence from the passage best supports the idea that Tubman was a careful strategic planner?',
+      choices: [
+        { id: 'A', text: 'She was born into slavery in Maryland around 1822.' },
+        { id: 'B', text: 'She experienced sudden sleeping episodes caused by a head injury.' },
+        { id: 'C', text: 'She chose Saturday departures and winter travel to maximize her group\'s chances of escape.' },
+        { id: 'D', text: 'She advocated for women\'s suffrage after the war.' },
+      ],
+      answer: 'C',
+      explanation: 'Saturday departures to delay newspaper notices and winter travel for longer darkness are deliberate tactics demonstrating strategic planning. The other choices state personal facts unrelated to planning.',
+    },
   ],
 
   // ---------------------------------------------------------------------------
@@ -2571,6 +2885,266 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
       ],
       answer: 'B',
       explanation: 'Total = 15. Not red = 5 + 6 = 11. P(not red) = 11/15.',
+    },
+    {
+      id: 'math-055',
+      subject: 'Math',
+      prompt: 'Solve for x: 3(x - 4) = 2x + 1',
+      choices: [
+        { id: 'A', text: '7' },
+        { id: 'B', text: '11' },
+        { id: 'C', text: '13' },
+        { id: 'D', text: '5' },
+      ],
+      answer: 'C',
+      explanation: '3x - 12 = 2x + 1 -> x = 13.',
+    },
+    {
+      id: 'math-056',
+      subject: 'Math',
+      prompt: 'A rectangle has length 12 cm and width 7 cm. What is its perimeter?',
+      choices: [
+        { id: 'A', text: '38 cm' },
+        { id: 'B', text: '84 cm' },
+        { id: 'C', text: '19 cm' },
+        { id: 'D', text: '42 cm' },
+      ],
+      answer: 'A',
+      explanation: 'Perimeter = 2(l + w) = 2(12 + 7) = 38 cm.',
+    },
+    {
+      id: 'math-057',
+      subject: 'Math',
+      prompt: 'What is 15% of 240?',
+      choices: [
+        { id: 'A', text: '24' },
+        { id: 'B', text: '36' },
+        { id: 'C', text: '48' },
+        { id: 'D', text: '30' },
+      ],
+      answer: 'B',
+      explanation: '15% x 240 = 0.15 x 240 = 36.',
+    },
+    {
+      id: 'math-058',
+      subject: 'Math',
+      prompt: 'A car travels 180 miles in 3 hours. At the same rate, how far does it travel in 5 hours?',
+      choices: [
+        { id: 'A', text: '270 miles' },
+        { id: 'B', text: '250 miles' },
+        { id: 'C', text: '300 miles' },
+        { id: 'D', text: '360 miles' },
+      ],
+      answer: 'C',
+      explanation: 'Rate = 180/3 = 60 mph. Distance = 60 x 5 = 300 miles.',
+    },
+    {
+      id: 'math-059',
+      subject: 'Math',
+      prompt: 'If f(x) = 2x^2 - 3, what is f(4)?',
+      choices: [
+        { id: 'A', text: '13' },
+        { id: 'B', text: '29' },
+        { id: 'C', text: '32' },
+        { id: 'D', text: '61' },
+      ],
+      answer: 'B',
+      explanation: 'f(4) = 2(16) - 3 = 32 - 3 = 29.',
+    },
+    {
+      id: 'math-060',
+      subject: 'Math',
+      prompt: 'A triangle has base 10 inches and height 8 inches. What is its area?',
+      choices: [
+        { id: 'A', text: '80 sq in' },
+        { id: 'B', text: '20 sq in' },
+        { id: 'C', text: '40 sq in' },
+        { id: 'D', text: '18 sq in' },
+      ],
+      answer: 'C',
+      explanation: 'Area = (1/2) x base x height = (1/2) x 10 x 8 = 40 sq in.',
+    },
+    {
+      id: 'math-061',
+      subject: 'Math',
+      prompt: 'What is the slope of the line through (2, 5) and (6, 13)?',
+      choices: [
+        { id: 'A', text: '1' },
+        { id: 'B', text: '4' },
+        { id: 'C', text: '3' },
+        { id: 'D', text: '2' },
+      ],
+      answer: 'D',
+      explanation: 'Slope = (13 - 5) / (6 - 2) = 8 / 4 = 2.',
+    },
+    {
+      id: 'math-062',
+      subject: 'Math',
+      prompt: 'Simplify: (3x^2 y)(4xy^3)',
+      choices: [
+        { id: 'A', text: '7x^3 y^3' },
+        { id: 'B', text: '12x^3 y^3' },
+        { id: 'C', text: '12x^3 y^4' },
+        { id: 'D', text: '12x^2 y^3' },
+      ],
+      answer: 'C',
+      explanation: 'Multiply coefficients: 3 x 4 = 12. Add exponents: x^(2+1) = x^3, y^(1+3) = y^4. Result: 12x^3 y^4.',
+    },
+    {
+      id: 'math-063',
+      subject: 'Math',
+      prompt: 'A store marks an item up 40% from its cost of $85. What is the selling price?',
+      choices: [
+        { id: 'A', text: '$109.00' },
+        { id: 'B', text: '$99.00' },
+        { id: 'C', text: '$125.00' },
+        { id: 'D', text: '$119.00' },
+      ],
+      answer: 'D',
+      explanation: 'Markup = 40% x $85 = $34. Selling price = $85 + $34 = $119.',
+    },
+    {
+      id: 'math-064',
+      subject: 'Math',
+      prompt: 'The sum of three consecutive integers is 72. What is the smallest?',
+      choices: [
+        { id: 'A', text: '22' },
+        { id: 'B', text: '25' },
+        { id: 'C', text: '24' },
+        { id: 'D', text: '23' },
+      ],
+      answer: 'D',
+      explanation: 'Let integers be n, n+1, n+2. Then 3n + 3 = 72 -> n = 23. Integers: 23, 24, 25.',
+    },
+    {
+      id: 'math-065',
+      subject: 'Math',
+      prompt: 'A circle has radius 5 cm. What is its area? (Use pi = 3.14)',
+      choices: [
+        { id: 'A', text: '31.4 cm^2' },
+        { id: 'B', text: '15.7 cm^2' },
+        { id: 'C', text: '62.8 cm^2' },
+        { id: 'D', text: '78.5 cm^2' },
+      ],
+      answer: 'D',
+      explanation: 'Area = pi x r^2 = 3.14 x 25 = 78.5 cm^2.',
+    },
+    {
+      id: 'math-066',
+      subject: 'Math',
+      prompt: 'Solve the inequality: 2x + 5 > 17',
+      choices: [
+        { id: 'A', text: 'x > 11' },
+        { id: 'B', text: 'x > 4' },
+        { id: 'C', text: 'x > 5' },
+        { id: 'D', text: 'x > 6' },
+      ],
+      answer: 'D',
+      explanation: '2x + 5 > 17 -> 2x > 12 -> x > 6.',
+    },
+    {
+      id: 'math-067',
+      subject: 'Math',
+      prompt: 'A bag has 3 quarters, 5 dimes, and 2 nickels. What is the total value?',
+      choices: [
+        { id: 'A', text: '$1.25' },
+        { id: 'B', text: '$1.10' },
+        { id: 'C', text: '$1.35' },
+        { id: 'D', text: '$1.45' },
+      ],
+      answer: 'C',
+      explanation: '3 x $0.25 + 5 x $0.10 + 2 x $0.05 = $0.75 + $0.50 + $0.10 = $1.35.',
+    },
+    {
+      id: 'math-068',
+      subject: 'Math',
+      prompt: 'Which equation represents a line parallel to y = 3x - 7?',
+      choices: [
+        { id: 'A', text: 'y = -3x + 2' },
+        { id: 'B', text: 'y = (1/3)x - 7' },
+        { id: 'C', text: 'y = 3x + 4' },
+        { id: 'D', text: 'y = -(1/3)x + 1' },
+      ],
+      answer: 'C',
+      explanation: 'Parallel lines have equal slopes. The slope of y = 3x - 7 is 3. Only y = 3x + 4 has slope 3.',
+    },
+    {
+      id: 'math-069',
+      subject: 'Math',
+      prompt: 'A right triangle has legs 9 and 40. What is the hypotenuse?',
+      choices: [
+        { id: 'A', text: '49' },
+        { id: 'B', text: '45' },
+        { id: 'C', text: '39' },
+        { id: 'D', text: '41' },
+      ],
+      answer: 'D',
+      explanation: 'c^2 = 9^2 + 40^2 = 81 + 1600 = 1681. sqrt(1681) = 41.',
+    },
+    {
+      id: 'math-070',
+      subject: 'Math',
+      prompt: 'If a = 3 and b = -2, what is a^2 - 2ab + b^2?',
+      choices: [
+        { id: 'A', text: '1' },
+        { id: 'B', text: '13' },
+        { id: 'C', text: '17' },
+        { id: 'D', text: '25' },
+      ],
+      answer: 'D',
+      explanation: 'a^2 - 2ab + b^2 = (a - b)^2 = (3 - (-2))^2 = 5^2 = 25.',
+    },
+    {
+      id: 'math-071',
+      subject: 'Math',
+      prompt: 'A data set is: 4, 8, 8, 9, 11, 14. What is the median?',
+      choices: [
+        { id: 'A', text: '8' },
+        { id: 'B', text: '9' },
+        { id: 'C', text: '8.5' },
+        { id: 'D', text: '11' },
+      ],
+      answer: 'C',
+      explanation: 'With 6 values the median is the average of the 3rd and 4th: (8 + 9) / 2 = 8.5.',
+    },
+    {
+      id: 'math-072',
+      subject: 'Math',
+      prompt: 'Evaluate: -4^2 + (-4)^2',
+      choices: [
+        { id: 'A', text: '32' },
+        { id: 'B', text: '-32' },
+        { id: 'C', text: '-16' },
+        { id: 'D', text: '0' },
+      ],
+      answer: 'D',
+      explanation: '-4^2 = -16 (negation after squaring). (-4)^2 = 16. Sum: -16 + 16 = 0.',
+    },
+    {
+      id: 'math-073',
+      subject: 'Math',
+      prompt: 'Notebooks cost $2.50 each. With a 20% discount, how much do 6 notebooks cost?',
+      choices: [
+        { id: 'A', text: '$9.60' },
+        { id: 'B', text: '$15.00' },
+        { id: 'C', text: '$12.00' },
+        { id: 'D', text: '$10.00' },
+      ],
+      answer: 'C',
+      explanation: 'Full price: 6 x $2.50 = $15. Discount: 20% x $15 = $3. Final: $15 - $3 = $12.',
+    },
+    {
+      id: 'math-074',
+      subject: 'Math',
+      prompt: 'Two lines intersect and one angle measures 65 degrees. What is the measure of its vertical angle?',
+      choices: [
+        { id: 'A', text: '25 degrees' },
+        { id: 'B', text: '115 degrees' },
+        { id: 'C', text: '90 degrees' },
+        { id: 'D', text: '65 degrees' },
+      ],
+      answer: 'D',
+      explanation: 'Vertical angles are opposite angles formed by intersecting lines. They are always equal, so the vertical angle is also 65 degrees.',
     },
   ],
 
@@ -3641,6 +4215,144 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
       ],
       answer: 'C',
       explanation: 'The highest activity in the table is 40 mg/min at 37°C. A researcher wanting maximum activity should use 37°C.',
+    },
+    {
+      id: 'sci-039',
+      subject: 'Science',
+      passage: 'Photosynthesis and Light Intensity\n\n' +
+        'A student placed Elodea (water weed) in sodium bicarbonate solution (which supplies CO2) and varied the distance of a lamp from the plant. The number of oxygen bubbles produced per minute was counted as a measure of photosynthesis rate.\n\n' +
+        'Table 1: Photosynthesis Rate at Different Lamp Distances\n' +
+        'Distance (cm) | Bubbles per minute\n' +
+        '10             | 60\n' +
+        '20             | 45\n' +
+        '40             | 28\n' +
+        '80             | 14\n' +
+        '160            | 7\n\n' +
+        'Note: All trials were conducted at 25 degrees C with the same plant and bulb wattage.',
+      prompt: 'Based on Table 1, what happens to the photosynthesis rate as the lamp distance increases?',
+      choices: [
+        { id: 'A', text: 'It increases steadily.' },
+        { id: 'B', text: 'It remains constant.' },
+        { id: 'C', text: 'It first decreases then increases.' },
+        { id: 'D', text: 'It decreases.' },
+      ],
+      answer: 'D',
+      explanation: 'Bubble count drops from 60 at 10 cm to 7 at 160 cm, showing a steady decrease. Greater distance means less light intensity reaching the plant.',
+    },
+    {
+      id: 'sci-040',
+      subject: 'Science',
+      passage: 'Photosynthesis and Light Intensity\n\n' +
+        'A student placed Elodea (water weed) in sodium bicarbonate solution (which supplies CO2) and varied the distance of a lamp from the plant. The number of oxygen bubbles produced per minute was counted as a measure of photosynthesis rate.\n\n' +
+        'Table 1: Photosynthesis Rate at Different Lamp Distances\n' +
+        'Distance (cm) | Bubbles per minute\n' +
+        '10             | 60\n' +
+        '20             | 45\n' +
+        '40             | 28\n' +
+        '80             | 14\n' +
+        '160            | 7\n\n' +
+        'Note: All trials were conducted at 25 degrees C with the same plant and bulb wattage.',
+      prompt: 'How do the bubbles per minute at 160 cm compare to those at 80 cm?',
+      choices: [
+        { id: 'A', text: 'About the same' },
+        { id: 'B', text: 'About double' },
+        { id: 'C', text: 'About four times fewer' },
+        { id: 'D', text: 'About half' },
+      ],
+      answer: 'D',
+      explanation: 'At 80 cm: 14 bubbles/min. At 160 cm: 7 bubbles/min. 7 is half of 14, so the rate is roughly halved when the distance is doubled.',
+    },
+    {
+      id: 'sci-041',
+      subject: 'Science',
+      passage: 'Photosynthesis and Light Intensity\n\n' +
+        'A student placed Elodea (water weed) in sodium bicarbonate solution (which supplies CO2) and varied the distance of a lamp from the plant. The number of oxygen bubbles produced per minute was counted as a measure of photosynthesis rate.\n\n' +
+        'Table 1: Photosynthesis Rate at Different Lamp Distances\n' +
+        'Distance (cm) | Bubbles per minute\n' +
+        '10             | 60\n' +
+        '20             | 45\n' +
+        '40             | 28\n' +
+        '80             | 14\n' +
+        '160            | 7\n\n' +
+        'Note: All trials were conducted at 25 degrees C with the same plant and bulb wattage.',
+      prompt: 'What is the independent variable in this experiment?',
+      choices: [
+        { id: 'A', text: 'The number of oxygen bubbles per minute' },
+        { id: 'B', text: 'The water temperature' },
+        { id: 'C', text: 'The distance of the lamp from the plant' },
+        { id: 'D', text: 'The type of plant used' },
+      ],
+      answer: 'C',
+      explanation: 'The independent variable is what the experimenter deliberately changes. The student varied the lamp distance; bubble count is the dependent variable measured in response.',
+    },
+    {
+      id: 'sci-042',
+      subject: 'Science',
+      passage: 'Photosynthesis and Light Intensity\n\n' +
+        'A student placed Elodea (water weed) in sodium bicarbonate solution (which supplies CO2) and varied the distance of a lamp from the plant. The number of oxygen bubbles produced per minute was counted as a measure of photosynthesis rate.\n\n' +
+        'Table 1: Photosynthesis Rate at Different Lamp Distances\n' +
+        'Distance (cm) | Bubbles per minute\n' +
+        '10             | 60\n' +
+        '20             | 45\n' +
+        '40             | 28\n' +
+        '80             | 14\n' +
+        '160            | 7\n\n' +
+        'Note: All trials were conducted at 25 degrees C with the same plant and bulb wattage.',
+      prompt: 'Why did the student use sodium bicarbonate solution instead of plain water?',
+      choices: [
+        { id: 'A', text: 'To increase the temperature of the solution' },
+        { id: 'B', text: 'To provide CO2 needed for photosynthesis' },
+        { id: 'C', text: 'To prevent the plant from absorbing too much oxygen' },
+        { id: 'D', text: 'To make bubbles easier to count' },
+      ],
+      answer: 'B',
+      explanation: 'Sodium bicarbonate dissolves in water to release CO2, a reactant in photosynthesis. Without adequate CO2 the plant cannot sustain photosynthesis regardless of light intensity.',
+    },
+    {
+      id: 'sci-043',
+      subject: 'Science',
+      passage: 'Photosynthesis and Light Intensity\n\n' +
+        'A student placed Elodea (water weed) in sodium bicarbonate solution (which supplies CO2) and varied the distance of a lamp from the plant. The number of oxygen bubbles produced per minute was counted as a measure of photosynthesis rate.\n\n' +
+        'Table 1: Photosynthesis Rate at Different Lamp Distances\n' +
+        'Distance (cm) | Bubbles per minute\n' +
+        '10             | 60\n' +
+        '20             | 45\n' +
+        '40             | 28\n' +
+        '80             | 14\n' +
+        '160            | 7\n\n' +
+        'Note: All trials were conducted at 25 degrees C with the same plant and bulb wattage.',
+      prompt: 'All trials were conducted at 25 degrees C. What is the most likely reason the student controlled temperature?',
+      choices: [
+        { id: 'A', text: 'Temperature does not affect enzyme activity' },
+        { id: 'B', text: 'To ensure changes in photosynthesis rate were due to light intensity, not temperature' },
+        { id: 'C', text: 'To increase the rate of photosynthesis at all distances' },
+        { id: 'D', text: 'Because the lamp heats the water as it gets closer' },
+      ],
+      answer: 'B',
+      explanation: 'Holding temperature constant is a controlled variable. If temperature varied, it could confound results--making it unclear whether light or temperature caused the changes.',
+    },
+    {
+      id: 'sci-044',
+      subject: 'Science',
+      passage: 'Photosynthesis and Light Intensity\n\n' +
+        'A student placed Elodea (water weed) in sodium bicarbonate solution (which supplies CO2) and varied the distance of a lamp from the plant. The number of oxygen bubbles produced per minute was counted as a measure of photosynthesis rate.\n\n' +
+        'Table 1: Photosynthesis Rate at Different Lamp Distances\n' +
+        'Distance (cm) | Bubbles per minute\n' +
+        '10             | 60\n' +
+        '20             | 45\n' +
+        '40             | 28\n' +
+        '80             | 14\n' +
+        '160            | 7\n\n' +
+        'Note: All trials were conducted at 25 degrees C with the same plant and bulb wattage.',
+      prompt: 'A student predicts that moving the lamp to 5 cm will produce more than 60 bubbles per minute. Is this prediction reasonable based on the data trend?',
+      choices: [
+        { id: 'A', text: 'No, because the rate is already at its maximum at 10 cm.' },
+        { id: 'B', text: 'No, because light intensity has no effect inside 10 cm.' },
+        { id: 'C', text: 'Yes, because sodium bicarbonate concentration will also increase.' },
+        { id: 'D', text: 'Yes, because the data shows closer distance is associated with higher rates.' },
+      ],
+      answer: 'D',
+      explanation: 'The trend shows higher bubble rates at shorter distances. Reducing distance to 5 cm increases light intensity further, so it is reasonable to predict a rate above 60 bubbles/min.',
     },
   ],
 };
