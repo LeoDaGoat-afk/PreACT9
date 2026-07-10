@@ -1,0 +1,174 @@
+---
+import Base from '../layouts/Base.astro';
+import { CARDS, SUBJECT_META, KIND_META } from '../data/vocab';
+
+const deck = CARDS.map((c) => ({
+  word: c.word,
+  definition: c.definition,
+  example: c.example,
+  subject: c.subject,
+  kind: c.kind,
+  accent: SUBJECT_META[c.subject].accent,
+  kindLabel: KIND_META[c.kind].label,
+  subjectLabel: SUBJECT_META[c.subject].label,
+}));
+---
+
+<Base title="PreACT 9 — My Stars">
+  <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8">
+    <header class="mb-6">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            PreACT 9 Secure
+          </p>
+          <h1 class="mt-1 text-2xl font-bold sm:text-3xl">★ My Stars</h1>
+        </div>
+        <a
+          href="/"
+          class="shrink-0 rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+        >
+          ← Flashcards
+        </a>
+      </div>
+      <p class="mt-2 text-sm text-[var(--muted)]">
+        Words you've starred for extra review. Tap ★ Remove to unstar.
+      </p>
+    </header>
+
+    <!-- Empty state -->
+    <div
+      id="empty-state"
+      class="hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-10 text-center"
+    >
+      <p class="text-4xl">★</p>
+      <p class="mt-3 font-semibold">No starred words yet</p>
+      <p class="mt-1 text-sm text-[var(--muted)]">
+        Star words on the flashcard page to save them here for extra review.
+      </p>
+      <a
+        href="/"
+        class="mt-5 inline-block rounded-full bg-[var(--text)] px-5 py-2 text-sm font-semibold text-[var(--bg)]"
+      >
+        Go to flashcards →
+      </a>
+    </div>
+
+    <!-- Count -->
+    <p id="star-count" class="mb-4 text-sm text-[var(--muted)]"></p>
+
+    <!-- Cards list -->
+    <div id="stars-list" class="space-y-3"></div>
+
+    <!-- Clear all -->
+    <div id="clear-row" class="hidden mt-6 flex justify-end">
+      <button
+        id="clear-all-btn"
+        type="button"
+        class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:border-[#e23a6e] hover:text-[#e23a6e]"
+      >
+        Clear all stars
+      </button>
+    </div>
+  </main>
+
+  <script is:inline define:vars={{ deck }}>
+    const DECK = deck;
+
+    function getStars() {
+      try { return new Set(JSON.parse(localStorage.getItem('preact9:stars') || '[]')); }
+      catch { return new Set(); }
+    }
+    function saveStars(set) {
+      try { localStorage.setItem('preact9:stars', JSON.stringify([...set])); }
+      catch {}
+    }
+
+    const emptyState = document.getElementById('empty-state');
+    const starCountEl = document.getElementById('star-count');
+    const starsList = document.getElementById('stars-list');
+    const clearRow = document.getElementById('clear-row');
+    const clearAllBtn = document.getElementById('clear-all-btn');
+
+    function render() {
+      const starred = getStars();
+      const cards = DECK.filter((c) => starred.has(c.word));
+
+      if (cards.length === 0) {
+        emptyState.classList.remove('hidden');
+        starCountEl.textContent = '';
+        starsList.innerHTML = '';
+        clearRow.classList.add('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      clearRow.classList.remove('hidden');
+      starCountEl.textContent = `${cards.length} starred word${cards.length === 1 ? '' : 's'}`;
+
+      starsList.innerHTML = '';
+      for (const card of cards) {
+        const el = document.createElement('div');
+        el.className =
+          'rounded-2xl border bg-[var(--surface)] p-5 transition';
+        el.style.borderColor = `${card.accent}44`;
+
+        const header = document.createElement('div');
+        header.className = 'flex items-start justify-between gap-3';
+
+        const info = document.createElement('div');
+        const word = document.createElement('p');
+        word.className = 'text-xl font-bold';
+        word.style.color = card.accent;
+        word.textContent = card.word;
+        const meta = document.createElement('p');
+        meta.className =
+          'mt-0.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]';
+        meta.textContent = `${card.subjectLabel} · ${card.kindLabel}`;
+        info.appendChild(word);
+        info.appendChild(meta);
+
+        const unstarBtn = document.createElement('button');
+        unstarBtn.type = 'button';
+        unstarBtn.className =
+          'unstar-btn shrink-0 rounded-full border px-3 py-1 text-xs font-semibold transition hover:bg-[#d69e0022]';
+        unstarBtn.style.color = '#d69e00';
+        unstarBtn.style.borderColor = '#d69e0055';
+        unstarBtn.dataset.word = card.word;
+        unstarBtn.textContent = '★ Remove';
+
+        header.appendChild(info);
+        header.appendChild(unstarBtn);
+
+        const def = document.createElement('p');
+        def.className = 'mt-3 text-sm leading-relaxed';
+        def.textContent = card.definition;
+
+        const ex = document.createElement('p');
+        ex.className = 'mt-2 text-sm italic leading-relaxed text-[var(--muted)]';
+        ex.textContent = `"${card.example}"`;
+
+        el.appendChild(header);
+        el.appendChild(def);
+        el.appendChild(ex);
+        starsList.appendChild(el);
+
+        unstarBtn.addEventListener('click', () => {
+          const s = getStars();
+          s.delete(card.word);
+          saveStars(s);
+          render();
+        });
+      }
+    }
+
+    clearAllBtn.addEventListener('click', () => {
+      if (confirm('Remove all starred words?')) {
+        saveStars(new Set());
+        render();
+      }
+    });
+
+    render();
+  </script>
+</Base>

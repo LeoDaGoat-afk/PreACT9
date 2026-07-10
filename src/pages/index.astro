@@ -29,7 +29,13 @@ const deck = CARDS.map((c) => ({
           </p>
           <h1 class="mt-1 text-2xl font-bold sm:text-3xl">Vocabulary Flashcards</h1>
         </div>
-        <div class="flex shrink-0 gap-2">
+        <div class="flex shrink-0 flex-wrap justify-end gap-2">
+          <a
+            href="/stars"
+            class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+          >
+            ★ My Stars
+          </a>
           <a
             href="/plan"
             class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
@@ -145,9 +151,19 @@ const deck = CARDS.map((c) => ({
           <!-- One card: word on top, meaning + example right below it -->
           <article
             id="card"
-            class="flex min-h-[18rem] flex-1 flex-col rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 sm:p-9"
+            class="relative flex min-h-[18rem] flex-1 flex-col rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 sm:p-9"
           >
-            <h2 id="card-word" class="text-3xl font-bold sm:text-4xl"></h2>
+            <button
+              id="star-btn"
+              type="button"
+              class="star-btn absolute right-5 top-5 rounded-full border border-[var(--line)] bg-[var(--surface)] p-2 text-[var(--muted)] transition hover:text-[var(--text)]"
+              aria-pressed="false"
+              aria-label="Star this word to save it for review"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            </button>
+
+            <h2 id="card-word" class="max-w-[calc(100%-3rem)] text-3xl font-bold sm:text-4xl"></h2>
 
             <button
               id="reveal-btn"
@@ -166,6 +182,35 @@ const deck = CARDS.map((c) => ({
               <p id="card-ex" class="mt-1 text-[15px] italic leading-relaxed text-[var(--muted)]"></p>
             </div>
           </article>
+
+          <!-- Shown once the deck is swiped past its last card -->
+          <div
+            id="summary-panel"
+            class="hidden flex min-h-[18rem] flex-1 flex-col items-center justify-center rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 text-center sm:p-9"
+          >
+            <p class="text-2xl font-bold">Nice work! 🎉</p>
+            <p class="mt-2 text-sm text-[var(--muted)]">
+              You went through <span id="summary-total"></span> cards.
+            </p>
+
+            <div id="summary-stars" class="mt-6 w-full max-w-sm text-left"></div>
+
+            <div class="mt-7 flex flex-wrap justify-center gap-2">
+              <button
+                id="summary-restart"
+                type="button"
+                class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+              >
+                Start over
+              </button>
+              <a
+                href="/stars"
+                class="rounded-full bg-[var(--text)] px-4 py-1.5 text-sm font-semibold text-[var(--bg)]"
+              >
+                ★ My Stars →
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Next arrow -->
@@ -222,6 +267,44 @@ const deck = CARDS.map((c) => ({
     const audioHint = document.getElementById('audio-hint');
     const revealBtn = document.getElementById('reveal-btn');
     const answerBox = document.getElementById('card-answer');
+    const starBtn = document.getElementById('star-btn');
+    const summaryPanel = document.getElementById('summary-panel');
+    const summaryTotal = document.getElementById('summary-total');
+    const summaryStars = document.getElementById('summary-stars');
+    const summaryRestart = document.getElementById('summary-restart');
+
+    // --- Stars (words the learner flags as "don't understand yet") ------
+    // Shared across every flashcard page via one localStorage key, so "My
+    // Stars" can aggregate them regardless of which deck they were starred in.
+    function getStars() {
+      try {
+        return new Set(JSON.parse(localStorage.getItem('preact9:stars') || '[]'));
+      } catch {
+        return new Set();
+      }
+    }
+    function saveStars(set) {
+      try {
+        localStorage.setItem('preact9:stars', JSON.stringify([...set]));
+      } catch {}
+    }
+    let starred = getStars();
+
+    function updateStarButton() {
+      const card = view[index];
+      const isStarred = !!card && starred.has(card.word);
+      starBtn.classList.toggle('starred', isStarred);
+      starBtn.setAttribute('aria-pressed', String(isStarred));
+      starBtn.setAttribute('aria-label', isStarred ? 'Unstar this word' : 'Star this word to save it for review');
+    }
+    starBtn.addEventListener('click', () => {
+      const card = view[index];
+      if (!card) return;
+      if (starred.has(card.word)) starred.delete(card.word);
+      else starred.add(card.word);
+      saveStars(starred);
+      updateStarButton();
+    });
 
     // --- Reveal (definition/example) ------------------------------------
     // Hidden by default on every new card so the word alone can be tested
@@ -328,6 +411,47 @@ const deck = CARDS.map((c) => ({
     }
 
     // --- Render ---------------------------------------------------------
+    // The deck has one extra stop past the last card: index === view.length
+    // shows a "you're done" summary of everything starred this round.
+    function renderSummary(animateDir) {
+      cardEl.classList.add('hidden');
+      summaryPanel.classList.remove('hidden');
+      posEl.textContent = 'Done';
+      prevBtn.disabled = false;
+      nextBtn.disabled = true;
+      replayBtn.classList.add('hidden');
+
+      summaryTotal.textContent = String(view.length);
+      const starredHere = view.filter((c) => starred.has(c.word));
+      if (starredHere.length === 0) {
+        summaryStars.innerHTML =
+          '<p class="text-sm text-[var(--muted)]">You didn\'t star any words this round.</p>';
+      } else {
+        summaryStars.innerHTML =
+          '<p class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">' +
+          `Starred (${starredHere.length})</p>`;
+        const list = document.createElement('div');
+        list.className = 'max-h-48 space-y-2 overflow-y-auto pr-1';
+        for (const c of starredHere) {
+          const row = document.createElement('div');
+          row.className = 'rounded-xl border border-[var(--line)] p-2.5';
+          row.style.borderColor = `${c.accent}33`;
+          row.innerHTML = `<span class="font-bold" style="color:${c.accent}">${c.word}</span><p class="mt-0.5 text-xs leading-snug text-[var(--muted)]"></p>`;
+          row.querySelector('p').textContent = c.definition;
+          list.appendChild(row);
+        }
+        summaryStars.appendChild(list);
+      }
+
+      if (animateDir) {
+        stage.classList.remove('slide-from-left', 'slide-from-right');
+        void stage.offsetWidth;
+        stage.classList.add(
+          animateDir === 'next' ? 'slide-from-right' : 'slide-from-left'
+        );
+      }
+    }
+
     function render(animateDir) {
       if (view.length === 0) {
         stage.classList.add('hidden');
@@ -341,6 +465,14 @@ const deck = CARDS.map((c) => ({
       prevBtn.classList.remove('hidden');
       nextBtn.classList.remove('hidden');
       emptyMsg.classList.add('hidden');
+      replayBtn.classList.remove('hidden');
+
+      if (index === view.length) {
+        renderSummary(animateDir);
+        return;
+      }
+      cardEl.classList.remove('hidden');
+      summaryPanel.classList.add('hidden');
 
       const card = view[index];
       // Keep a subtle subject-colored border as the only color cue (no chip).
@@ -352,7 +484,9 @@ const deck = CARDS.map((c) => ({
       posEl.textContent = `${index + 1} / ${view.length}`;
 
       prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === view.length - 1;
+      nextBtn.disabled = false;
+
+      updateStarButton();
 
       revealed = false;
       updateReveal();
@@ -372,7 +506,7 @@ const deck = CARDS.map((c) => ({
 
     function go(delta) {
       const next = index + delta;
-      if (next < 0 || next >= view.length) return;
+      if (next < 0 || next > view.length) return;
       index = next;
       render(delta > 0 ? 'next' : 'prev');
     }
@@ -415,6 +549,10 @@ const deck = CARDS.map((c) => ({
       audioUnlocked = true;
       if (audioHint) audioHint.style.visibility = 'hidden';
       speak(view[index]?.word);
+    });
+    summaryRestart.addEventListener('click', () => {
+      index = 0;
+      render();
     });
 
     // Keyboard
@@ -481,6 +619,18 @@ const deck = CARDS.map((c) => ({
       background: var(--surface-2);
       border-color: var(--muted);
       color: var(--text);
+    }
+    .star-btn svg {
+      fill: none;
+      stroke: currentColor;
+    }
+    .star-btn.starred {
+      color: #d69e00;
+      border-color: #d69e0055;
+    }
+    .star-btn.starred svg {
+      fill: #f5b400;
+      stroke: #d69e00;
     }
     .slide-from-right {
       animation: slideFromRight 0.28s cubic-bezier(0.4, 0.2, 0.2, 1);

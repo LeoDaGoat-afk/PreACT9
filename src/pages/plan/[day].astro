@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { SUBJECT_META } from '../../data/vocab';
 import { buildPlan, TOTAL_DAYS } from '../../data/plan';
+import { PRACTICE_BY_SUBJECT } from '../../data/practice';
 
 export function getStaticPaths() {
   const plan = buildPlan();
@@ -18,7 +19,37 @@ const nextDay = dayNum < TOTAL_DAYS ? dayNum + 1 : null;
 
 // Subjects that actually have words today.
 const activeSubjects = day.subjects.filter((s) => s.words.length > 0);
-const totalQuestions = activeSubjects.reduce((n, s) => n + s.quiz.length, 0);
+
+// 5 real practice questions per subject per day, cycling through each bank.
+const PER_DAY = 5;
+function getPracticeQs(subject: 'Math' | 'Science' | 'English' | 'Reading') {
+  const bank = PRACTICE_BY_SUBJECT[subject];
+  const start = ((dayNum - 1) * PER_DAY) % bank.length;
+  return Array.from({ length: PER_DAY }, (_, i) =>
+    bank[(start + i) % bank.length]
+  ).map((q) => ({
+    prompt: q.prompt,
+    passage: q.passage ?? '',
+    choices: q.choices,
+    answer: q.answer,
+    explanation: q.explanation ?? '',
+  }));
+}
+const mathQuestions     = getPracticeQs('Math');
+const scienceQuestions  = getPracticeQs('Science');
+const englishQuestions  = getPracticeQs('English');
+const readingQuestions  = getPracticeQs('Reading');
+const practiceAccents = {
+  Math:    SUBJECT_META['Math'].accent,
+  Science: SUBJECT_META['Science'].accent,
+  English: SUBJECT_META['English'].accent,
+  Reading: SUBJECT_META['Reading'].accent,
+};
+
+// Keep only definition-match vocab items (half of original quiz).
+const totalQuestions =
+  activeSubjects.reduce((n, s) => n + s.quiz.filter((q) => q.kind === 'definition').length, 0) +
+  PER_DAY * 4;
 
 // Serialize quiz for the client.
 const quizData = activeSubjects.map((s) => ({
@@ -30,7 +61,7 @@ const quizData = activeSubjects.map((s) => ({
     definition: w.definition,
     example: w.example,
   })),
-  quiz: s.quiz,
+  quiz: s.quiz.filter((q) => q.kind === 'definition'),
 }));
 
 // Flatten today's words (across subjects) into one swipeable flashcard deck,
@@ -49,9 +80,14 @@ const flashDeck = quizData.flatMap((s) =>
   <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8">
     <header class="mb-6">
       <div class="flex items-center justify-between gap-3">
-        <a href="/plan" class="text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
-          ← All days
-        </a>
+        <div class="flex items-center gap-3">
+          <a href="/plan" class="text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
+            ← All days
+          </a>
+          <a href="/stars" class="rounded-full border border-[var(--line)] px-3 py-1 text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
+            ★ My Stars
+          </a>
+        </div>
         <div class="flex gap-2">
           {prevDay && (
             <a href={`/plan/${prevDay}`} class="rounded-full border border-[var(--line)] px-3 py-1 text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
@@ -108,10 +144,20 @@ const flashDeck = quizData.flatMap((s) =>
         <div id="flash-stage" class="flex w-full touch-pan-y select-none flex-col">
           <article
             id="flash-card"
-            class="flex min-h-[16rem] flex-1 flex-col rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 sm:p-9"
+            class="relative flex min-h-[16rem] flex-1 flex-col rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 sm:p-9"
           >
-            <p id="flash-subject" class="text-[11px] font-semibold uppercase tracking-wider"></p>
-            <h3 id="flash-word" class="mt-2 text-3xl font-bold sm:text-4xl"></h3>
+            <button
+              id="flash-star-btn"
+              type="button"
+              class="star-btn absolute right-5 top-5 rounded-full border border-[var(--line)] bg-[var(--surface)] p-2 text-[var(--muted)] transition hover:text-[var(--text)]"
+              aria-pressed="false"
+              aria-label="Star this word to save it for review"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            </button>
+
+            <p id="flash-subject" class="max-w-[calc(100%-3rem)] text-[11px] font-semibold uppercase tracking-wider"></p>
+            <h3 id="flash-word" class="mt-2 max-w-[calc(100%-3rem)] text-3xl font-bold sm:text-4xl"></h3>
 
             <button
               id="flash-reveal-btn"
@@ -130,6 +176,35 @@ const flashDeck = quizData.flatMap((s) =>
               <p id="flash-ex" class="mt-1 text-[15px] italic leading-relaxed text-[var(--muted)]"></p>
             </div>
           </article>
+
+          <!-- Shown once Step 1 is swiped past its last word -->
+          <div
+            id="flash-summary-panel"
+            class="hidden flex min-h-[16rem] flex-1 flex-col items-center justify-center rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-7 text-center sm:p-9"
+          >
+            <p class="text-2xl font-bold">Words done! 🎉</p>
+            <p class="mt-2 text-sm text-[var(--muted)]">
+              You went through <span id="flash-summary-total"></span> words.
+            </p>
+
+            <div id="flash-summary-stars" class="mt-6 w-full max-w-sm text-left"></div>
+
+            <div class="mt-7 flex flex-wrap justify-center gap-2">
+              <button
+                id="flash-summary-restart"
+                type="button"
+                class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+              >
+                Study again
+              </button>
+              <a
+                href="/stars"
+                class="rounded-full bg-[var(--text)] px-4 py-1.5 text-sm font-semibold text-[var(--bg)]"
+              >
+                ★ My Stars →
+              </a>
+            </div>
+          </div>
         </div>
 
         <button
@@ -199,7 +274,7 @@ const flashDeck = quizData.flatMap((s) =>
     }
   </style>
 
-  <script define:vars={{ quizData, dayNum, totalQuestions, flashDeck }}>
+  <script define:vars={{ quizData, dayNum, totalQuestions, flashDeck, mathQuestions, scienceQuestions, englishQuestions, readingQuestions, practiceAccents }}>
     // --- Speech (reuse the same natural-voice picker as the flashcards) ---
     const synth = window.speechSynthesis;
     let cachedVoice = null;
@@ -247,6 +322,46 @@ const flashDeck = quizData.flatMap((s) =>
     const flashAudioHint = document.getElementById('flash-audio-hint');
     const flashRevealBtn = document.getElementById('flash-reveal-btn');
     const flashAnswerBox = document.getElementById('flash-answer');
+    const flashStarBtn = document.getElementById('flash-star-btn');
+    const flashSummaryPanel = document.getElementById('flash-summary-panel');
+    const flashSummaryTotal = document.getElementById('flash-summary-total');
+    const flashSummaryStars = document.getElementById('flash-summary-stars');
+    const flashSummaryRestart = document.getElementById('flash-summary-restart');
+
+    // --- Stars (words the learner flags as "don't understand yet") ------
+    // Shared across every flashcard page via one localStorage key, so "My
+    // Stars" can aggregate them regardless of which deck they were starred in.
+    function getStars() {
+      try {
+        return new Set(JSON.parse(localStorage.getItem('preact9:stars') || '[]'));
+      } catch {
+        return new Set();
+      }
+    }
+    function saveStars(set) {
+      try {
+        localStorage.setItem('preact9:stars', JSON.stringify([...set]));
+      } catch {}
+    }
+    let starred = getStars();
+
+    function updateFlashStarButton() {
+      const card = flashCards[flashIndex];
+      const isStarred = !!card && starred.has(card.word);
+      flashStarBtn.classList.toggle('starred', isStarred);
+      flashStarBtn.setAttribute('aria-pressed', String(isStarred));
+      flashStarBtn.setAttribute('aria-label', isStarred ? 'Unstar this word' : 'Star this word to save it for review');
+    }
+    if (flashStarBtn) {
+      flashStarBtn.addEventListener('click', () => {
+        const card = flashCards[flashIndex];
+        if (!card) return;
+        if (starred.has(card.word)) starred.delete(card.word);
+        else starred.add(card.word);
+        saveStars(starred);
+        updateFlashStarButton();
+      });
+    }
 
     // Hidden by default on every new card so the word alone can be tested
     // before checking the meaning.
@@ -420,6 +535,80 @@ const flashDeck = quizData.flatMap((s) =>
       });
       root.appendChild(section);
     }
+
+    // --- Practice questions: Math, Science, English, Reading (5 each) ---
+    function renderPracticeSection(questions, label, accent) {
+      if (!questions.length) return;
+      const section = document.createElement('div');
+      section.className = 'mb-6';
+
+      const head = document.createElement('p');
+      head.className = 'mb-2 text-[11px] font-semibold uppercase tracking-wider';
+      head.style.color = accent;
+      head.textContent = `${label} · ${questions.length} questions`;
+      section.appendChild(head);
+
+      questions.forEach((item) => {
+        const q = document.createElement('div');
+        q.className = 'q mb-3 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4';
+        q.dataset.answer = item.answer;
+
+        if (item.passage) {
+          const pass = document.createElement('p');
+          pass.className = 'mb-3 max-h-40 overflow-y-auto rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-3 text-xs leading-relaxed text-[var(--muted)] whitespace-pre-line';
+          pass.textContent = item.passage;
+          q.appendChild(pass);
+        }
+
+        const prompt = document.createElement('p');
+        prompt.className = 'font-medium leading-relaxed';
+        prompt.textContent = item.prompt;
+        q.appendChild(prompt);
+
+        const choicesWrap = document.createElement('div');
+        choicesWrap.className = 'mt-3 space-y-2';
+        item.choices.forEach((c) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'choice flex w-full items-start gap-3 rounded-xl border border-[var(--line)] px-4 py-2.5 text-left text-sm transition hover:border-[var(--muted)]';
+          btn.dataset.choice = c.id;
+          btn.innerHTML = `<span class="choice-key mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--line)] text-[11px] font-semibold">${c.id}</span><span></span>`;
+          btn.querySelector('span:last-child').textContent = c.text;
+          btn.addEventListener('click', () => {
+            if (q.classList.contains('answered')) return;
+            q.classList.add('answered');
+            answered++;
+            if (c.id === item.answer) { btn.classList.add('is-correct'); score++; }
+            else {
+              btn.classList.add('is-wrong');
+              const right = [...q.querySelectorAll('.choice')].find((x) => x.dataset.choice === item.answer);
+              right?.classList.add('is-correct');
+            }
+            q.querySelector('.prac-expl')?.classList.remove('hidden');
+            scoreEl.textContent = String(score);
+            saveProgress(false);
+            if (answered === totalQuestions) finish();
+          });
+          choicesWrap.appendChild(btn);
+        });
+        q.appendChild(choicesWrap);
+
+        if (item.explanation) {
+          const expl = document.createElement('p');
+          expl.className = 'prac-expl hidden mt-3 rounded-xl bg-[var(--surface-2)] p-3 text-sm leading-relaxed text-[var(--muted)]';
+          expl.textContent = item.explanation;
+          q.appendChild(expl);
+        }
+
+        section.appendChild(q);
+      });
+      root.appendChild(section);
+    }
+
+    renderPracticeSection(mathQuestions,    'Math',    practiceAccents.Math);
+    renderPracticeSection(scienceQuestions, 'Science', practiceAccents.Science);
+    renderPracticeSection(englishQuestions, 'English', practiceAccents.English);
+    renderPracticeSection(readingQuestions, 'Reading', practiceAccents.Reading);
 
     function saveProgress(done) {
       try {

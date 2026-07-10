@@ -56,7 +56,7 @@ const questions = PRACTICE_BY_SUBJECT[subject];
 ---
 
 <Base title={`PreACT 9 Practice — ${meta.label}`}>
-  <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8">
+  <main class="mx-auto max-w-3xl px-4 py-6 sm:py-8" data-subject={subject.toLowerCase()}>
     <header class="mb-6">
       <div class="flex items-baseline justify-between gap-3">
         <div>
@@ -84,6 +84,16 @@ const questions = PRACTICE_BY_SUBJECT[subject];
         Score: <span id="score">0</span>
       </p>
     </header>
+
+    <div
+      id="cooldown-banner"
+      class="hidden mb-6 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 text-center"
+    >
+      <p class="font-semibold text-[var(--text)]">Test locked</p>
+      <p class="mt-1 text-sm text-[var(--muted)]">
+        Retake available in <span id="cooldown-time" class="font-medium text-[var(--text)]"></span>
+      </p>
+    </div>
 
     <ol class="space-y-6">
       {
@@ -131,13 +141,23 @@ const questions = PRACTICE_BY_SUBJECT[subject];
       <a href="/practice" class="text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
         ← Back to all sections
       </a>
-      <button
-        id="reset-btn"
-        type="button"
-        class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
-      >
-        Reset
-      </button>
+      <div class="flex items-center gap-3">
+        <button
+          id="submit-btn"
+          type="button"
+          class="hidden rounded-full px-4 py-1.5 text-sm font-semibold text-[#0f1419] transition"
+          style="background:#2faf6a"
+        >
+          Finish Test
+        </button>
+        <button
+          id="reset-btn"
+          type="button"
+          class="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
+        >
+          Reset
+        </button>
+      </div>
     </div>
   </main>
 
@@ -173,17 +193,97 @@ const questions = PRACTICE_BY_SUBJECT[subject];
   </style>
 
   <script>
+    const COOLDOWN_MS = 5 * 60 * 60 * 1000; // 5 hours
+
+    const mainEl = document.querySelector<HTMLElement>('main')!;
+    const subject = mainEl.dataset.subject!;
+    const STORAGE_KEY = `preact9_done_${subject}`;
+
     const questions = Array.from(document.querySelectorAll<HTMLElement>('.question'));
     const progressEl = document.getElementById('progress')!;
     const scoreEl = document.getElementById('score')!;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const resetBtn = document.getElementById('reset-btn') as HTMLButtonElement;
+    const cooldownBanner = document.getElementById('cooldown-banner')!;
+    const cooldownTimeEl = document.getElementById('cooldown-time')!;
+
     let answered = 0;
     let score = 0;
+
+    function getRemainingMs(): number {
+      const ts = localStorage.getItem(STORAGE_KEY);
+      if (!ts) return 0;
+      return Math.max(0, COOLDOWN_MS - (Date.now() - Number(ts)));
+    }
+
+    function isInCooldown(): boolean {
+      return getRemainingMs() > 0;
+    }
+
+    function formatTime(ms: number): string {
+      const totalSec = Math.ceil(ms / 1000);
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      if (h > 0) return `${h}h ${m}m`;
+      if (m > 0) return `${m}m ${s}s`;
+      return `${s}s`;
+    }
+
+    function lockChoices() {
+      document.querySelectorAll<HTMLButtonElement>('.choice').forEach((b) => {
+        b.disabled = true;
+      });
+    }
+
+    function unlockChoices() {
+      document.querySelectorAll<HTMLButtonElement>('.choice').forEach((b) => {
+        b.disabled = false;
+      });
+    }
+
+    function startCooldownBanner() {
+      cooldownBanner.classList.remove('hidden');
+      submitBtn.classList.add('hidden');
+      resetBtn.classList.add('hidden');
+
+      function tick() {
+        const rem = getRemainingMs();
+        if (rem <= 0) {
+          cooldownBanner.classList.add('hidden');
+          resetBtn.classList.remove('hidden');
+          unlockChoices();
+          localStorage.removeItem(STORAGE_KEY);
+          return;
+        }
+        cooldownTimeEl.textContent = formatTime(rem);
+        setTimeout(tick, rem < 60_000 ? 1000 : 30_000);
+      }
+      tick();
+    }
 
     function updateStatus() {
       progressEl.textContent = String(answered);
       scoreEl.textContent = String(score);
+      if (answered === questions.length && !isInCooldown()) {
+        submitBtn.classList.remove('hidden');
+      }
     }
 
+    // On load: if cooldown is active, lock test immediately
+    if (isInCooldown()) {
+      lockChoices();
+      startCooldownBanner();
+    }
+
+    // Finish Test button
+    submitBtn.addEventListener('click', () => {
+      localStorage.setItem(STORAGE_KEY, String(Date.now()));
+      lockChoices();
+      startCooldownBanner();
+    });
+
+    // Question answering
     questions.forEach((q) => {
       const correct = q.dataset.answer;
       const choices = Array.from(q.querySelectorAll<HTMLElement>('.choice'));
@@ -191,7 +291,7 @@ const questions = PRACTICE_BY_SUBJECT[subject];
 
       choices.forEach((choice) => {
         choice.addEventListener('click', () => {
-          if (q.classList.contains('answered')) return; // lock after first answer
+          if (q.classList.contains('answered')) return;
           q.classList.add('answered');
           answered++;
 
@@ -201,7 +301,6 @@ const questions = PRACTICE_BY_SUBJECT[subject];
             score++;
           } else {
             choice.classList.add('is-wrong');
-            // also reveal the correct one
             const right = choices.find((c) => c.dataset.choice === correct);
             right?.classList.add('is-correct');
           }
@@ -211,9 +310,11 @@ const questions = PRACTICE_BY_SUBJECT[subject];
       });
     });
 
-    document.getElementById('reset-btn')?.addEventListener('click', () => {
+    // Reset (only reachable when not in cooldown)
+    resetBtn.addEventListener('click', () => {
       answered = 0;
       score = 0;
+      submitBtn.classList.add('hidden');
       questions.forEach((q) => {
         q.classList.remove('answered');
         q.querySelectorAll('.choice').forEach((c) =>

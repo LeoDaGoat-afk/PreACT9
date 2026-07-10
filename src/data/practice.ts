@@ -2311,6 +2311,267 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
       explanation:
         'x-intercepts are −4 and 2. Vertex x = (−4 + 2)/2 = −1. y = (−1 + 4)(−1 − 2) = 3 × (−3) = −9. Vertex: (−1, −9).',
     },
+    // -- Real math problems (math-035 – math-054) ---------------------------
+    {
+      id: 'math-035',
+      subject: 'Math',
+      prompt: 'If 3x − 5 = 16, what is the value of x?',
+      choices: [
+        { id: 'A', text: '3' },
+        { id: 'B', text: '5' },
+        { id: 'C', text: '7' },
+        { id: 'D', text: '11' },
+      ],
+      answer: 'C',
+      explanation: '3x = 16 + 5 = 21, so x = 7.',
+    },
+    {
+      id: 'math-036',
+      subject: 'Math',
+      prompt: 'A rectangle has length 12 cm and width 7 cm. What is its area?',
+      choices: [
+        { id: 'A', text: '38 cm²' },
+        { id: 'B', text: '74 cm²' },
+        { id: 'C', text: '84 cm²' },
+        { id: 'D', text: '19 cm²' },
+      ],
+      answer: 'C',
+      explanation: 'Area = length × width = 12 × 7 = 84 cm².',
+    },
+    {
+      id: 'math-037',
+      subject: 'Math',
+      prompt: 'What is 15% of 80?',
+      choices: [
+        { id: 'A', text: '8' },
+        { id: 'B', text: '10' },
+        { id: 'C', text: '12' },
+        { id: 'D', text: '15' },
+      ],
+      answer: 'C',
+      explanation: '15% of 80 = 0.15 × 80 = 12.',
+    },
+    {
+      id: 'math-038',
+      subject: 'Math',
+      prompt: 'What is the slope of the line passing through (1, 4) and (3, 10)?',
+      choices: [
+        { id: 'A', text: '2' },
+        { id: 'B', text: '3' },
+        { id: 'C', text: '4' },
+        { id: 'D', text: '6' },
+      ],
+      answer: 'B',
+      explanation: 'slope = (10 − 4) / (3 − 1) = 6 / 2 = 3.',
+    },
+    {
+      id: 'math-039',
+      subject: 'Math',
+      prompt: 'The sum of three consecutive integers is 48. What is the smallest integer?',
+      choices: [
+        { id: 'A', text: '14' },
+        { id: 'B', text: '15' },
+        { id: 'C', text: '16' },
+        { id: 'D', text: '17' },
+      ],
+      answer: 'B',
+      explanation: 'Let n, n+1, n+2 be the integers. 3n + 3 = 48 → n = 15.',
+    },
+    {
+      id: 'math-040',
+      subject: 'Math',
+      prompt: 'What is the area of a triangle with base 10 and height 6?',
+      choices: [
+        { id: 'A', text: '16' },
+        { id: 'B', text: '30' },
+        { id: 'C', text: '60' },
+        { id: 'D', text: '32' },
+      ],
+      answer: 'B',
+      explanation: 'Area = ½ × base × height = ½ × 10 × 6 = 30.',
+    },
+    {
+      id: 'math-041',
+      subject: 'Math',
+      prompt: 'A line has equation 2y = 4x + 8. What is its slope?',
+      choices: [
+        { id: 'A', text: '2' },
+        { id: 'B', text: '4' },
+        { id: 'C', text: '8' },
+        { id: 'D', text: '1' },
+      ],
+      answer: 'A',
+      explanation: 'Divide both sides by 2: y = 2x + 4. The slope is the coefficient of x, which is 2.',
+    },
+    {
+      id: 'math-042',
+      subject: 'Math',
+      prompt: 'If f(x) = x² − 3x + 2, what is f(4)?',
+      choices: [
+        { id: 'A', text: '2' },
+        { id: 'B', text: '4' },
+        { id: 'C', text: '6' },
+        { id: 'D', text: '8' },
+      ],
+      answer: 'C',
+      explanation: 'f(4) = (4)² − 3(4) + 2 = 16 − 12 + 2 = 6.',
+    },
+    {
+      id: 'math-043',
+      subject: 'Math',
+      prompt: 'A car travels 240 miles in 4 hours. What is its average speed?',
+      choices: [
+        { id: 'A', text: '50 mph' },
+        { id: 'B', text: '55 mph' },
+        { id: 'C', text: '60 mph' },
+        { id: 'D', text: '65 mph' },
+      ],
+      answer: 'C',
+      explanation: 'Speed = distance ÷ time = 240 ÷ 4 = 60 mph.',
+    },
+    {
+      id: 'math-044',
+      subject: 'Math',
+      prompt: 'Solve for x: 5/x = 2/3',
+      choices: [
+        { id: 'A', text: '6' },
+        { id: 'B', text: '7' },
+        { id: 'C', text: '7.5' },
+        { id: 'D', text: '10' },
+      ],
+      answer: 'C',
+      explanation: 'Cross-multiply: 2x = 15, so x = 7.5.',
+    },
+    {
+      id: 'math-045',
+      subject: 'Math',
+      prompt: 'The angles of a triangle measure x°, 2x°, and 3x°. What is the value of x?',
+      choices: [
+        { id: 'A', text: '20' },
+        { id: 'B', text: '30' },
+        { id: 'C', text: '40' },
+        { id: 'D', text: '60' },
+      ],
+      answer: 'B',
+      explanation: 'Angles of a triangle sum to 180°. x + 2x + 3x = 180 → 6x = 180 → x = 30.',
+    },
+    {
+      id: 'math-046',
+      subject: 'Math',
+      prompt: 'What are the solutions of the system y = 2x + 1 and y = −x + 7?',
+      choices: [
+        { id: 'A', text: 'x = 2, y = 5' },
+        { id: 'B', text: 'x = 3, y = 7' },
+        { id: 'C', text: 'x = 1, y = 3' },
+        { id: 'D', text: 'x = 2, y = 7' },
+      ],
+      answer: 'A',
+      explanation: 'Set equal: 2x + 1 = −x + 7 → 3x = 6 → x = 2, y = 5.',
+    },
+    {
+      id: 'math-047',
+      subject: 'Math',
+      prompt: 'Simplify: (2x³y²)(3xy⁴)',
+      choices: [
+        { id: 'A', text: '5x⁴y⁶' },
+        { id: 'B', text: '6x⁴y⁶' },
+        { id: 'C', text: '6x³y⁸' },
+        { id: 'D', text: '5x⁴y⁸' },
+      ],
+      answer: 'B',
+      explanation: 'Multiply coefficients: 2 × 3 = 6. Add exponents: x³⁺¹ = x⁴, y²⁺⁴ = y⁶. Result: 6x⁴y⁶.',
+    },
+    {
+      id: 'math-048',
+      subject: 'Math',
+      prompt: 'A store discounts a $50 item by 20%. What is the sale price?',
+      choices: [
+        { id: 'A', text: '$30' },
+        { id: 'B', text: '$40' },
+        { id: 'C', text: '$45' },
+        { id: 'D', text: '$48' },
+      ],
+      answer: 'B',
+      explanation: '20% of $50 = $10 discount. $50 − $10 = $40.',
+    },
+    {
+      id: 'math-049',
+      subject: 'Math',
+      prompt: 'What is the circumference of a circle with diameter 10? (Use π ≈ 3.14)',
+      choices: [
+        { id: 'A', text: '15.7' },
+        { id: 'B', text: '31.4' },
+        { id: 'C', text: '78.5' },
+        { id: 'D', text: '314' },
+      ],
+      answer: 'B',
+      explanation: 'C = πd = 3.14 × 10 = 31.4.',
+    },
+    {
+      id: 'math-050',
+      subject: 'Math',
+      prompt: 'What is the solution set of the inequality −2x + 4 > 10?',
+      choices: [
+        { id: 'A', text: 'x > −3' },
+        { id: 'B', text: 'x < −3' },
+        { id: 'C', text: 'x > 3' },
+        { id: 'D', text: 'x < 3' },
+      ],
+      answer: 'B',
+      explanation: '−2x > 6. Dividing by −2 flips the inequality: x < −3.',
+    },
+    {
+      id: 'math-051',
+      subject: 'Math',
+      prompt: 'If y varies directly with x and y = 12 when x = 4, what is y when x = 7?',
+      choices: [
+        { id: 'A', text: '18' },
+        { id: 'B', text: '21' },
+        { id: 'C', text: '24' },
+        { id: 'D', text: '28' },
+      ],
+      answer: 'B',
+      explanation: 'y = kx → 12 = 4k → k = 3. When x = 7: y = 3 × 7 = 21.',
+    },
+    {
+      id: 'math-052',
+      subject: 'Math',
+      prompt: 'A data set has values 3, 7, 7, 9, 14. What is the mode?',
+      choices: [
+        { id: 'A', text: '3' },
+        { id: 'B', text: '7' },
+        { id: 'C', text: '8' },
+        { id: 'D', text: '9' },
+      ],
+      answer: 'B',
+      explanation: 'The mode is the value that appears most often. 7 appears twice; all others appear once.',
+    },
+    {
+      id: 'math-053',
+      subject: 'Math',
+      prompt: 'What is the value of 3² + 4² ?',
+      choices: [
+        { id: 'A', text: '25' },
+        { id: 'B', text: '49' },
+        { id: 'C', text: '7' },
+        { id: 'D', text: '14' },
+      ],
+      answer: 'A',
+      explanation: '3² = 9, 4² = 16. 9 + 16 = 25. (This is also the Pythagorean triple 3-4-5 squared.)',
+    },
+    {
+      id: 'math-054',
+      subject: 'Math',
+      prompt: 'A jar contains 4 red, 5 blue, and 6 green marbles. One is drawn at random. What is the probability it is NOT red?',
+      choices: [
+        { id: 'A', text: '4/15' },
+        { id: 'B', text: '11/15' },
+        { id: 'C', text: '6/15' },
+        { id: 'D', text: '9/15' },
+      ],
+      answer: 'B',
+      explanation: 'Total = 15. Not red = 5 + 6 = 11. P(not red) = 11/15.',
+    },
   ],
 
   // ---------------------------------------------------------------------------
@@ -3269,6 +3530,117 @@ export const PRACTICE_BY_SUBJECT: Record<Subject, Question[]> = {
       ],
       answer: 'A',
       explanation: 'From Figure 1, pak-choi percent germination values are: R ~83%, S ~62%, T ~47%, U ~30%. A value of 48% is closest to T (~47%), which corresponds to 6 g/L. From Figure 2, pak-choi seedling lengths are: R ~112 mm, S ~97 mm, T ~68 mm, U ~68 mm. A value of 94 mm is closest to S (~97 mm), which corresponds to 3 g/L.',
+    },
+    // -- New passage: Enzyme Activity (sci-034 – sci-038) -------------------
+    {
+      id: 'sci-034',
+      subject: 'Science',
+      passage:
+        'A biologist measured the activity of a digestive enzyme at several temperatures. Enzyme activity was recorded as milligrams (mg) of substrate broken down per minute.\n\n' +
+        'Table 1: Enzyme Activity at Different Temperatures\n' +
+        'Temperature (°C) | Activity (mg/min)\n' +
+        '20               | 10\n' +
+        '30               | 28\n' +
+        '37               | 40\n' +
+        '45               | 25\n' +
+        '55               | 5',
+      prompt: 'According to Table 1, at which temperature was enzyme activity the greatest?',
+      choices: [
+        { id: 'A', text: '20°C' },
+        { id: 'B', text: '30°C' },
+        { id: 'C', text: '37°C' },
+        { id: 'D', text: '55°C' },
+      ],
+      answer: 'C',
+      explanation: 'Table 1 shows the highest activity value (40 mg/min) at 37°C.',
+    },
+    {
+      id: 'sci-035',
+      subject: 'Science',
+      passage:
+        'A biologist measured the activity of a digestive enzyme at several temperatures. Enzyme activity was recorded as milligrams (mg) of substrate broken down per minute.\n\n' +
+        'Table 1: Enzyme Activity at Different Temperatures\n' +
+        'Temperature (°C) | Activity (mg/min)\n' +
+        '20               | 10\n' +
+        '30               | 28\n' +
+        '37               | 40\n' +
+        '45               | 25\n' +
+        '55               | 5',
+      prompt: 'According to Table 1, as temperature increased from 20°C to 37°C, what happened to enzyme activity?',
+      choices: [
+        { id: 'A', text: 'It decreased only.' },
+        { id: 'B', text: 'It increased only.' },
+        { id: 'C', text: 'It remained the same.' },
+        { id: 'D', text: 'It increased then decreased.' },
+      ],
+      answer: 'B',
+      explanation: 'From 20°C to 37°C: 10 → 28 → 40. Activity increased with each temperature step in this range.',
+    },
+    {
+      id: 'sci-036',
+      subject: 'Science',
+      passage:
+        'A biologist measured the activity of a digestive enzyme at several temperatures. Enzyme activity was recorded as milligrams (mg) of substrate broken down per minute.\n\n' +
+        'Table 1: Enzyme Activity at Different Temperatures\n' +
+        'Temperature (°C) | Activity (mg/min)\n' +
+        '20               | 10\n' +
+        '30               | 28\n' +
+        '37               | 40\n' +
+        '45               | 25\n' +
+        '55               | 5',
+      prompt: 'Which of the following statements is best supported by the data in Table 1?',
+      choices: [
+        { id: 'A', text: 'Enzyme activity increases with temperature indefinitely.' },
+        { id: 'B', text: 'Enzyme activity is highest at 37°C and declines at temperatures above that.' },
+        { id: 'C', text: 'Temperature has no effect on enzyme activity.' },
+        { id: 'D', text: 'Enzyme activity is highest at the lowest temperature tested.' },
+      ],
+      answer: 'B',
+      explanation: 'Activity peaks at 37°C (40 mg/min) then falls at 45°C (25) and 55°C (5), disproving infinite increase (A) and no effect (C).',
+    },
+    {
+      id: 'sci-037',
+      subject: 'Science',
+      passage:
+        'A biologist measured the activity of a digestive enzyme at several temperatures. Enzyme activity was recorded as milligrams (mg) of substrate broken down per minute.\n\n' +
+        'Table 1: Enzyme Activity at Different Temperatures\n' +
+        'Temperature (°C) | Activity (mg/min)\n' +
+        '20               | 10\n' +
+        '30               | 28\n' +
+        '37               | 40\n' +
+        '45               | 25\n' +
+        '55               | 5',
+      prompt: 'Based on Table 1, the enzyme activity at 50°C would most likely be closest to which of the following?',
+      choices: [
+        { id: 'A', text: '5 mg/min' },
+        { id: 'B', text: '15 mg/min' },
+        { id: 'C', text: '30 mg/min' },
+        { id: 'D', text: '40 mg/min' },
+      ],
+      answer: 'B',
+      explanation: '50°C is halfway between 45°C (25 mg/min) and 55°C (5 mg/min). Interpolating: ~15 mg/min, which is closest to choice B.',
+    },
+    {
+      id: 'sci-038',
+      subject: 'Science',
+      passage:
+        'A biologist measured the activity of a digestive enzyme at several temperatures. Enzyme activity was recorded as milligrams (mg) of substrate broken down per minute.\n\n' +
+        'Table 1: Enzyme Activity at Different Temperatures\n' +
+        'Temperature (°C) | Activity (mg/min)\n' +
+        '20               | 10\n' +
+        '30               | 28\n' +
+        '37               | 40\n' +
+        '45               | 25\n' +
+        '55               | 5',
+      prompt: 'A researcher wants to maximize enzyme activity. Based on Table 1, which temperature should be used?',
+      choices: [
+        { id: 'A', text: '20°C' },
+        { id: 'B', text: '30°C' },
+        { id: 'C', text: '37°C' },
+        { id: 'D', text: '45°C' },
+      ],
+      answer: 'C',
+      explanation: 'The highest activity in the table is 40 mg/min at 37°C. A researcher wanting maximum activity should use 37°C.',
     },
   ],
 };
